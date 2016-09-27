@@ -1,0 +1,90 @@
+$icon-color: #47A447;
+$topbar-text-color: black;
+$search-bar-background-color: white;
+$content-background-color: #F8F8F8;
+
+header {
+  prm-topbar {  
+    // Add shadow to the topbar.
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 5px 8px 0 rgba(0,0,0,.14),0 1px 14px 0 rgba(0,0,0,.12);
+    // Makes the shadow of the topbar appear.
+    z-index: 1;
+
+    .top-nav-bar {
+      background-color: white;
+      
+      .md-button.button-over-dark, .md-button {  
+        color: $topbar-text-color;
+      }
+      .md-button.button-over-dark:hover:not([disabled]), .md-button:hover:not([disabled]) {
+        color: $topbar-text-color;
+        background-color: #E7E7E7;         
+      }
+
+      .user-name {
+        color: $icon-color;
+      }
+      
+      .user-language {
+        color: $topbar-text-color;
+      }
+
+    }
+  }
+
+  .md-button.button-confirm {
+    color: $icon-color;
+  }
+
+  prm-search-bar {
+    background-color: $search-bar-background-color;
+    .search-switch-buttons  { 
+      .md-button.switch-to-advanced, .md-button.switch-to-simple {
+        color: #5C221E;
+      }
+    }
+    .advanced-search-backdrop {
+      background-color: $search-bar-background-color;
+    }
+  }
+
+
+
+}
+
+body {
+  background-color: #E7E7E7;
+}
+
+md-content, md-content.md-primoExplore-theme {
+  
+  md-card.default-card {
+    background-color: $content-background-color;
+  }
+}
+
+prm-search-result-list {
+  md-list-item, .results-title {
+    background-color: $content-background-color;
+  }
+}
+
+prm-search-result-availability-line { 
+  .md-button.arrow-link-button {
+    .button-content, [link-arrow] {
+      color: #1F2D42;
+    }  
+  }
+}
+
+prm-search-result-frbr-line {
+  $color: #5B2320; 
+  .md-button.arrow-link-button .button-content > prm-icon:first-child, .prm-notice  {
+    color: $color;
+  }
+  .md-button.arrow-link-button {
+    .button-content, [link-arrow] {
+      color: $color;
+    }  
+  }
+}

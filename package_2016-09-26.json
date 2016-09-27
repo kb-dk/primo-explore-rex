@@ -1,0 +1,11 @@
+{
+  "name": "NUI",
+  "version": "0.0.1",
+  "description": "REX",
+  "author": "muratseyhan",
+  "email" : "muse@kb.dk",
+  "devDependencies": {
+    "primo-explore-section-ordering" : "git://github.com/muratseyhan/primo-explore-section-ordering.git",
+    "primo-explore-kb-opening-hours-widget" : "git+https://1fdb704bab56af2ae4c132ea49c979037224ce18:x-oauth-basic@github.com/muratseyhan/primo-explore-kb-opening-hours-widget.git"
+  }
+}

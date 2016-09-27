@@ -1,0 +1,41 @@
+header prm-topbar {
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
+  z-index: 1; }
+  header prm-topbar .top-nav-bar {
+    background-color: white; }
+    header prm-topbar .top-nav-bar .md-button.button-over-dark, header prm-topbar .top-nav-bar .md-button {
+      color: black; }
+    header prm-topbar .top-nav-bar .md-button.button-over-dark:hover:not([disabled]), header prm-topbar .top-nav-bar .md-button:hover:not([disabled]) {
+      color: black;
+      background-color: #E7E7E7; }
+    header prm-topbar .top-nav-bar .user-name {
+      color: #47A447; }
+    header prm-topbar .top-nav-bar .user-language {
+      color: black; }
+header .md-button.button-confirm {
+  color: #47A447; }
+header prm-search-bar {
+  background-color: white; }
+  header prm-search-bar .search-switch-buttons .md-button.switch-to-advanced, header prm-search-bar .search-switch-buttons .md-button.switch-to-simple {
+    color: #5C221E; }
+  header prm-search-bar .advanced-search-backdrop {
+    background-color: white; }
+
+body {
+  background-color: #E7E7E7; }
+
+md-content md-card.default-card, md-content.md-primoExplore-theme md-card.default-card {
+  background-color: #F8F8F8; }
+
+prm-search-result-list md-list-item, prm-search-result-list .results-title {
+  background-color: #F8F8F8; }
+
+prm-search-result-availability-line .md-button.arrow-link-button .button-content, prm-search-result-availability-line .md-button.arrow-link-button [link-arrow] {
+  color: #1F2D42; }
+
+prm-search-result-frbr-line .md-button.arrow-link-button .button-content > prm-icon:first-child, prm-search-result-frbr-line .prm-notice {
+  color: #5B2320; }
+prm-search-result-frbr-line .md-button.arrow-link-button .button-content, prm-search-result-frbr-line .md-button.arrow-link-button [link-arrow] {
+  color: #5B2320; }
+
+/*# sourceMappingURL=rex.css.map */
