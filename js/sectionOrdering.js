@@ -17,7 +17,7 @@ angular.module('viewCustom').factory('sectionOrdering', function() {
 
     // Append the 'details' section to the array.
     sections.splice(numSections, 0, detailsSection);
-    
+        
     return true;
   };
 });
