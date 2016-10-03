@@ -30,6 +30,16 @@ header {
       }
 
     }
+	/*Following is to display clickable logo*/
+
+	prm-logo div.product-logo {
+	    display:none;
+	}
+	 
+	prm-logo div.product-logo-local {
+	 display: flex;
+	}
+
   }
 
   .md-button.button-confirm {

@@ -1,6 +1,7 @@
 header prm-topbar {
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
-  z-index: 1; }
+  z-index: 1;
+  /*Following is to display clickable logo*/ }
   header prm-topbar .top-nav-bar {
     background-color: white; }
     header prm-topbar .top-nav-bar .md-button.button-over-dark, header prm-topbar .top-nav-bar .md-button {
@@ -12,6 +13,10 @@ header prm-topbar {
       color: #47A447; }
     header prm-topbar .top-nav-bar .user-language {
       color: black; }
+  header prm-topbar prm-logo div.product-logo {
+    display: none; }
+  header prm-topbar prm-logo div.product-logo-local {
+    display: flex; }
 header .md-button.button-confirm {
   color: #47A447; }
 header prm-search-bar {
