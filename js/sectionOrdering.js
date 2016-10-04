@@ -1,5 +1,6 @@
 angular.module('viewCustom').factory('sectionOrdering', function() {
-  return function (sections) {
+  return function (ctrl) {
+    var sections = ctrl.services;
     if(!sections) return false;
     
     var numSections = sections.length;
@@ -17,7 +18,6 @@ angular.module('viewCustom').factory('sectionOrdering', function() {
 
     // Append the 'details' section to the array.
     sections.splice(numSections, 0, detailsSection);
-        
-    return true;
+    return true;        
   };
 });

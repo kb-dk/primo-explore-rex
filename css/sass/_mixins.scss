@@ -1,0 +1,15 @@
+// // Angular material .flex-20
+// @mixin flex-20 {
+//   -webkit-flex: 1 1 20%;
+//       -ms-flex: 1 1 20%;
+//           flex: 1 1 20%;
+//   max-width: 20%;
+//   max-height: 100%;
+//   box-sizing: border-box;
+// }
+
+
+// Angular material .md-whiteframe-5dp
+@mixin md-whiteframe-5dp {
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 5px 8px 0 rgba(0,0,0,.14),0 1px 14px 0 rgba(0,0,0,.12);
+}
