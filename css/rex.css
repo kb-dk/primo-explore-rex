@@ -4,33 +4,46 @@ body {
 md-content md-card.default-card, md-content.md-primoExplore-theme md-card.default-card {
   background-color: #F8F8F8; }
 
-header prm-topbar {
-  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
-  z-index: 1;
-  /*Following is to display clickable logo*/ }
-  header prm-topbar .top-nav-bar {
+header {
+  /*START: Hovered topbar */
+  /*END: Hovered topbar */ }
+  header prm-topbar {
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
+    z-index: 1;
+    /*START: Display clickable logo*/
+    /*END: Display clickable logo*/ }
+    header prm-topbar .top-nav-bar {
+      background-color: white; }
+      header prm-topbar .top-nav-bar .md-button.button-over-dark, header prm-topbar .top-nav-bar .md-button {
+        color: rgba(0, 0, 0, 0.65); }
+        header prm-topbar .top-nav-bar .md-button.button-over-dark:hover:not([disabled]), header prm-topbar .top-nav-bar .md-button:hover:not([disabled]) {
+          color: rgba(0, 0, 0, 0.65);
+          background-color: #E7E7E7; }
+      header prm-topbar .top-nav-bar .user-name {
+        color: #47A447; }
+      header prm-topbar .top-nav-bar .user-language {
+        color: rgba(0, 0, 0, 0.65); }
+    header prm-topbar prm-logo div.product-logo {
+      display: none; }
+    header prm-topbar prm-logo div.product-logo-local {
+      display: flex; }
+  header .md-button.button-confirm {
+    color: #47A447; }
+  header prm-user-area md-fab-toolbar.md-is-open md-fab-trigger .md-fab-toolbar-background, header prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-background {
+    background-color: #d0d0d0 !important; }
+  header prm-user-area md-fab-toolbar .md-fab-action-item md-input-container, header prm-user-area md-fab-toolbar .md-fab-action-item md-input-container md-select, header prm-user-area md-fab-toolbar .md-fab-action-item md-input-container:hover:not([disabled]), header prm-user-area md-fab-toolbar .md-fab-action-item md-input-container:hover:not([disabled]) md-select {
+    color: rgba(0, 0, 0, 0.65); }
+  header prm-user-area md-fab-toolbar .md-fab-action-item md-input-container:hover:not([disabled]) {
+    background-color: #E7E7E7; }
+  header prm-icon md-icon,
+  header prm-icon md-icon.md-primoExplore-theme {
+    color: rgba(0, 0, 0, 0.65) !important; }
+  header prm-search-bar {
     background-color: white; }
-    header prm-topbar .top-nav-bar .md-button.button-over-dark, header prm-topbar .top-nav-bar .md-button {
-      color: black; }
-    header prm-topbar .top-nav-bar .md-button.button-over-dark:hover:not([disabled]), header prm-topbar .top-nav-bar .md-button:hover:not([disabled]) {
-      color: black;
-      background-color: #E7E7E7; }
-    header prm-topbar .top-nav-bar .user-name {
-      color: #47A447; }
-    header prm-topbar .top-nav-bar .user-language {
-      color: black; }
-  header prm-topbar prm-logo div.product-logo {
-    display: none; }
-  header prm-topbar prm-logo div.product-logo-local {
-    display: flex; }
-header .md-button.button-confirm {
-  color: #47A447; }
-header prm-search-bar {
-  background-color: white; }
-  header prm-search-bar .search-switch-buttons .md-button.switch-to-advanced, header prm-search-bar .search-switch-buttons .md-button.switch-to-simple {
-    color: #5C221E; }
-  header prm-search-bar .advanced-search-backdrop {
-    background-color: white; }
+    header prm-search-bar .search-switch-buttons .md-button.switch-to-advanced, header prm-search-bar .search-switch-buttons .md-button.switch-to-simple {
+      color: #5C221E; }
+    header prm-search-bar .advanced-search-backdrop {
+      background-color: white; }
 
 prm-search-result-list md-list-item, prm-search-result-list .results-title {
   background-color: #F8F8F8; }
