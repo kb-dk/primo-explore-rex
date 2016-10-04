@@ -1,0 +1,26 @@
+prm-search-result-list {
+  md-list-item, .results-title {
+    background-color: $content-background-color;
+  }
+}
+
+prm-search-result-availability-line { 
+  .md-button.arrow-link-button {
+    .button-content, [link-arrow] {
+      color: #1F2D42;
+    }  
+  }
+}
+
+prm-search-result-frbr-line {
+  $color: #5B2320; 
+  .md-button.arrow-link-button .button-content > prm-icon:first-child, .prm-notice  {
+    color: $color;
+  }
+  .md-button.arrow-link-button {
+    .button-content, [link-arrow] {
+      color: $color;
+    }  
+  }
+}
+

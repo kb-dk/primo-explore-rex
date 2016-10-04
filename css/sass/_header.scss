@@ -1,0 +1,58 @@
+header {
+  prm-topbar {  
+    // Add shadow to the topbar.
+    @include md-whiteframe-5dp;
+    // Makes the shadow of the topbar appear.
+    z-index: 1;
+
+    .top-nav-bar {
+      background-color: white;
+      
+      .md-button.button-over-dark, .md-button {  
+        color: $topbar-text-color;
+      }
+      .md-button.button-over-dark:hover:not([disabled]), .md-button:hover:not([disabled]) {
+        color: $topbar-text-color;
+        background-color: #E7E7E7;         
+      }
+
+      .user-name {
+        color: $icon-color;
+      }
+      
+      .user-language {
+        color: $topbar-text-color;
+      }
+    }
+
+    /*Following is to display clickable logo*/
+
+    prm-logo div.product-logo {
+      display:none;
+    }
+
+    prm-logo div.product-logo-local {
+      display: flex;
+    }
+
+  }
+
+  .md-button.button-confirm {
+    color: $icon-color;
+  }
+
+  prm-search-bar {
+    background-color: $search-bar-background-color;
+    .search-switch-buttons  { 
+      .md-button.switch-to-advanced, .md-button.switch-to-simple {
+        color: #5C221E;
+      }
+    }
+    .advanced-search-backdrop {
+      background-color: $search-bar-background-color;
+    }
+  }
+
+
+
+}

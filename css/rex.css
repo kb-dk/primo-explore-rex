@@ -1,3 +1,9 @@
+body {
+  background-color: #E7E7E7; }
+
+md-content md-card.default-card, md-content.md-primoExplore-theme md-card.default-card {
+  background-color: #F8F8F8; }
+
 header prm-topbar {
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
   z-index: 1;
@@ -26,12 +32,6 @@ header prm-search-bar {
   header prm-search-bar .advanced-search-backdrop {
     background-color: white; }
 
-body {
-  background-color: #E7E7E7; }
-
-md-content md-card.default-card, md-content.md-primoExplore-theme md-card.default-card {
-  background-color: #F8F8F8; }
-
 prm-search-result-list md-list-item, prm-search-result-list .results-title {
   background-color: #F8F8F8; }
 
@@ -42,5 +42,10 @@ prm-search-result-frbr-line .md-button.arrow-link-button .button-content > prm-i
   color: #5B2320; }
 prm-search-result-frbr-line .md-button.arrow-link-button .button-content, prm-search-result-frbr-line .md-button.arrow-link-button [link-arrow] {
   color: #5B2320; }
+
+prm-facet prm-facet-group input[ng-model^="ctrl.facetGroup.additionalData.selected"] {
+  background-color: white;
+  border-bottom-color: grey;
+  max-width: 57px; }
 
 /*# sourceMappingURL=rex.css.map */
