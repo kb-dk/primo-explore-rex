@@ -1,9 +1,4 @@
-$icon-color: #47A447;
-$topbar-text-color: transparentize(black, .35);
-$topbar-button-background-color: #E7E7E7;
-$search-bar-background-color: white;
-$content-background-color: #F8F8F8;
-
+@import 'variables';
 @import 'mixins';
 @import 'general';
 @import 'header';

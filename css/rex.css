@@ -1,5 +1,6 @@
 body {
-  background-color: #E7E7E7; }
+  background-color: #E7E7E7;
+  font-family: 'Roboto', sans-serif; }
 
 md-content md-card.default-card, md-content.md-primoExplore-theme md-card.default-card {
   background-color: #F8F8F8; }
