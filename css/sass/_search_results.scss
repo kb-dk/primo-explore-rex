@@ -13,7 +13,7 @@ prm-search-result-availability-line {
 }
 
 prm-search-result-frbr-line {
-  $color: #5B2320; 
+  $color: #45AAB4; 
   .md-button.arrow-link-button .button-content > prm-icon:first-child, .prm-notice  {
     color: $color;
   }
@@ -22,5 +22,7 @@ prm-search-result-frbr-line {
       color: $color;
     }  
   }
-}
+} 
+
+
 
