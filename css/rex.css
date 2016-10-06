@@ -62,7 +62,7 @@ prm-facet prm-facet-group input[ng-model^="ctrl.facetGroup.additionalData.select
   background-color: white;
   border-bottom-color: grey;
   max-width: 57px; }
-prm-facet div .filtered-facets-section {
+prm-facet div.sidebar-section.filtered-facets-section.animate-chip-section.margin-bottom-large {
   background-color: #FFFCC4; }
 
 /*# sourceMappingURL=rex.css.map */
