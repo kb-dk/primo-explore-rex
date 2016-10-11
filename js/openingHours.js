@@ -40,25 +40,26 @@ angular.module('viewCustom').component('rexOpeningHours', {
       angularLoad.loadScript('http://static.kb.dk/libcal/openingHours_min.js').then(function () {
 
         var locale = $location.search().lang;
-
-        var i18n = (locale && locale.toLowerCase() === "da-dk") ? ctrl.danish_i18n : ctrl.english_i18n;        
+        console.log('Detected locale: '+ locale);
+        var i18n = (locale && (locale.toLowerCase() === "da_dk")) ? ctrl.danish_i18n : ctrl.english_i18n;        
         ctrl.openingHours = OpeningHours;
-      
-        angularLoad.loadScript('https://api3.libcal.com/api_hours_grid.php?iid=1069&format=json&weeks=1&callback=OpeningHours.loadOpeningHours')
-          .catch(function () {
-            console.log('Opening hours widget data could not be loaded!');
-        });
+
 
         ctrl.openingHours.config = {
           // Please notice that the view library: 'all', timespan: 'week' is to wide to put in one column!
-          library: 'Den Sorte Diamant', // 'all' or the library name as it is defined in LibCal (eg. 'HUM', 'KUB Nord' etc.) This can also be a comma separated list of libraries (eg. 'Den Sorte Diamant, HUM, KUB Nord'), in which case it will only show the listed libraries (and the first one in the list initially, if timespan is 'week') 
+          library: 'all', // 'all' or the library name as it is defined in LibCal (eg. 'HUM', 'KUB Nord' etc.) This can also be a comma separated list of libraries (eg. 'Den Sorte Diamant, HUM, KUB Nord'), in which case it will only show the listed libraries (and the first one in the list initially, if timespan is 'week') 
           //libraryWhitelist: ['Den Sorte Diamant', 'HUM', 'SAMF'], // Optional whitelist of all libraries that are to be shown (this option will be overriden by library, if library includes more than one library)
-          timespan: 'week', // 'week' or 'day'
+          timespan: 'day', // 'week' or 'day'
           colorScheme: 'standard03', // 'standard01', 'standard02', 'standard03' - used for headers if no other color is set
           allLibraryColor: '#336600', // overrides the standardColor if defined
           useLibraryColors: true, // use library specific colors (defined in libGuides) - overrides colorScheme if defined
           i18n: i18n
         };
+
+        angularLoad.loadScript('https://api3.libcal.com/api_hours_grid.php?iid=1069&format=json&weeks=1&callback=OpeningHours.loadOpeningHours')
+          .catch(function () {
+            console.log('Opening hours widget data could not be loaded!');
+        });
 
         console.log('Opening hours widget loaded successfully!');
         return true;
