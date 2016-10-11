@@ -37,7 +37,7 @@ angular.module('viewCustom').component('rexOpeningHours', {
 
     ctrl.$onInit = function () {
 
-      angularLoad.loadScript('http://static.kb.dk/libcal/openingHours_min.js').then(function () {
+      angularLoad.loadScript('https://static.kb.dk/libcal/openingHours_min.js').then(function () {
 
         var locale = $location.search().lang;
         console.log('Detected locale: '+ locale);
