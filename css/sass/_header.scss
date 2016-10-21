@@ -3,7 +3,7 @@ header {
     // Add shadow to the topbar.
     @include md-whiteframe-5dp;
     // Makes the shadow of the topbar appear.
-    z-index: 1;
+    z-index: 15;
 
     .top-nav-bar {
       background-color: white;
