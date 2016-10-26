@@ -62,6 +62,16 @@ prm-facet prm-facet-group input[ng-model^="ctrl.facetGroup.additionalData.select
   background-color: white;
   border-bottom-color: grey;
   max-width: 57px; }
+prm-facet prm-facet-group div[ng-class="{\'prm-warn hovered\': excludeThisFacet}"]:hover::after {
+  background-image: url("../img/checkmark_on_circle.svg");
+  background-size: 16px 16px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-top: 5px;
+  content: "";
+  background-repeat: no-repeat;
+  margin-left: 5px; }
 prm-facet div.sidebar-section.filtered-facets-section.animate-chip-section.margin-bottom-large {
   background-color: #FFFCC4; }
 

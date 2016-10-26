@@ -1,11 +1,12 @@
 angular.module('viewCustom').controller('prmRequestsAfterController', ['$scope', 'pickUpNumbers', function ($scope, pickUpNumbers) {
   var ctrl = this;
 
+  // Watching the boolean property representing if the pick-up numbers have been inserted into the view. 
   $scope.$watch(angular.bind(ctrl, function () {
     return ctrl.parentCtrl.requestsDisplay.pickUpNumbersInserted;
   }), function (newVal, oldVal) {
       if(!newVal) {
-        // console.log(ctrl.parentCtrl.requestsDisplay.pickUpNumbersInserted);
+        // If not, insert them.
         pickUpNumbers.insertPickUpNumbers(ctrl.parentCtrl.requestsDisplay);     
       }
   });
