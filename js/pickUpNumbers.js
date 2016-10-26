@@ -1,4 +1,4 @@
-angular.module('viewCustom').factory('pickUpNumbers', ['$http', function($http) {
+angular.module('viewCustom').factory('pickUpNumbers', ['$http', '$location', function($http, $location) {
   
   return {
 
@@ -12,10 +12,9 @@ angular.module('viewCustom').factory('pickUpNumbers', ['$http', function($http) 
         // Retrieving the pick up numbers from the associated service. 
         // Request URI should look like the following.
         // https://rex.kb.dk/cgi-bin/get_pickup_number_text?z37_rec_key=0078814230000100001
-        $http.get('https://rex.kb.dk/cgi-bin/get_pickup_number_text?z37_rec_key=' + itemId)
+        $http.get($location.protocol()+'://rex.kb.dk/cgi-bin/get_pickup_number_text?z37_rec_key=' + itemId)
         .then(function successCallback(response) {
-          console.log(response.data);          
-          console.log(response);          
+          // console.log(response);          
           // Replacing the redundant request ID field with the pickup number.
           item.expandedDisplay[0].label = "request.bookings.pick_up_shelf";
           item.expandedDisplay[0].data = response.data.split(/<body>-|<\/body>/)[1];
