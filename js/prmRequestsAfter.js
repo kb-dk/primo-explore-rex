@@ -1,15 +1,22 @@
-angular.module('viewCustom').controller('prmRequestsAfterController', ['$scope', 'pickUpNumbers', function ($scope, pickUpNumbers) {
+angular.module('viewCustom').controller('prmRequestsAfterController', ['$scope', '$element', 'pickUpNumbers', function ($scope, $element, pickUpNumbers) {
   var ctrl = this;
 
-  // Watching the boolean property representing if the pick-up numbers have been inserted into the view. 
+  ctrl.selector = function (element) {
+    return element.querySelectorAll('p[ng-if="::requestDisplay.secondLineRight"]');
+  }
+  
+  ctrl.$onInit = function () {
+    ctrl.parentElement = $element.parent()[0];
+  }
+
   $scope.$watch(angular.bind(ctrl, function () {
-    return ctrl.parentCtrl.requestsDisplay.pickUpNumbersInserted;
+    return ctrl.parentElement.querySelector('p[ng-if="::requestDisplay.secondLineRight"]');
   }), function (newVal, oldVal) {
-      if(!newVal) {
-        // If not, insert them.
-        pickUpNumbers.insertPickUpNumbers(ctrl.parentCtrl.requestsDisplay);     
+      if(newVal && newVal !== oldVal) {
+        pickUpNumbers.insertPickUpNumbers(ctrl.parentElement, ctrl.parentCtrl.requestsDisplay, ctrl.selector);
       }
   });
+
 
 }]);
   
