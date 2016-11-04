@@ -16,5 +16,5 @@ angular.module('viewCustom').controller('prmLogoAfterController', ['navigation',
 angular.module('viewCustom').component('prmLogoAfter',{
   bindings: { parentCtrl: '<' },
   controller: 'prmLogoAfterController',
-  templateUrl: 'custom/NUI/html/prmLogoAfter.html'  
+  templateUrl: 'custom/' + globalViewName +'/html/prmLogoAfter.html'  
 });
