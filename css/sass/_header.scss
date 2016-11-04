@@ -1,96 +1,94 @@
-header {
-  prm-topbar {  
-    // Add shadow to the topbar.
-    @include md-whiteframe-5dp;
-    // Makes the shadow of the topbar appear.
-    z-index: 15;
+prm-topbar {  
+  // Add shadow to the topbar.
+  @include md-whiteframe-5dp;
+  // Makes the shadow of the topbar appear.
+  z-index: 15;
 
-    .top-nav-bar {
-      background-color: white;
+  .top-nav-bar {
+    background-color: white;
+    
+    .md-button.button-over-dark, .md-button {  
+      color: $topbar-text-color;
       
-      .md-button.button-over-dark, .md-button {  
-        color: $topbar-text-color;
-        
-        &:hover:not([disabled]) {
-          color: $topbar-text-color;
-          background-color: $topbar-button-background-color;         
-        }
-      }
-
-
-      .user-name {
-        color: $icon-color;
-      }
-      
-      .user-language {
-        color: $topbar-text-color;
-      }
-    }
-
-    /*START: Display clickable logo*/
-
-    prm-logo div.product-logo {
-      display:none;
-    }
-
-    prm-logo div.product-logo-local {
-      display: flex;
-    }
-     /*END: Display clickable logo*/
-
-
-  }
-
-  .md-button.button-confirm {
-    color: $icon-color;
-  }
-
- /*START: Hovered topbar */
-  prm-user-area md-fab-toolbar {
-    &.md-is-open md-fab-trigger {
-      .md-fab-toolbar-background, ._md-fab-toolbar-background {
-        background-color: #d0d0d0 !important; //#466176 !important;      
-        // transition-duration: 552.7457627118644ms; 
-      }
-    }
-
-    .md-fab-action-item md-input-container {
-      &, &:hover:not([disabled]) {
-        &, md-select {
-          color: $topbar-text-color;
-        }
-      }
-
       &:hover:not([disabled]) {
-        background-color: $topbar-button-background-color;
-      }    
+        color: $topbar-text-color;
+        background-color: $topbar-button-background-color;         
+      }
+    }
+
+
+    .user-name {
+      color: $icon-color;
     }
     
-  }
-
-  prm-icon {
-    md-icon,
-    md-icon.md-primoExplore-theme {
-      color: $topbar-text-color !important;
-      // transition: $swift-ease-out;
+    .user-language {
+      color: $topbar-text-color;
     }
   }
- /*END: Hovered topbar */
 
-  
+  /*START: Display clickable logo*/
 
-  prm-search-bar {
-    background-color: $search-bar-background-color;
-    .search-switch-buttons  { 
-      .md-button.switch-to-advanced, .md-button.switch-to-simple {
-        color: #45AAB4;
-      }
-    }
-    .advanced-search-backdrop {
-      background-color: $search-bar-background-color;
-    }
+  prm-logo div.product-logo {
+    display:none;
   }
+
+  prm-logo div.product-logo-local {
+    display: flex;
+  }
+   /*END: Display clickable logo*/
+
 
 }
+
+.md-button.button-confirm {
+  color: $icon-color;
+}
+
+/*START: Hovered topbar */
+prm-user-area md-fab-toolbar {
+  &.md-is-open md-fab-trigger {
+    .md-fab-toolbar-background, ._md-fab-toolbar-background {
+      background-color: #d0d0d0 !important; //#466176 !important;      
+      // transition-duration: 552.7457627118644ms; 
+    }
+  }
+
+  .md-fab-action-item md-input-container {
+    &, &:hover:not([disabled]) {
+      &, md-select {
+        color: $topbar-text-color;
+      }
+    }
+
+    &:hover:not([disabled]) {
+      background-color: $topbar-button-background-color;
+    }    
+  }
+  
+}
+
+prm-icon {
+  md-icon,
+  md-icon.md-primoExplore-theme {
+    color: $topbar-text-color !important;
+    // transition: $swift-ease-out;
+  }
+}
+/*END: Hovered topbar */
+
+
+
+prm-search-bar {
+  background-color: $search-bar-background-color;
+  .search-switch-buttons  { 
+    .md-button.switch-to-advanced, .md-button.switch-to-simple {
+      color: #45AAB4;
+    }
+  }
+  .advanced-search-backdrop {
+    background-color: $search-bar-background-color;
+  }
+}
+
 
 

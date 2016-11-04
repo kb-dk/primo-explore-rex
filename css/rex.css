@@ -6,46 +6,49 @@ body {
 md-content md-card.default-card, md-content.md-primoExplore-theme md-card.default-card {
   background-color: #F8F8F8; }
 
-header {
-  /*START: Hovered topbar */
-  /*END: Hovered topbar */ }
-  header prm-topbar {
-    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
-    z-index: 15;
-    /*START: Display clickable logo*/
-    /*END: Display clickable logo*/ }
-    header prm-topbar .top-nav-bar {
-      background-color: white; }
-      header prm-topbar .top-nav-bar .md-button.button-over-dark, header prm-topbar .top-nav-bar .md-button {
-        color: rgba(0, 0, 0, 0.65); }
-        header prm-topbar .top-nav-bar .md-button.button-over-dark:hover:not([disabled]), header prm-topbar .top-nav-bar .md-button:hover:not([disabled]) {
-          color: rgba(0, 0, 0, 0.65);
-          background-color: #E7E7E7; }
-      header prm-topbar .top-nav-bar .user-name {
-        color: #47A447; }
-      header prm-topbar .top-nav-bar .user-language {
-        color: rgba(0, 0, 0, 0.65); }
-    header prm-topbar prm-logo div.product-logo {
-      display: none; }
-    header prm-topbar prm-logo div.product-logo-local {
-      display: flex; }
-  header .md-button.button-confirm {
-    color: #47A447; }
-  header prm-user-area md-fab-toolbar.md-is-open md-fab-trigger .md-fab-toolbar-background, header prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-background {
-    background-color: #d0d0d0 !important; }
-  header prm-user-area md-fab-toolbar .md-fab-action-item md-input-container, header prm-user-area md-fab-toolbar .md-fab-action-item md-input-container md-select, header prm-user-area md-fab-toolbar .md-fab-action-item md-input-container:hover:not([disabled]), header prm-user-area md-fab-toolbar .md-fab-action-item md-input-container:hover:not([disabled]) md-select {
-    color: rgba(0, 0, 0, 0.65); }
-  header prm-user-area md-fab-toolbar .md-fab-action-item md-input-container:hover:not([disabled]) {
-    background-color: #E7E7E7; }
-  header prm-icon md-icon,
-  header prm-icon md-icon.md-primoExplore-theme {
-    color: rgba(0, 0, 0, 0.65) !important; }
-  header prm-search-bar {
+prm-topbar {
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
+  z-index: 15;
+  /*START: Display clickable logo*/
+  /*END: Display clickable logo*/ }
+  prm-topbar .top-nav-bar {
     background-color: white; }
-    header prm-search-bar .search-switch-buttons .md-button.switch-to-advanced, header prm-search-bar .search-switch-buttons .md-button.switch-to-simple {
-      color: #45AAB4; }
-    header prm-search-bar .advanced-search-backdrop {
-      background-color: white; }
+    prm-topbar .top-nav-bar .md-button.button-over-dark, prm-topbar .top-nav-bar .md-button {
+      color: rgba(0, 0, 0, 0.65); }
+      prm-topbar .top-nav-bar .md-button.button-over-dark:hover:not([disabled]), prm-topbar .top-nav-bar .md-button:hover:not([disabled]) {
+        color: rgba(0, 0, 0, 0.65);
+        background-color: #E7E7E7; }
+    prm-topbar .top-nav-bar .user-name {
+      color: #47A447; }
+    prm-topbar .top-nav-bar .user-language {
+      color: rgba(0, 0, 0, 0.65); }
+  prm-topbar prm-logo div.product-logo {
+    display: none; }
+  prm-topbar prm-logo div.product-logo-local {
+    display: flex; }
+
+.md-button.button-confirm {
+  color: #47A447; }
+
+/*START: Hovered topbar */
+prm-user-area md-fab-toolbar.md-is-open md-fab-trigger .md-fab-toolbar-background, prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-background {
+  background-color: #d0d0d0 !important; }
+prm-user-area md-fab-toolbar .md-fab-action-item md-input-container, prm-user-area md-fab-toolbar .md-fab-action-item md-input-container md-select, prm-user-area md-fab-toolbar .md-fab-action-item md-input-container:hover:not([disabled]), prm-user-area md-fab-toolbar .md-fab-action-item md-input-container:hover:not([disabled]) md-select {
+  color: rgba(0, 0, 0, 0.65); }
+prm-user-area md-fab-toolbar .md-fab-action-item md-input-container:hover:not([disabled]) {
+  background-color: #E7E7E7; }
+
+prm-icon md-icon,
+prm-icon md-icon.md-primoExplore-theme {
+  color: rgba(0, 0, 0, 0.65) !important; }
+
+/*END: Hovered topbar */
+prm-search-bar {
+  background-color: white; }
+  prm-search-bar .search-switch-buttons .md-button.switch-to-advanced, prm-search-bar .search-switch-buttons .md-button.switch-to-simple {
+    color: #45AAB4; }
+  prm-search-bar .advanced-search-backdrop {
+    background-color: white; }
 
 prm-search-result-list md-list-item, prm-search-result-list .results-title {
   background-color: #F8F8F8; }
@@ -58,11 +61,11 @@ prm-search-result-frbr-line .md-button.arrow-link-button .button-content > prm-i
 prm-search-result-frbr-line .md-button.arrow-link-button .button-content, prm-search-result-frbr-line .md-button.arrow-link-button [link-arrow] {
   color: #45AAB4; }
 
-prm-facet prm-facet-group input[ng-model^="ctrl.facetGroup.additionalData.selected"] {
+prm-facet-group input[ng-model^="ctrl.facetGroup.additionalData.selected"] {
   background-color: white;
   border-bottom-color: grey;
   max-width: 57px; }
-prm-facet prm-facet-group div[ng-class="{\'prm-warn hovered\': excludeThisFacet}"]:hover::after {
+prm-facet-group .section-content .md-chips .md-chip .md-chip-content:hover::after {
   background-image: url("../img/checkmark_on_circle.svg");
   background-size: 16px 16px;
   display: inline-block;
@@ -71,8 +74,10 @@ prm-facet prm-facet-group div[ng-class="{\'prm-warn hovered\': excludeThisFacet}
   margin-top: 5px;
   content: "";
   background-repeat: no-repeat;
-  margin-left: 5px; }
-prm-facet div.sidebar-section.filtered-facets-section.animate-chip-section.margin-bottom-large {
+  margin-left: 5px;
+  padding-left: 15px; }
+
+div.sidebar-section.filtered-facets-section.animate-chip-section.margin-bottom-large {
   background-color: #FFFCC4; }
 
 /*# sourceMappingURL=rex.css.map */
