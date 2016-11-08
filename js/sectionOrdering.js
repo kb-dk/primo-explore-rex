@@ -1,23 +1,41 @@
 angular.module('viewCustom').factory('sectionOrdering', function() {
-  return function (ctrl) {
+
+  function moveSectionToBottom(sections, section) {
+    // Remove the section.
+    sections.splice(sections.indexOf(section), 1);
+    // Append the section to the end.
+    sections.splice(sections.length, 0, section);
+  }
+
+  return function(ctrl) {
     var sections = ctrl.services;
-    if(!sections) return false;
-    
+    if (!sections) return false;
+
     var numSections = sections.length;
-    if(!(numSections > 0)) return false;
+    if (!(numSections > 0)) return false;
 
-    // Check if there is a 'details' section.
-    var filterResult = sections.filter(function(s) {return s.serviceName === 'details';} );
-    if(filterResult.length !== 1 ) return false;
-    var detailsSection = filterResult[0];
+    // If there is a 'Links' section, move it to the bottom.
+    var linksSection = sections.find((s) => {
+      return s.scrollId === 'links';
+    });
+    if (linksSection)
+      moveSectionToBottom(sections, linksSection);
 
-    var index = sections.indexOf(detailsSection);
-    
-    // Remove the 'details' section from the array.
-    sections.splice(index,1);
+    // If there is a 'Virtual Browse' section, move it to the bottom.
+    var virtualBrowseSection = sections.find((s) => {
+      return s.scrollId === 'virtualBrowse';
+    });
+    if (virtualBrowseSection)
+      moveSectionToBottom(sections, virtualBrowseSection);
 
-    // Append the 'details' section to the array.
-    sections.splice(numSections, 0, detailsSection);
-    return true;        
+    // If there is a 'Details' section, move it to the bottom.
+    var detailsSection = sections.find((s) => {
+      return s.scrollId === 'details';
+    });
+    if (detailsSection)
+      moveSectionToBottom(sections, detailsSection);
+
+    return true;
   };
+
 });

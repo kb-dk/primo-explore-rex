@@ -5,8 +5,8 @@ angular.module('viewCustom').component('prmFullViewAfter', {
   controller: ['sectionOrdering', function(sectionOrdering) {
     var ctrl = this;
 
-    ctrl.$onInit = function () {
-      if(sectionOrdering(ctrl.parentCtrl)) console.log('REX: Sections reordered.');      
+    ctrl.$onInit = function() {
+      if (sectionOrdering(ctrl.parentCtrl)) console.log('REX: Sections reordered.');
     };
   }]
 });
