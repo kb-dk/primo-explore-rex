@@ -6,7 +6,8 @@ angular.module('viewCustom').component('prmFullViewAfter', {
     var ctrl = this;
 
     ctrl.$onInit = function() {
-      if (sectionOrdering(ctrl.parentCtrl)) console.log('REX: Sections reordered.');
+      // Commenting this out as the request link should not be removed any more.
+      // if (sectionOrdering(ctrl.parentCtrl)) console.log('REX: Sections reordered.');
     };
   }]
 });
