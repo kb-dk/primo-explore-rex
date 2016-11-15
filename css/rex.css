@@ -55,7 +55,7 @@ prm-search-bar {
   width: 100%;
   height: 64px;
   position: fixed !important;
-  background: none; }
+  background-color: #fffcc4; }
   .rex-info-bar .md-toast-content {
     justify-content: center;
     box-shadow: none;
