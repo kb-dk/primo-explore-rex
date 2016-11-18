@@ -1,5 +1,5 @@
 // Define the view name here.
-var globalViewName = "NORTH";
+var globalViewName = "NUI";
 
 angular.module('viewCustom', ['angularLoad', 'ngMaterial']).run(function($rootScope) {
   $rootScope.globalViewName = globalViewName;
