@@ -13,7 +13,7 @@ angular.module('viewCustom').controller('prmRequestsAfterController', ['$scope',
     return ctrl.parentElement.querySelector('p[ng-if="::requestDisplay.secondLineRight"]');
   }), function(newVal, oldVal) {
     if (newVal && newVal !== oldVal) {
-      pickUpNumbers.insertPickUpNumbers(ctrl.parentElement, ctrl.parentCtrl.requestsDisplay, ctrl.selector);
+      pickUpNumbers.insertPickUpNumbers(ctrl.parentElement, ctrl.parentCtrl.requestsService.requestsDisplay, ctrl.selector);
     }
   });
 
