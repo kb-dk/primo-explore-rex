@@ -105,4 +105,11 @@ prm-facet-group .section-content .md-chips .md-chip .md-chip-content:hover::afte
 div.sidebar-section.filtered-facets-section.animate-chip-section.margin-bottom-large {
   background-color: #FFFCC4; }
 
+.request-button {
+  background-color: green;
+  color: white; }
+  .request-button:hover:not([disabled]) {
+    background-color: #dcdcdc;
+    color: green; }
+
 /*# sourceMappingURL=rex.css.map */

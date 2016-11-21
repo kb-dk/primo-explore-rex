@@ -1,0 +1,11 @@
+.request-button {
+
+  background-color: green;
+  color: white;
+
+  &:hover:not([disabled]) {
+    background-color: #dcdcdc;
+    color: green;
+  }
+
+}
