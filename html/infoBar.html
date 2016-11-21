@@ -1,7 +1,7 @@
-<md-toast class="rex-info-bar" flex>
-  <span class="md-toast-text" flex>This is my message!</span>
+<md-toast class='rex-info-bar' flex>
+  <span class='md-toast-text' flex translate='nui.message.announcement'>{{ctrl.message}}</span>
 <!--   <md-button class="md-highlight" ng-click="openMoreInfo($event)">
     More info
   </md-button> -->
-  <md-button ng-click="ctrl.close()" translate="nui.message.dismiss"></md-button>
+  <md-button ng-click='ctrl.close()' translate='nui.message.dismiss'></md-button>
 </md-toast>

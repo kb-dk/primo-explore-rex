@@ -1,13 +1,14 @@
-angular.module('viewCustom').controller('prmTopbarAfterController', ['$scope', '$mdToast', '$translate', '$document', function($scope, $mdToast, $translate, $document) {
+angular.module('viewCustom').controller('prmTopbarAfterController', ['$scope', '$mdToast', '$translate', '$element', function($scope, $mdToast, $translate, $element) {
   var ctrl = this;
 
   ctrl.$onInit = function() {
 
-    $translate('nui.message.dismiss')
+    $translate('nui.message.announcement')
       .then(function(translatedValue) {
 
-        // Check if there is a message to be displayed with the info bar
-        if (translatedValue !== "dismiss") {
+        // Check if there is a message to be displayed with the info bar.
+        // translatedValue is initialized to 'announcement' in the absence of a matching entry. '
+        if (translatedValue !== 'announcement') {
           // If so, display
           $mdToast.show({
             hideDelay: 100000,
@@ -16,8 +17,8 @@ angular.module('viewCustom').controller('prmTopbarAfterController', ['$scope', '
             templateUrl: 'custom/' + globalViewName + '/html/infoBar.html'
           }).then(shiftTopBarUp).catch(shiftTopBarUp);
         
-          // Shift the topbar down to avoid overlap.
-          $document.find('prm-topbar').addClass('shifted-topbar');
+          // Shift the topbar down to avoid overlapping.
+          $element.parent().addClass('shifted-topbar');
 
         }
       });
@@ -26,7 +27,7 @@ angular.module('viewCustom').controller('prmTopbarAfterController', ['$scope', '
 
   // Shift the topbar back into its original position.
   function shiftTopBarUp() {
-    return angular.element(document).find('prm-topbar').removeClass('shifted-topbar');
+    return $element.parent().removeClass('shifted-topbar');
   }
 
 
