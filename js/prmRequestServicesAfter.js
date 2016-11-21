@@ -5,7 +5,7 @@ angular.module('viewCustom').controller('prmRequestServicesAfterController', ['$
   // Customize the request link to be a button, and remove the redundant second link.
   $scope.$watch(angular.bind(ctrl, function() {
     // Do this when the user is logged in, and the links are properly loaded.
-    return ctrl.isLoggedIn() && ctrl.parentElement[0].querySelector('.links-block-item prm-service-button button');
+    return ctrl.parentCtrl.isLoggedIn() && ctrl.parentElement[0].querySelector('.links-block-item prm-service-button button');
   }), function(newVal, oldVal) {
 
     if (newVal && !oldVal) {
