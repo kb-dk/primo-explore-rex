@@ -5,13 +5,13 @@ angular.module('viewCustom').controller('prmTopbarAfterController', ['$scope', '
 
     $translate('nui.message.announcement')
       .then(function(translatedValue) {
-
         // Check if there is a message to be displayed with the info bar.
         // translatedValue is initialized to 'announcement' in the absence of a matching entry. '
         if (translatedValue !== 'announcement') {
           // If so, display
           $mdToast.show({
-            hideDelay: 100000,
+            // Timeout duration in msecs. false implies no timeout.
+            hideDelay: false, 
             position: 'top',
             controller: 'infoBarController',
             templateUrl: 'custom/' + globalViewName + '/html/infoBar.html'
@@ -29,8 +29,6 @@ angular.module('viewCustom').controller('prmTopbarAfterController', ['$scope', '
   function shiftTopBarUp() {
     return $element.parent().removeClass('shifted-topbar');
   }
-
-
 
 }]);
 
