@@ -51,7 +51,7 @@ angular.module('viewCustom').component('rexOpeningHours', {
           //libraryWhitelist: ['Den Sorte Diamant', 'HUM', 'SAMF'], // Optional whitelist of all libraries that are to be shown (this option will be overriden by library, if library includes more than one library)
           timespan: 'day', // 'week' or 'day'
           colorScheme: 'standard03', // 'standard01', 'standard02', 'standard03' - used for headers if no other color is set
-          allLibraryColor: '#336600', // overrides the standardColor if defined
+          allLibraryColor: '#6a6864', // overrides the standardColor if defined
           useLibraryColors: true, // use library specific colors (defined in libGuides) - overrides colorScheme if defined
           i18n: i18n
         };
