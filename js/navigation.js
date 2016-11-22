@@ -1,11 +1,11 @@
 angular.module('viewCustom').factory('navigation', ['$location', '$window', function($location, $window) {
-  
+
   return {
 
-    navigateTo: function(url) {      
-      if(url === "")
+    navigateTo: function(url) {
+      if (url === "")
         ctrl.navigateToHomePage();
-      else 
+      else
         $window.open(url, '_blank');
     },
 
@@ -13,10 +13,15 @@ angular.module('viewCustom').factory('navigation', ['$location', '$window', func
       var params = $location.search();
       var vid = params.vid || globalViewName;
       var lang = params.lang || "da_DK";
-      var baseUrl = $location.absUrl().split('?')[0];
-      $window.location.href = baseUrl + '?vid=' + vid + '&lang=' + lang;
+      var split = $location.absUrl().split('/primo-explore/');
+
+      if (split.length === 1) return console.log(split[0] + ' : The URL cannot be navigated from properly!');
+
+      var baseUrl = split[0];
+      $window.location.href = baseUrl + '/primo-explore/search?vid=' + vid + '&lang=' + lang;
+
     }
 
   }
-  
+
 }]);
