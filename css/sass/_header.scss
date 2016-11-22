@@ -123,5 +123,7 @@ prm-search-bar {
 }
 
 .shifted-topbar  {
-  margin-top: 64px;
+  @media screen and (min-width: 960px) {
+    margin-top: 64px;
+  }
 }

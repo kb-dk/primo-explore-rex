@@ -72,8 +72,9 @@ prm-search-bar {
     -webkit-transform: translateZ(0) !important;
     transform: translateZ(0) !important; }
 
-.shifted-topbar {
-  margin-top: 64px; }
+@media screen and (min-width: 960px) {
+  .shifted-topbar {
+    margin-top: 64px; } }
 
 prm-search-result-list md-list-item, prm-search-result-list .results-title {
   background-color: #F8F8F8; }
