@@ -1,4 +1,6 @@
 <md-toast class='rex-info-bar' flex>
-  <span class='md-toast-text' flex translate='nui.message.announcement'></span>
-  <md-button ng-click='ctrl.close()' translate='nui.message.dismiss'></md-button>
+  <span class='md-toast-text' aria-label="{{'nui.message.dismiss' | translate}}" flex translate='nui.message.announcement'>
+  </span>
+  <md-button ng-click='ctrl.close()' aria-label="{{'nui.message.dismiss' | translate}}" translate='nui.message.dismiss'>
+  </md-button>
 </md-toast>

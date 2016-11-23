@@ -6,6 +6,9 @@ body {
 md-content md-card.default-card, md-content.md-primoExplore-theme md-card.default-card {
   background-color: #F8F8F8; }
 
+primo-explore {
+  position: static !important; }
+
 prm-topbar {
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
   z-index: 15;
@@ -59,12 +62,13 @@ prm-search-bar {
   .rex-info-bar .md-toast-content {
     justify-content: center;
     box-shadow: none;
-    color: #444;
     background-color: #fffcc4;
     height: 100%;
     width: 100%;
     max-height: 100%;
     max-width: 100%; }
+    .rex-info-bar .md-toast-content, .rex-info-bar .md-toast-content .md-button {
+      color: #444; }
   .rex-info-bar.ng-enter {
     -webkit-transform: translate3d(0, -100%, 0) !important;
     transform: translate3d(0, -100%, 0) !important; }

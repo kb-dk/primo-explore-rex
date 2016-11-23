@@ -12,3 +12,8 @@ md-content, md-content.md-primoExplore-theme {
   }
 }
 
+// The info bar attempts to set the position of this element to 'relative', which breaks other functionality.
+// The following makes sure that the position will not be modified.
+primo-explore {
+  position: static!important;
+}
