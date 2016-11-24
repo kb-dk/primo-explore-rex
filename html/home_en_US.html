@@ -1,26 +1,19 @@
-<md-content layout-xs="column" layout="row">
+<md-content layout-xs="column" layout="row" style="max-width: 960px">
     <div flex="60" layout="column">
 
+                <md-card class="default-card">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline" style="background-color: #6A6864;color: #FFFFFF;padding: 5px">Try out the new REX</span>
+                </md-card-title-text>
+           </md-card-title>    
+            <md-card-content>
+                <p>REX will get a makeover and use this interface from January 15, 2017. You are welcome to start using it already, but be prepared that some changes may still occur. Enjoy - and please send us your feedback.</p>
+            </md-card-content>
+        </md-card>
         <md-card class="default-card">
             <md-card-content>
                 <rex-opening-hours parent-ctrl="ctrl"></rex-opening-hours>
-            </md-card-content>
-        </md-card>
-       
-        <md-card class="default-card">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">THE ROYAL LIBRARY</span>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-content>
-                <md-list class="default-list">
-        <ul class="list-unstyled">
-                <li><a href="http://www.kb.dk/en/kb/handicap/index.html">Information for disabled</a></li>
-                <li><a href="http://www.kb.dk/en/kb/webstedet/cookiepolitik.html">Cookie- and privacy policy</a></li>
-                <li><a href="http://www.kb.dk/en/kb/webstedet/index.html">About the website</a></li>
-        </ul>
-                </md-list>
             </md-card-content>
         </md-card>
 
@@ -30,13 +23,14 @@
         <md-card class="default-card">
             <md-card-title>
                 <md-card-title-text>
-                    <span class="md-headline">Libguides - find your subject</span>
+                    <span class="md-headline">The good information sources</span>
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
-            <a href="http://kub.kb.dk/c.php?g=439596" title="LibGuides Find your subject">
-                <img src="custom/{{$root.globalViewName}}/img/235Find_dit_Subject-UK.jpg" alt="LibGuides Find your subject"/>
+            <a href="http://kub.kb.dk/c.php?g=439596" title="Library subject guides">
+                <img src="custom/{{$root.globalViewName}}/img/235Find_dit_Subject-UK.jpg" alt="LibGuides Find your subject" style="width: 200px; float: right;"/>
             </a>
+            <p> - relevant to <i>your</i> studies</p>
             </md-card-content>
         </md-card>
 
@@ -49,7 +43,7 @@
             <md-card-content>
                 <p>
                     <a href="http://kub.kb.dk/offcampus" title="Remote access">
-                <img src="custom/{{$root.globalViewName}}/img/Fjernadgang-UK.jpg" alt="Remote access Information"/></a>
+                <img src="custom/{{$root.globalViewName}}/img/Fjernadgang-UK.jpg" alt="Remote access Information" style="width: 200px; float: right;"/></a>
                 </p>
                 <p>
                    Find out about your off-campus access to electronic books and journals.
@@ -66,7 +60,7 @@
             <md-card-content>
                 <p>
                     <a href="http://kontaktbiblioteket.kb.dk/english/" title="Contact the library">
-                <img src="custom/{{$root.globalViewName}}/img/Kontakt_Bibliotek-uk.jpg" alt="Ask us your questions"/></a>
+                <img src="custom/{{$root.globalViewName}}/img/Kontakt_Bibliotek-uk.jpg" alt="Ask us your questions" style="width: 200px; float: right;"/></a>
                 </p>
                 <p>
                    Get answers to your questions about the library and our services.
@@ -75,4 +69,31 @@
         </md-card>
     </div>
    
+</md-content>
+
+<md-content layout-xs="column" layout="row" style="max-width: 960px">
+    <div>
+                <md-card class="default-card" style="background-color: #1B1B1B; color: #C9C9C9; text-align: center;">
+            <md-card-title>
+                <md-card-title-text>
+                          <a href="http://www.kb.dk/en/" >
+                                 <span class="md-headline" style="color: #FFFFFF;">THE ROYAL LIBRARY</span>
+                                </a>
+                            <small> National Library of Denmark and Copenhagen University Library</small>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <p>
+                <a href="http://www.kb.dk/en/kb/handicap/index.html" style="color: #FFFFFF;">Accessability   |</a>
+                <a href="http://www.kb.dk/en/kb/webstedet/cookiepolitik.html" style="color: #FFFFFF;">   Cookie- and privacy policy   |</a>
+                <a href="http://www.kb.dk/en/kb/webstedet/index.html" style="color: #FFFFFF;">   About the website</a>
+                </p>
+                            <small>
+                            Søren Kierkegaards Plads 1 - DK-1219 København K - Denmark
+                            <abbr title="Telefon nr.">Tel: </abbr>+45 33 47 47 47 - Email <a href="mailto:kb@kb.dk" style="color: #FFFFFF;">kb@kb.dk</a> - EAN: 5798 000795297                      
+                            <span class="glyphicon glyphicon-thumbs-up"></span> <a href="https://www.facebook.com/DetKongeligeBibliotek" target="_blank" style="color: #FFFFFF;">Follow us on Facebook</a>
+                        </small>
+            </md-card-content>
+        </md-card>
+    </div>
 </md-content>
