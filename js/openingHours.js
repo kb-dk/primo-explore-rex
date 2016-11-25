@@ -3,17 +3,17 @@ angular.module('viewCustom').component('rexOpeningHours', {
   bindings: {
     parentCtrl: '<',
   },
-  controller: ['angularLoad', '$scope', '$rootScope', '$location', '$window', function(angularLoad, $scope, $rootScope, $location, $window) {
+  controller: ['angularLoad', '$interval', '$rootScope', '$location', '$window', function(angularLoad, $interval, $rootScope, $location, $window) {
     var ctrl = this;
-    
+
     ctrl.danish_i18n = {
       library: 'Bibliotek',
       openHourToday: 'Dagens Åbningstid',
       openHour: 'Åbningstid',
       closed: 'Lukket',
       allDay: 'Døgnåbent',
-      weekdays: ['Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag','Søndag'],
-      weekdaysAbbr: ['man','tirs','ons','tors','fre','lør','søn'],
+      weekdays: ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag', 'Søndag'],
+      weekdaysAbbr: ['man', 'tirs', 'ons', 'tors', 'fre', 'lør', 'søn'],
       info: 'Info',
       map: 'Kort',
       allWeek: 'Hele ugen',
@@ -26,8 +26,8 @@ angular.module('viewCustom').component('rexOpeningHours', {
       openHourToday: 'Open',
       openHour: 'Opening hours',
       closed: 'Closed',
-      weekdays: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
-      weekdaysAbbr: ['mon','tue','wed','thu','fri','sat','sun'],
+      weekdays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      weekdaysAbbr: ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'],
       info: 'Info',
       map: 'Map',
       allWeek: 'All Week',
@@ -35,15 +35,49 @@ angular.module('viewCustom').component('rexOpeningHours', {
       ampm: false
     };
 
-    ctrl.$onInit = function () {
+    // // Try to load the widget every second.
+    ctrl.widgetPromise = $interval(loadOpeningHoursWidget, 1000);
 
-      angularLoad.loadScript('https://static.kb.dk/libcal/openingHours_min.js').then(function () {
+    ctrl.$onDestroy = function() {
+      $interval.cancel(ctrl.widgetPromise);
+
+      $window.OpeningHours = null;
+      ctrl.openingHours = null;
+
+      removeJsCssFile('openingHours_min.js', 'js');
+      removeJsCssFile('openingHoursStyles_min.js', 'css');
+
+      console.log('Opening hours widget destroyed!.');
+    };
+
+    // If the user navigates to the home page, enfore a page reload. 
+    // This is needed when the user clicks to 'My Favorites' icon twice.
+    // TODO: This does not solve the problem.
+    // TODO: This probably does not belong here. Consider moving to the navigation service.
+    $rootScope.$on('$locationChangeSuccess', function(event, newLoc, oldLoc) {
+      var oldLangParam = oldLoc.split(/\?|&/).find(function(str) {
+        return str.includes('lang=');
+      })
+      var newLangParam = newLoc.split(/\?|&/).find(function(str) {
+        return str.includes('lang=');
+      })
+
+      if ($location.path() === '/search' && oldLangParam && oldLangParam !== newLangParam)
+        $window.location.reload();
+    });
+
+    function loadOpeningHoursWidget() {
+      // Do nothing if the widget is already loaded.
+      if (ctrl.openingHours) return;
+
+      angularLoad.loadScript('https://static.kb.dk/libcal/openingHours_min.js').then(function() {
 
         var locale = $location.search().lang;
-        console.log('Detected locale: '+ locale);
-        var i18n = (locale && (locale.toLowerCase() === "da_dk")) ? ctrl.danish_i18n : ctrl.english_i18n;        
+        console.log('Detected locale: ' + locale);
+        var i18n = (locale && (locale.toLowerCase() === "da_dk")) ? ctrl.danish_i18n : ctrl.english_i18n;
         ctrl.openingHours = OpeningHours;
 
+        if (!ctrl.openingHours) throw 'Opening hours widget could not be loaded!';
 
         ctrl.openingHours.config = {
           // Please notice that the view library: 'all', timespan: 'week' is to wide to put in one column!
@@ -57,48 +91,27 @@ angular.module('viewCustom').component('rexOpeningHours', {
         };
 
         angularLoad.loadScript('https://api3.libcal.com/api_hours_grid.php?iid=1069&format=json&weeks=1&callback=OpeningHours.loadOpeningHours')
-          .catch(function () {
-            console.log('Opening hours widget data could not be loaded!');
-        });
+          .catch(function() {
+            console.log('Opening hours data could not be loaded!');
+          });
 
         console.log('Opening hours widget loaded successfully!');
-        return true;
 
-      }).catch(function () {
+      }).catch(function() {
         console.log('Opening hours widget could not be loaded!');
-        return false;
       });
-
-    };
-
-    ctrl.$onDestroy = function () {
-      $window.OpeningHours = null;
-      ctrl.openingHours = null;
-
-      removeJsCssFile('openingHours_min.js', 'js');
-      removeJsCssFile('openingHoursStyles_min.js', 'css');
-      console.log('Opening hours widget destroyed!.');
-    };
-
-    $rootScope.$on('$locationChangeSuccess', function(event, newLoc, oldLoc)  {
-      var oldLangParam = oldLoc.split(/\?|&/).find(function (str) {return str.includes('lang=');} )
-      var newLangParam = newLoc.split(/\?|&/).find(function (str) {return str.includes('lang=');} )
-      
-      if( $location.path() === '/search' && oldLangParam && oldLangParam !== newLangParam)
-        $window.location.reload();
-    });
+    }
 
     // See http://stackoverflow.com/questions/9425910/load-and-unload-javascript-at-runtime/9425964#9425964
-    function removeJsCssFile(fileName, fileType)  {
-      var targetElement=(fileType=="js")? "script" : (fileType=="css")? "link" : "none" //determine element type to create nodelist from
-      var targetAttr=(fileType=="js")? "src" : (fileType=="css")? "href" : "none" //determine corresponding attribute to test for
-      var allSuspects=document.getElementsByTagName(targetElement)
-      for (var i = allSuspects.length; i>=0; i--) { //search backwards within nodelist for matching elements to remove
-        if (allSuspects[i] && allSuspects[i].getAttribute(targetAttr)!=null && allSuspects[i].getAttribute(targetAttr).indexOf(fileName)!=-1)
+    function removeJsCssFile(fileName, fileType) {
+      var targetElement = (fileType == "js") ? "script" : (fileType == "css") ? "link" : "none" //determine element type to create nodelist from
+      var targetAttr = (fileType == "js") ? "src" : (fileType == "css") ? "href" : "none" //determine corresponding attribute to test for
+      var allSuspects = document.getElementsByTagName(targetElement)
+      for (var i = allSuspects.length; i >= 0; i--) { //search backwards within nodelist for matching elements to remove
+        if (allSuspects[i] && allSuspects[i].getAttribute(targetAttr) != null && allSuspects[i].getAttribute(targetAttr).indexOf(fileName) != -1)
           allSuspects[i].parentNode.removeChild(allSuspects[i]) //remove element by calling parentNode.removeChild()
       }
     }
-
 
   }],
 });
