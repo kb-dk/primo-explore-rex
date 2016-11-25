@@ -6,12 +6,12 @@ angular.module('viewCustom').controller('prmTopbarAfterController', ['$scope', '
     $translate('nui.message.announcement')
       .then(function(translatedValue) {
         // Check if there is a message to be displayed with the info bar.
-        // translatedValue is initialized to 'announcement' in the absence of a matching entry. '
-        if (translatedValue !== 'announcement') {
+        // translatedValue is initialized to 'announcement' in the absence of a matching entry.
+        if (translatedValue !== 'announcement' && translatedValue !== '') {
           // If so, display
           $mdToast.show({
             // Timeout duration in msecs. false implies no timeout.
-            hideDelay: false, 
+            hideDelay: false,
             position: 'top',
             controller: 'infoBarController',
             templateUrl: 'custom/' + globalViewName + '/html/infoBar.html',

@@ -11,13 +11,21 @@ angular.module('viewCustom').controller('prmRequestServicesAfterController', ['$
     if (newVal && !oldVal) {
       // Find the links.
       var linkElements = ctrl.parentElement[0].querySelectorAll('.links-block-item');
-      
-      // Customize the request link to be a button.
-      angular.element(linkElements[0]).find('button').removeClass('button-as-link');
-      angular.element(linkElements[0]).find('button').addClass('request-button');
 
-      // Remove the redundant link.
-      linkElements[1].remove();
+      // If there is a single link, it is the ILL link. In this case we remove prm-request-services element all together.
+      if (linkElements.length == 1) {
+        ctrl.parentElement.remove();
+      }
+      // If there are two links, the first one should be the request link and the second the ILL link.
+      else if (linkElements.length == 2) {
+        // Customize the request link to be a button.
+        angular.element(linkElements[0]).find('button').removeClass('button-as-link');
+        angular.element(linkElements[0]).find('button').addClass('request-button');
+
+        // Remove the redundant ILL link.
+        linkElements[1].remove();
+      }
+
     }
 
   });
