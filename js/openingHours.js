@@ -50,19 +50,34 @@ angular.module('viewCustom').component('rexOpeningHours', {
       console.log('Opening hours widget destroyed!.');
     };
 
-    // If the user navigates to the home page, enfore a page reload. 
-    // This is needed when the user clicks to 'My Favorites' icon twice.
-    // TODO: This does not solve the problem.
+    // If the user navigates back to the home page without a refresh, enfore a page reload. 
+    // This is needed when the user navigates back from 'My Favorites',
+    // or changes the language on the home page.
     // TODO: This probably does not belong here. Consider moving to the navigation service.
     $rootScope.$on('$locationChangeSuccess', function(event, newLoc, oldLoc) {
-      var oldLangParam = oldLoc.split(/\?|&/).find(function(str) {
-        return str.includes('lang=');
-      })
-      var newLangParam = newLoc.split(/\?|&/).find(function(str) {
-        return str.includes('lang=');
-      })
+      function langParam(url) {
+        return url.split(/\?|&/).find(function(str) {
+          return str.includes('lang=');
+        });
+      }
 
-      if ($location.path() === '/search' && oldLangParam && oldLangParam !== newLangParam)
+      function path(url) {
+        var splitUrl = url.split(/\/primo-explore|\?/);
+
+        if (splitUrl.length < 2)
+          return false;
+        else
+          return splitUrl[1];
+      }
+
+      var oldLangParam = langParam(oldLoc);
+      var newLangParam = langParam(newLoc);
+      var oldPath = path(oldLoc);
+      var newPath = path(newLoc);
+
+      console.log((newPath === '/search' && ( newPath !== oldPath || (oldLangParam && oldLangParam !== newLangParam))));
+
+      if (newPath === '/search' && ( newPath !== oldPath || (oldLangParam && oldLangParam !== newLangParam)))
         $window.location.reload();
     });
 
