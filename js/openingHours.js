@@ -75,9 +75,7 @@ angular.module('viewCustom').component('rexOpeningHours', {
       var oldPath = path(oldLoc);
       var newPath = path(newLoc);
 
-      console.log((newPath === '/search' && ( newPath !== oldPath || (oldLangParam && oldLangParam !== newLangParam))));
-
-      if (newPath === '/search' && ( newPath !== oldPath || (oldLangParam && oldLangParam !== newLangParam)))
+      if (newPath === '/search' && (newPath !== oldPath || (oldLangParam && oldLangParam !== newLangParam)))
         $window.location.reload();
     });
 
