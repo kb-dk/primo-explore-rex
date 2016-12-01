@@ -1,6 +1,8 @@
 angular.module('viewCustom').factory('announcement', ['$translate', '$mdToast', function($translate, $mdToast) {
 
   return {
+    // Function to be called to display the announcement.
+    // topbarElement is the DOM element to be shifted down when the announcement is active.
     display: function(topbarElement) {
 
       $translate('nui.message.announcement')
