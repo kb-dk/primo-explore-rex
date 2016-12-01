@@ -2,6 +2,7 @@ angular.module('viewCustom').controller('prmTopbarAfterController', ['$element',
   var ctrl = this;
 
   ctrl.$onInit = function() {
+    // Announcement displayed.
     announcement.display($element.parent());
   };
 
