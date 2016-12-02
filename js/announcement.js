@@ -9,7 +9,8 @@ angular.module('viewCustom').factory('announcement', ['$translate', '$mdToast', 
         .then(function(translatedValue) {
           // Check if there is an announcement to be displayed.
           // translatedValue is initialized to 'announcement' in the absence of a matching entry.
-          if (translatedValue !== 'announcement' && translatedValue !== '') {
+
+          if (translatedValue !== 'announcement' && translatedValue !== '' && translatedValue !== '&nbsp;') {
             // If so, display
             $mdToast.show({
               // Timeout duration in msecs. false implies no timeout.

@@ -1,0 +1,50 @@
+<md-dialog>
+  <form ng-cloak>
+
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Search tips</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-icon="primo-ui:close" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content"> 
+
+        <h4><b>How do I limit or expand my search?</b></h4>
+        <ol>
+           <li>
+             Combine, expand, or limit your search through the operators AND, OR, NOT. Please remember to write the operators with capital letters.
+           </li>
+           <li>
+             Use * as a wildcard character to search for variants of a word, for instance pest* (pester, pesticide, pestilence, etc.)
+           </li>
+           <li>
+            Use ? as a wildcard to replace a single letter, for instance wom?n (woman and women). You must use ?? to replace æ, ø, and å.
+           </li>
+           <li>
+            Use (...) parenthesis to group query words, for instance Government AND (democracy OR cabinet responsibility).
+           </li>
+           <li>
+            Use "..." quotation marks, if you want to search for a compound term, for instance "global warming".
+           </li>
+           <li>
+            Use the drop-down menu 'Institutions and Collections' to limit your search to the specific collections of the National Library, or to the single faculty or departmental library. 
+           </li>
+           <li>
+            Use the filtering features after the search to limit for type of material, author, subject, year, library, etc. You find the menu in the left side - or at the top, if you use a telephone or tablet.
+           </li>
+         </ol>
+        <p>You must be registered as a user in order to borrow and order. Tip: <a href="http://rex.kb.dk/primo_library/libweb/action/login.do?loginFn=signin&amp;vid=KGL&amp;targetURL=http%3a%2f%2frex.kb.dk%2fprimo_library%2flibweb%2faction%2fsearch.do%3fvid%3dKGL%26initializeIndex%3dtrue">log in</a> to optimize your search result.</p>
+
+        <p>Need more help? Look at this <a href="http://www.kb.dk/en/udlaan/soegehjaelp/index.html">search manual</a> to find further search tips or <a href="http://kontaktbiblioteket.kb.dk/english/">Contact the library</a></p>
+      
+      </div>
+    
+    </md-dialog-content>
+  
+  </form>
+</md-dialog>

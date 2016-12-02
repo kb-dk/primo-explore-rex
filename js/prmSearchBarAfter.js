@@ -1,74 +1,56 @@
-// angular.module('viewCustom').controller('prmSearchBarAfterController', ['$scope', '$element', '$mdDialog', function($scope, $element, $mdDialog) {
-//   var ctrl = this;
+// TODO: Needs refactoring. Extract the logic into a service.
+angular.module('viewCustom').controller('prmSearchBarAfterController', ['$element', '$mdDialog', '$locale', function($element, $mdDialog, $locale) {
+  var ctrl = this;
 
-//   ctrl.$postLink = function() {
+  ctrl.$postLink = function() {
 
-//     // var container = angular.element($element.parent().children()[0].children[0].children[3]);
-//     // container.append($element.children()[0]);
+    var container = angular.element($element.parent().children()[0].children[0]);
+    console.log($element.parent());
 
-//   };
+    container.append($element.children()[0]);
+  };
 
-//   // ctrl.showSearchTips = function() {
-//   //   console.log('Done!');
-//   // }
+  ctrl.showSearchTips = function(ev) {
+    $mdDialog.show({
+        controller: DialogController,
+        templateUrl: 'custom/' + globalViewName + '/html/searchTips_' + $locale.localeID +'.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose: true,
+        fullscreen: false // Only for -xs, -sm breakpoints.
+      });
+  };
 
-//   $scope.status = '  ';
-//   $scope.customFullscreen = false;
+  function DialogController($scope, $mdDialog) {
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
 
-//   // ctrl.showSearchTips = function(ev) {
-//   //   // Appending dialog to document.body to cover sidenav in docs app
-//   //   // Modal dialogs should fully cover application
-//   //   // to prevent interaction outside of dialog
-//   //   $mdDialog.show(
-//   //     $mdDialog.alert()
-//   //     .parent(angular.element(document.querySelector('#popupContainer')))
-//   //     .clickOutsideToClose(true)
-//   //     .title('This is an alert title')
-//   //     .textContent('You can specify some description text in here.')
-//   //     .ariaLabel('Alert Dialog Demo')
-//   //     .ok('Got it!')
-//   //     .targetEvent(ev)
-//   //   );
-//   // };
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
 
-//   // ctrl.showSearchTips = function(ev) {
-//   //   $mdDialog.show({
-//   //       controller: DialogController,
-//   //       templateUrl: 'custom/' + globalViewName + '/html/searchTips.html',
-//   //       parent: angular.element(document.body),
-//   //       targetEvent: ev,
-//   //       clickOutsideToClose: true,
-//   //       fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
-//   //     })
-//   //     .then(function(answer) {
-//   //       $scope.status = 'You said the information was "' + answer + '".';
-//   //     }, function() {
-//   //       $scope.status = 'You cancelled the dialog.';
-//   //     });
-//   // };
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
+  }
 
-//   // function DialogController($scope, $mdDialog) {
-//   //   $scope.hide = function() {
-//   //     $mdDialog.hide();
-//   //   };
+}]);
 
-//   //   $scope.cancel = function() {
-//   //     $mdDialog.cancel();
-//   //   };
-
-//   //   $scope.answer = function(answer) {
-//   //     $mdDialog.hide(answer);
-//   //   };
-//   // }
-
-
-
-// }]);
-
-// angular.module('viewCustom').component('prmSearchBarAfter', {
-//   bindings: {
-//     parentCtrl: '<'
-//   },
-//   // templateUrl: 'custom/' + globalViewName + '/html/prmSearchBarAfter.html',
-//   controller: 'prmSearchBarAfterController',
-// });
+angular.module('viewCustom').component('prmSearchBarAfter', {
+  bindings: {
+    parentCtrl: '<'
+  },
+  // templateUrl: 'custom/' + globalViewName + '/html/prmSearchBarAfter.html',
+  template: `
+<div flex hide show-gt-sm layout-align='end center' layout='row' >
+<rex-search-tip>
+  <md-button class="md-icon-button" aria-label="Search Tips" ng-click='$ctrl.showSearchTips($event)'>
+    <md-tooltip md-direction="bottom">Search tips</md-tooltip>
+    <md-icon md-svg-icon='primo-ui:help-circle-outline'></md-icon>
+  </md-button>
+</rex-search-tip>
+</div>
+  `,
+  controller: 'prmSearchBarAfterController',
+});
