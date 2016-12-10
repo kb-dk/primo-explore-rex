@@ -45,8 +45,8 @@ angular.module('viewCustom').component('prmSearchBarAfter', {
   template: `
 <div flex hide show-gt-sm layout-align='end center' layout='row' >
 <rex-search-tip>
-  <md-button class="md-icon-button" aria-label="Search Tips" ng-click='$ctrl.showSearchTips($event)'>
-    <md-tooltip md-direction="bottom">Search tips</md-tooltip>
+  <md-button class='md-icon-button' aria-label="{{'nui.search.search_tips' | translate}}" ng-click='$ctrl.showSearchTips($event)'>
+    <md-tooltip md-direction='bottom'>{{'nui.search.search_tips' | translate}}</md-tooltip>
     <md-icon md-svg-icon='primo-ui:help-circle-outline'></md-icon>
   </md-button>
 </rex-search-tip>
