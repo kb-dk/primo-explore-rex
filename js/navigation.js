@@ -4,27 +4,25 @@ angular.module('viewCustom').factory('navigation', ['$location', '$window', '$ro
   // This is needed when the user navigates back from 'My Favorites',
   // or changes the language on the home page.
   $rootScope.$on('$locationChangeSuccess', function(event, newLoc, oldLoc) {
-    function langParam(url) {
-      return url.split(/\?|&/).find(function(str) {
-        return str.includes('lang=');
-      });
+
+    function extractParam(url, param) {
+      var re = RegExp('[\\?|&]' + param + '=([\\w]*)&?');
+      var match = url.match(re);
+      return match ? match[1] : false;
     }
 
     function path(url) {
       var splitUrl = url.split(/\/primo-explore|\?/);
-
-      if (splitUrl.length < 2)
-        return false;
-      else
-        return splitUrl[1];
+      return (splitUrl.length < 2) ? false : splitUrl[1];
     }
 
-    var oldLangParam = langParam(oldLoc);
-    var newLangParam = langParam(newLoc);
+    var oldLangParam = extractParam(oldLoc, 'lang');
+    var newLangParam = extractParam(newLoc, 'lang');
+    var newQueryParam = extractParam(newLoc, 'query');
     var oldPath = path(oldLoc);
     var newPath = path(newLoc);
 
-    if (newPath === '/search' && (newPath !== oldPath || (oldLangParam && oldLangParam !== newLangParam)))
+    if (newPath === '/search' && !newQueryParam && (newPath !== oldPath || (oldLangParam && oldLangParam !== newLangParam)))
       $window.location.reload();
   });
 
