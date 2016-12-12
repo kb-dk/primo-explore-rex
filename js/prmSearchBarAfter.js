@@ -1,4 +1,4 @@
-// TODO: Needs refactoring. Extract the logic into a service.
+// TODO: Decide if the logic needs to be extracted out into a service.
 angular.module('viewCustom').controller('prmSearchBarAfterController', ['$element', '$mdDialog', '$locale', function($element, $mdDialog, $locale) {
   var ctrl = this;
 
