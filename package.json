@@ -1,0 +1,16 @@
+{
+  "name": "primo-explore-rex",
+  "version": "1.0.0",
+  "description": "A Primo Customization Package for The Royal Library.",
+  "author": "The Royal Library of Denmark",
+  "devDependencies": {
+    "browserify": "^13.1.1",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-browserify": "^5.1.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-html2js-preprocessor": "^1.1.0",
+    "karma-jasmine": "^1.1.0",
+    "watchify": "^3.8.0"
+  }
+}
