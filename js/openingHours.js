@@ -1,4 +1,4 @@
-angular.module('viewCustom').controller('openingHoursController', ['angularLoad', '$interval', '$rootScope', '$locale', '$window', function(angularLoad, $interval, $rootScope, $locale, $window) {
+angular.module('viewCustom').controller('openingHoursController', ['angularLoadMonkeyPatched', '$interval', '$rootScope', '$locale', '$window', function(angularLoadMonkeyPatched, $interval, $rootScope, $locale, $window) {
 
   var ctrl = this;
 
@@ -52,6 +52,9 @@ angular.module('viewCustom').controller('openingHoursController', ['angularLoad'
     console.log('Opening hours widget destroyed!.');
   };
 
+  /**
+   * Function that loads the opening hours widget. 
+   */ 
   function loadOpeningHoursWidget() {
 
     // Stop trying to load the widget, if it is already loaded.
@@ -60,7 +63,7 @@ angular.module('viewCustom').controller('openingHoursController', ['angularLoad'
       return;
     }
 
-    angularLoad.loadScript('https://static.kb.dk/libcal/openingHours_min.js').then(function() {
+    angularLoadMonkeyPatched.loadScript('https://static.kb.dk/libcal/openingHours_min.js').then(function() {
 
       var i18n = ($locale.localeID === "da_DK") ? ctrl.danish_i18n : ctrl.english_i18n;
 
@@ -79,7 +82,7 @@ angular.module('viewCustom').controller('openingHoursController', ['angularLoad'
         i18n: i18n
       };
 
-      angularLoad.loadScript('https://api3.libcal.com/api_hours_grid.php?iid=1069&format=json&weeks=1&callback=OpeningHours.loadOpeningHours')
+      angularLoadMonkeyPatched.loadScript('https://api3.libcal.com/api_hours_grid.php?iid=1069&format=json&weeks=1&callback=OpeningHours.loadOpeningHours')
         .catch(function() {
           console.log('Opening hours data could not be loaded!');
         });
@@ -91,7 +94,12 @@ angular.module('viewCustom').controller('openingHoursController', ['angularLoad'
     });
   }
 
-  // See http://stackoverflow.com/questions/9425910/load-and-unload-javascript-at-runtime/9425964#9425964
+  /**
+   * Removes the JS or CSS file with the given file name from the DOM. 
+   * See: http://stackoverflow.com/questions/9425910/load-and-unload-javascript-at-runtime/9425964#9425964
+   * @param {string} fileName- The name of the file to be removed.
+   * @param {string} fileType- The type of the file to be removed.
+   */
   function removeJsCssFile(fileName, fileType) {
     // Determine element type to create nodelist from
     var targetElement = (fileType == "js") ? "script" : (fileType == "css") ? "link" : "none"
@@ -108,7 +116,9 @@ angular.module('viewCustom').controller('openingHoursController', ['angularLoad'
 
 }]);
 
-
+/**
+ * The opening hours widget component. 
+ */
 angular.module('viewCustom').component('rexOpeningHours', {
   template: '<div id="openingHoursContainer"></div>',
   bindings: {
