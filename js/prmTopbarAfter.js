@@ -1,6 +1,6 @@
-angular.module('viewCustom').controller('prmTopbarAfterController', ['$element', 'announcement', function($element, announcement) {
+angular.module('viewCustom').controller('prmTopbarAfterController', ['$element', 'announcement', '$interval', '$rootScope', function($element, announcement, $interval, $rootScope) {
   var ctrl = this;
-
+  
   ctrl.$onInit = function() {
     // Announcement displayed.
     announcement.display($element.parent());
