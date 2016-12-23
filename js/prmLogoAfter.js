@@ -1,20 +1,25 @@
 // Clickable logo.
 
-angular.module('viewCustom').controller('prmLogoAfterController', ['navigation', function (navigation) {
-  var ctrl = this;
-  
-  ctrl.$onInit = function () {
-    ctrl.navigation = navigation;
-  };
-  
-  ctrl.getIconLink = function () {
-    return ctrl.parentCtrl.iconLink;
-  };
+angular.module('viewCustom').controller('prmLogoAfterController', [
+  'navigation',
+  function(navigation) {
+    var ctrl = this;
 
-}]);
-  
-angular.module('viewCustom').component('prmLogoAfter',{
-  bindings: { parentCtrl: '<' },
+    ctrl.$onInit = function() {
+      ctrl.navigation = navigation;
+    };
+
+    ctrl.getIconLink = function() {
+      return ctrl.parentCtrl.iconLink;
+    };
+
+  }
+]);
+
+angular.module('viewCustom').component('prmLogoAfter', {
+  bindings: {
+    parentCtrl: '<'
+  },
   controller: 'prmLogoAfterController',
-  templateUrl: 'custom/' + globalViewName +'/html/prmLogoAfter.html'  
+  templateUrl: 'custom/' + globalViewName + '/html/prmLogoAfter.html'
 });
