@@ -22,7 +22,7 @@ angular.module('viewCustom').factory('navigation', [
 
       /**
        * Navigates to the home page with a reload.
-       * @returns {boolean} Booelan value indicating if the navigation was successful.
+       * @return {boolean} Booelan value indicating if the navigation was successful.
        */
       navigateToHomePage: function() {
         var params = $location.search();

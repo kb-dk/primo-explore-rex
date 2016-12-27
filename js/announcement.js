@@ -29,7 +29,7 @@ angular.module('viewCustom').factory('announcement', [
                 hideDelay: false,
                 position: 'top',
                 controller: 'announcementController',
-                templateUrl: 'custom/' + globalViewName + '/html/announcement.html',
+                templateUrl: 'custom/' + $rootScope.globalViewName + '/html/announcement.html',
               }).then(dismissed).catch(cancelled);
 
               // Shift the topbar down to avoid overlapping.

@@ -1,10 +1,13 @@
 angular.module('viewCustom').controller('searchTipsContoller', [
-  'navigation',
   '$mdDialog',
   '$locale',
-  function(navigation, $mdDialog, $locale) {
+  function($mdDialog, $locale) {
     var ctrl = this;
 
+    /**
+     * Pops up a dialog message containing 
+     * the search tips in the selected language.
+     */
     ctrl.showSearchTips = function(ev) {
       $mdDialog.show({
         controller: DialogController,
