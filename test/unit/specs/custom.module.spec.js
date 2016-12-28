@@ -7,7 +7,7 @@ describe('App initialization', function() {
         $rootScope = _$rootScope_;
     }));
    
-    it('sets the global view name.', function() {
+    it('should set the global view name.', function() {
         expect($rootScope.globalViewName).toBeDefined();
         expect($rootScope.globalViewName).toEqual(globalViewName);
     });

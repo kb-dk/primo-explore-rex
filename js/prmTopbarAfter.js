@@ -8,7 +8,17 @@ angular.module('viewCustom').controller('prmTopbarAfterController', [
 
     ctrl.$onInit = function() {
       // Announcement displayed.
-      announcement.display($element.parent());
+      announcement.display(ctrl.hideCallback)
+        .then(ctrl.displayCallback)
+        .catch((e) => {});
+    };
+
+    ctrl.displayCallback = function() {
+      $element.parent().addClass('shifted-topbar');
+    };
+
+    ctrl.hideCallback = function() {
+      $element.parent().removeClass('shifted-topbar');
     };
 
   }

@@ -1,4 +1,4 @@
-describe('searchTipsContoller, ', function() {
+describe('searchTipsContoller,', function() {
   var $mdDialog, $locale, searchTipsContoller;
 
   beforeEach(module('viewCustom'));
@@ -16,13 +16,13 @@ describe('searchTipsContoller, ', function() {
     });
   }));
 
-  describe('when the selected language is English, ', function() {
+  describe('when the selected language is English,', function() {
     
     beforeEach(function() {
       $locale.localeID = 'en_US';  
     });
 
-    it('should display the search tips.', function() {
+    it('should display the English search tips.', function() {
       searchTipsController.showSearchTips();
       expect($mdDialog.show).toHaveBeenCalled();
       $httpBackend.expectGET('custom/NUI/html/searchTips_en_US.html').respond(200);
@@ -30,13 +30,13 @@ describe('searchTipsContoller, ', function() {
     });    
   });
 
-  describe('when the selected language is Danish, ', function() {
+  describe('when the selected language is Danish,', function() {
     
     beforeEach(function() {
       $locale.localeID = 'da_DK';  
     });
 
-    it('should display the search tips.', function() {
+    it('should display the Danish search tips.', function() {
       searchTipsController.showSearchTips();
       expect($mdDialog.show).toHaveBeenCalled();
       $httpBackend.expectGET('custom/NUI/html/searchTips_da_DK.html').respond(200);

@@ -8,21 +8,33 @@ angular.module('viewCustom').factory('announcement', [
   '$rootScope',
   function($translate, $mdToast, $rootScope) {
 
+    // The announcement has been dismissed by the user,
+    // and should not be displayed again.
+    function dismissed() {
+      $rootScope.announcementDismissed = true;
+    };
+
     return {
       /** 
        *  Displays the announcement if it has not been dismissed.
-       *  @param {Angular.element} topbarElement - The element to be shifted down when the announcement is active.
+       *  @param {function} [hideCallback] - A function to be called when the announcement is hidden.
+       *  @return {Promise} A Promise to be fulfilled if the announcement is displayed, 
+       *  and to be rejected when the announcement cannot be displayed.
        */
-      display: function(topbarElement) {
+      display: function(hideCallback) {
+        return new Promise(function(resolve, reject) {
 
-        if ($rootScope.announcementDismissed == true) return;
+          if ($rootScope.announcementDismissed == true) {
+            return reject('The announcement has been dismissed.');
+          };
 
-        $translate('nui.message.announcement')
-          .then(function(translatedValue) {
+          $translate('nui.message.announcement').then(function(translation) {
             // Check if there is an announcement to be displayed.
-            // translatedValue is initialized to 'announcement' in the absence of a matching entry.
-            if (translatedValue !== 'announcement' &&
-              translatedValue !== '' && translatedValue !== '&nbsp;') {
+            // translation is initialized to 'announcement' in the absence of a matching entry.
+            if ((!translation) || ['announcement', '&nbsp;', ''].includes(translation)) {
+            // if (false) {
+              reject();
+            } else {
               // If so, display
               $mdToast.show({
                 // Timeout duration in msecs. false implies no timeout.
@@ -30,37 +42,23 @@ angular.module('viewCustom').factory('announcement', [
                 position: 'top',
                 controller: 'announcementController',
                 templateUrl: 'custom/' + $rootScope.globalViewName + '/html/announcement.html',
-              }).then(dismissed).catch(cancelled);
+              }).then(dismissed).then(hideCallback).catch(hideCallback);
 
-              // Shift the topbar down to avoid overlapping.
-              topbarElement.addClass('shifted-topbar');
-
-              // The announcement has been dismissed by the user.
-              // Should not be displayed again.
-              // Shift the topbar back into its original position and note that it was dismissed.
-              function dismissed() {
-                $rootScope.announcementDismissed = true;
-                shiftTopbarBackUp();
-              }
-
-              // The announcement has been removed witout dismissal.
-              // (Probably through navigation).
-              // Shift the topbar back into its original position.
-              function cancelled() {
-                shiftTopbarBackUp();
-              }
-
-              function shiftTopbarBackUp() {
-                topbarElement.removeClass('shifted-topbar');
-              }
-
+              resolve();
             }
           });
-      }
+
+        });
+      },
     }
+
   }
 ]);
 
+
+/**
+ * Announcement controller.
+ */
 angular.module('viewCustom').controller('announcementController', ['$scope', '$mdToast', function($scope, $mdToast) {
   var ctrl = $scope.ctrl = this;
 
