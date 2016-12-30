@@ -10,25 +10,21 @@ describe('announcement,', function() {
   beforeEach(function() {
     module(function($provide) {
       $provide.service('$translate', function() {
+      
+        var translation = 'This is an announcement!';
+
         return function() {
-          dump('Ra!');
-          var translations = {
-            'present': 'This is an announcement!',
-            'blank': '',
-            'label': 'announcement',
-            'whitespace': '&nbsp;',
-          };
-          var translation = 'present';
-
           return {
+            translation: () => translation,
             then: function(callback) {
-              dump('Hey yo!');
-              return callback(translations[translation]);
+              return callback(this.translation());
             },
-            translation: translation,
+            setTranslation: function(newTranslation) {
+              translation = newTranslation;
+            },
           };
-
         };
+
       });
     });
   });
@@ -43,7 +39,7 @@ describe('announcement,', function() {
     spyOn($mdToast, 'show').and.callThrough();
   }));
 
-  describe('if an announcement is present', function () {
+  describe('if an announcement is present', function() {
 
     describe('and if it has not been dismissed,', function() {
 
@@ -70,35 +66,36 @@ describe('announcement,', function() {
       });
 
       it('should not display.', function(done) {
-      
+
         announcement.display().then(function() {
           // Fail the test if this is called.
           expect(true).toEqual(false);
         }).catch(function() {
           expect($mdToast.show).not.toHaveBeenCalled();
         }).then(done);
-      
+
       });
 
     });
 
   });
 
-  // describe('if an announcement is not present', function () {
-  //   beforeEach(function () {
-  //     announcement.$translate.translation = 'label';
-  //   });
+  describe('if an announcement is not present', function() {
 
-  //   it('should not display.', function(done) {
+    beforeEach(function() {
+      $translate().setTranslation('announcement');
+    });
 
-  //     announcement.display().then(function() {
-  //       // Fail the test if this is called.
-  //       expect(true).toEqual(false);
-  //     }).catch(function() {
-  //       expect($mdToast.show).not.toHaveBeenCalled();
-  //     }).then(done);
+    it('should not display.', function(done) {
 
-  //   });
-  // });
+      announcement.display().then(function() {
+        // Fail the test if this is called.
+        expect(true).toEqual(false);
+      }).catch(function() {
+        expect($mdToast.show).not.toHaveBeenCalled();
+      }).then(done);
+
+    });
+  });
 
 });
