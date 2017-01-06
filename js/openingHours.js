@@ -1,10 +1,10 @@
 angular.module('viewCustom').controller('openingHoursController', [
-  'angularLoadMonkeyPatched',
+  'scriptLoader',
   '$interval',
   '$rootScope',
   '$locale',
   '$window',
-  function(angularLoadMonkeyPatched, $interval, $rootScope, $locale, $window) {
+  function(scriptLoader, $interval, $rootScope, $locale, $window) {
 
     var ctrl = this;
 
@@ -52,8 +52,8 @@ angular.module('viewCustom').controller('openingHoursController', [
       $window.OpeningHours = null;
       ctrl.openingHours = null;
 
-      removeJsCssFile('openingHours_min.js', 'js');
-      removeJsCssFile('openingHoursStyles_min.js', 'css');
+      scriptLoader.unload('openingHours_min.js', 'js');
+      scriptLoader.unload('openingHoursStyles_min.js', 'css');
 
       console.log('Opening hours widget destroyed!.');
     };
@@ -69,7 +69,7 @@ angular.module('viewCustom').controller('openingHoursController', [
         return;
       }
 
-      angularLoadMonkeyPatched.loadScript('https://static.kb.dk/libcal/openingHours_min.js').then(function() {
+      scriptLoader.load('https://static.kb.dk/libcal/openingHours_min.js').then(function() {
 
         var i18n = ($locale.localeID === "da_DK") ? ctrl.danish_i18n : ctrl.english_i18n;
 
@@ -88,7 +88,7 @@ angular.module('viewCustom').controller('openingHoursController', [
           i18n: i18n
         };
 
-        angularLoadMonkeyPatched.loadScript('https://api3.libcal.com/api_hours_grid.php?iid=1069&format=json&weeks=1&callback=OpeningHours.loadOpeningHours')
+        scriptLoader.load('https://api3.libcal.com/api_hours_grid.php?iid=1069&format=json&weeks=1&callback=OpeningHours.loadOpeningHours')
           .catch(function() {
             console.log('Opening hours data could not be loaded!');
           });
@@ -98,26 +98,6 @@ angular.module('viewCustom').controller('openingHoursController', [
       }).catch(function() {
         console.log('Opening hours widget could not be loaded!');
       });
-    }
-
-    /**
-     * Removes the JS or CSS file with the given file name from the DOM. 
-     * See: http://stackoverflow.com/questions/9425910/load-and-unload-javascript-at-runtime/9425964#9425964
-     * @param {string} fileName- The name of the file to be removed.
-     * @param {string} fileType- The type of the file to be removed.
-     */
-    function removeJsCssFile(fileName, fileType) {
-      // Determine element type to create nodelist from
-      var targetElement = (fileType == "js") ? "script" : (fileType == "css") ? "link" : "none"
-        // Determine corresponding attribute to test for
-      var targetAttr = (fileType == "js") ? "src" : (fileType == "css") ? "href" : "none"
-      var allSuspects = document.getElementsByTagName(targetElement)
-        // Search backwards within nodelist for matching elements to remove
-      for (var i = allSuspects.length; i >= 0; i--) {
-        if (allSuspects[i] && allSuspects[i].getAttribute(targetAttr) != null && allSuspects[i].getAttribute(targetAttr).indexOf(fileName) != -1)
-        // Remove element by calling parentNode.removeChild()
-          allSuspects[i].parentNode.removeChild(allSuspects[i])
-      }
     }
 
   }
