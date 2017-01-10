@@ -56,7 +56,7 @@ angular.module('viewCustom').controller('prmFullViewAfterController', [
 
     // Destroying the Altmetrics badge explicitly, since it is compiled manually.
     ctrl.$onDestroy = function() {
-      ctrl.altmetricsScope.$destroy();
+      if (ctrl.altmetricsScope) ctrl.altmetricsScope.$destroy();
     };
 
   }
