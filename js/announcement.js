@@ -17,9 +17,11 @@ angular.module('viewCustom').factory('announcement', [
     return {
       /** 
        *  Displays the announcement if it has not been dismissed.
-       *  @param {function} [hideCallback] - A function to be called when the announcement is hidden.
-       *  @return {Promise} A Promise to be fulfilled if the announcement is displayed, 
-       *  and to be rejected when the announcement cannot be displayed.
+       *  @param {function} [hideCallback] - A function to be called 
+       *    when the announcement is hidden.
+       *  @return {Promise} A Promise to be fulfilled 
+       *    if the announcement is displayed, and to be 
+       *    rejected when the announcement cannot be displayed.
        */
       display: function(hideCallback) {
         return new Promise(function(resolve, reject) {

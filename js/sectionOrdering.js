@@ -1,3 +1,6 @@
+/**
+  * Service to reorder the sections in the full view.
+  */
 angular.module('viewCustom').factory('sectionOrdering', function() {
 
   function moveSectionToBottom(sections, section) {
@@ -7,12 +10,15 @@ angular.module('viewCustom').factory('sectionOrdering', function() {
     sections.splice(sections.length, 0, section);
   }
 
-  return function(ctrl) {
-    var sections = ctrl.services;
-    if (!sections) return false;
-
-    var numSections = sections.length;
-    if (!(numSections > 0)) return false;
+  /**
+   *  Function to reorder the sections in the full view.
+   *  @param {Array} sections - An array of section objects.  
+   *  @return {boolean} A boolean value specifying if the ordering 
+   *  has taken place.
+   */
+  return function(sections) {
+    if (!sections || !sections.length || !(sections.length > 0))
+      return false;
 
     // If there is a 'Links' section, move it to the bottom.
     var linksSection = sections.find((s) => {
