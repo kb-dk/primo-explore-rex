@@ -19,7 +19,7 @@ angular.module('viewCustom').controller('prmFullViewAfterController', [
 
         // ctrl.loadAltmetricsBadge();
         $http.get('http://api.altmetric.com/v1/doi/' + ctrl.doi).then(ctrl.loadAltmetricsBadge).catch(function() {
-          console.log('REX: Altmetrics do not have any information for this resource.');
+          console.log('REX: Altmetrics do not have any information on this resource.');
         });
 
       } catch (e) {
@@ -48,7 +48,6 @@ angular.module('viewCustom').controller('prmFullViewAfterController', [
           var altmetricsScope = $rootScope.$new();
           var altmetricsElement = angular.element('<rex-altmetrics doi="\'' + ctrl.doi + '\'"></rex-altmetrics>');
           $compile(altmetricsElement)(altmetricsScope);
-          // altmetricsScope.$digest();
           containerElement.append(altmetricsElement[0]);
         }
       });
