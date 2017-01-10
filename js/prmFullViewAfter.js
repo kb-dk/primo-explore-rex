@@ -2,7 +2,10 @@ angular.module('viewCustom').controller('prmFullViewAfterController', [
   'sectionOrdering',
   '$element',
   '$scope',
-  function(sectionOrdering, $element, $scope) {
+  '$rootScope',
+  '$compile',
+  '$http',
+  function(sectionOrdering, $element, $scope, $rootScope, $compile, $http) {
     var ctrl = this;
 
     ctrl.$onInit = function() {
@@ -12,24 +15,11 @@ angular.module('viewCustom').controller('prmFullViewAfterController', [
       try {
         ctrl.doi = ctrl.parentCtrl.item.pnx.addata.doi[0];
 
-        if (!ctrl.doi) throw Error('REX: Altmetrics badge cannot be positioned as no DOI is present.');
+        if (!ctrl.doi) throw Error('REX: Altmetrics badge is not loaded as no DOI is present.');
 
-        ctrl.parentElement = $element.parent();
-        var altmetrics_section = {
-          scrollId: "altmetrics",
-          serviceName: "altmetrics",
-          title: "brief.results.tabs.Altmetrics"
-        };
-        ctrl.parentCtrl.services.splice(ctrl.parentCtrl.services.length - 1, 0, altmetrics_section);
-        
-        // We should only watch if a DOI is present.
-        $scope.$watch(angular.bind(ctrl, function() {
-          return ctrl.parentElement[0].querySelector('h2[translate="brief.results.tabs.Altmetrics"]');
-        }), function(newVal, oldVal) {
-          if (!oldVal && newVal !== oldVal) {
-            var containerElement = newVal.parentElement.parentElement.parentElement.parentElement.children[1];
-            containerElement.append($element.children()[0]);
-          }
+        // ctrl.loadAltmetricsBadge();
+        $http.get('http://api.altmetric.com/v1/doi/' + ctrl.doi).then(ctrl.loadAltmetricsBadge).catch(function() {
+          console.log('REX: Altmetrics do not have any information for this resource.');
         });
 
       } catch (e) {
@@ -37,6 +27,32 @@ angular.module('viewCustom').controller('prmFullViewAfterController', [
       };
     };
 
+    ctrl.loadAltmetricsBadge = function() {
+
+      ctrl.parentElement = $element.parent();
+      
+      var altmetrics_section = {
+        scrollId: "altmetrics",
+        serviceName: "altmetrics",
+        title: "brief.results.tabs.Altmetrics"
+      };
+      ctrl.parentCtrl.services.splice(ctrl.parentCtrl.services.length - 1, 0, altmetrics_section);
+
+      // We should only watch if a DOI is present.
+      $scope.$watch(angular.bind(ctrl, function() {
+        return ctrl.parentElement[0].querySelector('h2[translate="brief.results.tabs.Altmetrics"]');
+      }), function(newVal, oldVal) {
+        if (!oldVal && newVal !== oldVal) {
+          var containerElement = newVal.parentElement.parentElement.parentElement.parentElement.children[1];
+
+          var altmetricsScope = $rootScope.$new();
+          var altmetricsElement = angular.element('<rex-altmetrics doi="\'' + ctrl.doi + '\'"></rex-altmetrics>');
+          $compile(altmetricsElement)(altmetricsScope);
+          // altmetricsScope.$digest();
+          containerElement.append(altmetricsElement[0]);
+        }
+      });
+    };
 
   }
 ]);
@@ -45,6 +61,5 @@ angular.module('viewCustom').component('prmFullViewAfter', {
   bindings: {
     parentCtrl: '<',
   },
-  template: '<rex-altmetrics doi="$ctrl.doi"></rex-altmetrics>',
   controller: 'prmFullViewAfterController',
 });

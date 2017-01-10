@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A Primo Customization Package for The Royal Library.",
   "author": "The Royal Library of Denmark",
+  "scripts": {
+    "test": "node_modules/karma/bin/karma start ./test/unit/karma.conf.js"
+  },
   "devDependencies": {
     "browserify": "^13.1.1",
     "jasmine-core": "^2.5.2",

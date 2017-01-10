@@ -12,5 +12,5 @@ The Primo Customization Package for the discovery platform of the Royal Library.
 
 ## Running unit tests
     cd <repository-dir>
-    node_modules/karma/bin/karma start ./test/unit/karma.conf.js
+    npm test
     
