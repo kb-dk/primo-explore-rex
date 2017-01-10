@@ -1,47 +1,38 @@
 describe('altmetricsController,', function() {
-  var $httpBackend, altmetricsController;
+  var scriptLoader, altmetricsController, $compile, element, _altmetrics, scope;
 
   beforeEach(module('viewCustom'));
 
-  beforeEach(inject(function(_$httpBackend_) {
-    $httpBackend = _$httpBackend_;
+  beforeEach(inject(function(_scriptLoader_, $rootScope, _$compile_) {
+    scriptLoader = _scriptLoader_;
+    spyOn(scriptLoader, 'load').and.callThrough();
+    $compile = _$compile_;
+    scope = $rootScope.$new();
+    scope.doi = '10.1007/BF01386390';
   }));
 
-  beforeEach(inject(function($contorller) {
-    altmetricsController = $controller('altmetricsController');
-  }));
+  it('when a DOI is present, should send a request to load the altmetrics badge.', function(done) {
+    element = angular.element('<rex-altmetrics doi="doi"></rex-altmetrics>');
+    $compile(element)(scope);
+    altmetricsController = element.controller('rexAltmetrics');
 
-  describe('when a DOI is not present,', function() {
-    beforeEach(inject(function() {
-      altmetricsController.doi = '10.1038/nature.2012.9872';
-    }));
+    scope.$digest();
+    expect(altmetricsController.doi).toEqual(scope.doi);
+    expect(scriptLoader.load).toHaveBeenCalledWith('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
 
-    it('should load not the altmetrics badge.', function(done) {
-      altmetricsController.loadBadge().then(function() {
-        // Should not be executed.
-        expect(true).toEqual(false);        
-      }).catch(function() {}).then(done);
-    });
-
+    done();
   });
 
+  it('when a DOI is present, should not send a request to load the altmetrics badge.', function(done) {
+    element = angular.element('<rex-altmetrics></rex-altmetrics>');
+    $compile(element)(scope);
+    altmetricsController = element.controller('rexAltmetrics');
 
-  describe('when a DOI is present,', function() {
-    beforeEach(inject(function() {
-      altmetricsController.doi = '10.1038/nature.2012.9872';
-    }));
+    scope.$digest();
+    expect(altmetricsController.doi).toBeUndefined();
+    expect(scriptLoader.load).not.toHaveBeenCalled();
 
-    it('should load the altmetrics badge.', function(done) {
-      altmetricsController.loadBadge().catch(function() {
-        // Should not be executed.
-        expect(true).toEqual(false);        
-      }).then(done);
-
-      $httpBackend.expectGet('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js').respond(200);
-      // Another expectGet is needed here for the retrieval of the metrics.
-      $httpBackend.flush();
-    });
-
+    done();
   });
 
 });
