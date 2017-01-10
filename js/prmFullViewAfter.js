@@ -30,7 +30,7 @@ angular.module('viewCustom').controller('prmFullViewAfterController', [
     ctrl.loadAltmetricsBadge = function() {
 
       ctrl.parentElement = $element.parent();
-      
+
       var altmetrics_section = {
         scrollId: "altmetrics",
         serviceName: "altmetrics",
@@ -38,19 +38,25 @@ angular.module('viewCustom').controller('prmFullViewAfterController', [
       };
       ctrl.parentCtrl.services.splice(ctrl.parentCtrl.services.length - 1, 0, altmetrics_section);
 
-      // We should only watch if a DOI is present.
+      // Waiting for the Altmetrics section to be created.
       $scope.$watch(angular.bind(ctrl, function() {
         return ctrl.parentElement[0].querySelector('h2[translate="brief.results.tabs.Altmetrics"]');
       }), function(newVal, oldVal) {
         if (!oldVal && newVal !== oldVal) {
           var containerElement = newVal.parentElement.parentElement.parentElement.parentElement.children[1];
 
-          var altmetricsScope = $rootScope.$new();
+          ctrl.altmetricsScope = $rootScope.$new();
           var altmetricsElement = angular.element('<rex-altmetrics doi="\'' + ctrl.doi + '\'"></rex-altmetrics>');
-          $compile(altmetricsElement)(altmetricsScope);
+
           containerElement.append(altmetricsElement[0]);
+          $compile(altmetricsElement)(ctrl.altmetricsScope);
         }
       });
+    };
+
+    // Destroying the Altmetrics badge explicitly, since it is compiled manually.
+    ctrl.$onDestroy = function() {
+      ctrl.altmetricsScope.$destroy();
     };
 
   }
