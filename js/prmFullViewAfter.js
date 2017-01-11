@@ -18,7 +18,7 @@ angular.module('viewCustom').controller('prmFullViewAfterController', [
         if (!ctrl.doi) throw Error('REX: Altmetrics badge is not loaded as no DOI is present.');
 
         // ctrl.loadAltmetricsBadge();
-        $http.get('http://api.altmetric.com/v1/doi/' + ctrl.doi).then(ctrl.loadAltmetricsBadge).catch(function() {
+        $http.get('https://api.altmetric.com/v1/doi/' + ctrl.doi).then(ctrl.loadAltmetricsBadge).catch(function() {
           console.log('REX: Altmetrics do not have any information on this resource.');
         });
 
