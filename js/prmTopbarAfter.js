@@ -1,21 +1,24 @@
 angular.module('viewCustom').controller('prmTopbarAfterController', [
+  '$scope',
   '$element',
   'announcement',
-  function($element, announcement) {
+  function($scope, $element, announcement) {
     var ctrl = this;
 
-    ctrl.$onInit = function() {
+    ctrl.$onInit = () => {
       // Announcement displayed.
       announcement.display(ctrl.hideCallback)
         .then(ctrl.displayCallback)
-        .catch((e) => {});
+        .catch((e) => {
+          console.log(e)
+        });
     };
 
-    ctrl.displayCallback = function() {
+    ctrl.displayCallback = () => {
       $element.parent().addClass('shifted-topbar');
     };
 
-    ctrl.hideCallback = function() {
+    ctrl.hideCallback = () => {
       $element.parent().removeClass('shifted-topbar');
     };
 
