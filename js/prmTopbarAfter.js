@@ -10,7 +10,7 @@ angular.module('viewCustom').controller('prmTopbarAfterController', [
       announcement.display(ctrl.hideCallback)
         .then(ctrl.displayCallback)
         .catch((e) => {
-          console.log(e)
+          if (e) console.log(e);
         });
     };
 
