@@ -1,8 +1,6 @@
 /** 
  * Service to insert the pick up numbers for the requested items.
  */
-
-// TODO: Need to be optimized! The current way we utilize this service yields two requests per record.
 angular.module('viewCustom').service('pickUpNumbers', [
   '$http',
   '$location',
@@ -11,7 +9,10 @@ angular.module('viewCustom').service('pickUpNumbers', [
     let serviceBaseUrl = ($location.host() === "localhost") ?
       "https://rex.kb.dk/cgi-bin/" :
       $location.absUrl().split("/primo-explore/")[0] + "/cgi-bin/";
+
     let pickUpNumbersForIds = {};
+    let ongoingInsertions = 0;
+    let runningPromise;
 
     // Retrieves the pick up numbers from the associated service. 
     // Request URL may look like the following.
@@ -47,28 +48,42 @@ angular.module('viewCustom').service('pickUpNumbers', [
 
     // Inserts the pickup number for given request.
     function insertForRequest(request) {
-      if (!request.element) return;
+      return new Promise((resolve, reject) => {
 
-      if (pickUpNumbersForIds[request.id]) {
-        // If the pick-up number for the request is already known, use it.  
-        replaceIdText(request, pickUpNumbersForIds[request.id]);
-      } else if (request.expandedDisplay.find((field) => field.label === "request.holds.end_hold_date")) {
-        // Else, if it has a hold deadline, retrieve and insert the pick-up number.
-        // The requested item can only have a pick up number if it has a hold deadline.
-        retrievePickUpNumber(request.id).then((response) => {
-          // Insert the pick-up number text.
-          let pickUpNumber = response.data.split(/<body>|<\/body>/)[1];
-          pickUpNumbersForIds[request.id] = pickUpNumber;
-          replaceIdText(request, pickUpNumber);
-        }).catch(() => {
+        // If there is no DOM element to be altered,
+        // do nothing.
+        if (!request.element) {
+          resolve();
+          return;
+        }
+
+        if (pickUpNumbersForIds[request.id]) {
+          // If the pick-up number for the request is already known, use it.  
+          replaceIdText(request, pickUpNumbersForIds[request.id]);
+          resolve();
+        } else if (request.expandedDisplay.find((field) => field.label === "request.holds.end_hold_date")) {
+          // Else, if it has a hold deadline, retrieve and insert the pick-up number.
+          // The requested item can only have a pick up number if it has a hold deadline.
+          retrievePickUpNumber(request.id).then((response) => {
+            // Insert the pick-up number text.
+            let pickUpNumber = response.data.split(/<body>|<\/body>/)[1];
+            pickUpNumbersForIds[request.id] = pickUpNumber;
+            replaceIdText(request, pickUpNumber);
+            resolve();
+          }).catch(() => {
+            removeIdText(request);
+            console.log('REX: Could not retrieve the pick up number.');
+            resolve();
+          });
+
+        } else {
+          // Else, remove the request ID from the view.
           removeIdText(request);
-          console.log('REX: Could not retrieve the pick up number.');
-        });
+          resolve();
+        }
 
-      } else {
-        // Else, remove the request ID from the view.
-        removeIdText(request);
-      }
+      });
+
     }
 
     // Replaces the request ID text with the given string.
@@ -81,23 +96,65 @@ angular.module('viewCustom').service('pickUpNumbers', [
       replaceIdText(request, "");
     };
 
+    function insert(targetContainer, requests, selector) {
+
+      runningPromise = new Promise((resolve, reject) => {
+
+        let targetElements = selector(targetContainer);
+        let requestObjects = composeRequestObjects(targetElements, requests);
+
+        ongoingInsertions = requestObjects.length;
+
+        requestObjects.forEach((request) => {
+
+          insertForRequest(request).then(() => {
+            ongoingInsertions = ongoingInsertions - 1;
+            if (ongoingInsertions === 0) {
+              resolve();
+              return;
+            }
+          });
+        });
+
+      });
+
+      // TODO: This looks weird, but seems to work OK.
+      runningPromise.then(() => {
+        runningPromise = null;
+      });
+
+      return runningPromise;
+
+    }
+
     /** 
-     *  Retrieves and inserts the pick-up numbers.
-     *  @param {Object} targetContainer - An html element 
+     *  Method to retrieve and insert the pick-up numbers
+     *  into the given DOM element.
+     *  If the method is called when a previous run
+     *  has not finished, it chains the new insertion
+     *  into the promise of the previous call.
+     *  @param {Object} targetContainer - A DOM element 
      *    containing the elements the pick-up
      *    numbers are to be inserted.
      *  @param {Array} requests - An array of request items, 
      *    pick-up numbers of which are to be retrieved.
      *  @param {function} selector - A selector function to return 
-     *    the target html elements when called with the
-     *    targetContainer.
+     *    the target DOM elements when called with a
+     *    ancestor DOM element.
+     *  @return {Promise} A Promise to be resolved 
+     *    when the pick-up numbers are inserted. 
      */
     this.insertPickUpNumbers = (targetContainer, requests, selector) => {
-      let targetElements = selector(targetContainer);
-      let requestObjects = composeRequestObjects(targetElements, requests);
-      requestObjects.forEach((request) => {
-        insertForRequest(request);
-      });
+      if (runningPromise) {
+        // If there is an ongoing insertion, 
+        // perform the insertion when it is done. 
+        return runningPromise.then(() => {
+          insert(targetContainer, requests, selector);
+        });
+      } else {
+        // Else, perform the insertion.
+        insert(targetContainer, requests, selector);
+      }
     }
 
   }
