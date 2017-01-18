@@ -8,61 +8,60 @@ angular.module('viewCustom').factory('announcement', [
   '$rootScope',
   ($translate, $mdToast, $rootScope) => {
 
-    let toast;
+    let toastPromise;
+    let dismissed = false;
 
-    // The announcement has been dismissed by the user,
-    // and should not be displayed again.
+    // The announcement has been dismissed.
     let dismiss = () => {
-      $rootScope.announcementDismissed = true;
+      dismissed = true;
+      toastPromise = null;
     };
 
-    /** 
-     *  Displays the announcement if it has not been dismissed.
-     *  @param {function} [hideCallback] - A function to be called 
-     *    when the announcement is hidden.
-     *  @return {Promise} A Promise to be fulfilled 
-     *    if the announcement is displayed, and to be 
-     *    rejected when the announcement cannot be displayed.
-     */
     let display = (hideCallback) => {
       return new Promise((resolve, reject) => {
 
-        if ($rootScope.announcementDismissed === true) {
+        if (dismissed === true) {
           reject('The announcement has been dismissed.');
           return;
         };
 
         $translate('nui.message.announcement').then((translation) => {
-          // Check if there is an announcement to be displayed.
-          // translation is initialized to 'announcement' in the absence of a matching entry.
+          // If there is no announcement to be displayed.
           if ((!translation) || ['announcement', '&nbsp;', ''].includes(translation)) {
+            // translation is initialized to 'announcement' in the absence of a matching entry.
+
             // If there is already a toast, and no 
-            // announcement is found, hide the toast.
+            // announcement, hide the toast.
             // This happens when the language is changed.
-            if (toast) {
+            if (toastPromise && !dismissed) {
+              console.log('I happen!');
               $mdToast.hide();
             }
             reject('No announcement found.');
-          } else {
-            // If so, display
-            // console.log('Show me what you got.');
-            toast = $mdToast.show({
-              // Timeout duration in msecs. false implies no timeout.
-              hideDelay: false,
-              position: 'top',
-              controller: () => {
-                return {
-                  close: () => {
-                    $mdToast.hide();
-                  }
-                }
-              },
-              controllerAs: '$ctrl',
-              templateUrl: 'custom/' + $rootScope.globalViewName + '/html/announcement.html',
-            }).then(dismiss).then(hideCallback).catch(hideCallback);
-
-            resolve();
+            return;
           }
+
+          // If there is already a toast promise,
+          // avoid creating a new one.
+          toastPromise = toastPromise || $mdToast.show({
+            // Timeout duration in msecs. false implies no timeout.
+            hideDelay: false,
+            position: 'top',
+            controller: () => {
+              return {
+                close: () => {
+                  $mdToast.hide();
+                }
+              }
+            },
+            controllerAs: '$ctrl',
+            templateUrl: 'custom/' + $rootScope.globalViewName + '/html/announcement.html',
+          });
+
+          toastPromise.then(hideCallback).catch(hideCallback).then(dismiss);
+
+          resolve();
+
         });
 
       });
@@ -70,12 +69,20 @@ angular.module('viewCustom').factory('announcement', [
 
     // Forget the dismissal if the language is changed.
     $rootScope.$on('$translateChangeSuccess', () => {
-      $rootScope.announcementDismissed = false;
+      dismissed = false;
     });
 
     return {
+      /** 
+       *  Displays the announcement if it has not been dismissed.
+       *  @param {function} [hideCallback] - A function to be called 
+       *    when the announcement is hidden.
+       *  @return {Promise} A Promise to be fulfilled 
+       *    if the announcement is displayed, and to be 
+       *    rejected when the announcement cannot be displayed.
+       */
       display: display,
     }
 
   }
-]); 
+]);

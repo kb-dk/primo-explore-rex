@@ -2,7 +2,7 @@
  * Unit test for the announcement service.
  */
 describe('announcement,', function() {
-  var $rootScope, $mdToast, $translate;
+  var $mdToast, $translate;
 
   beforeEach(module('viewCustom'));
 
@@ -29,9 +29,8 @@ describe('announcement,', function() {
     });
   });
 
-  beforeEach(inject(function(_$mdToast_, _$rootScope_, _$httpBackend_, _$translate_, _announcement_) {
+  beforeEach(inject(function(_$mdToast_, _$httpBackend_, _$translate_, _announcement_) {
     $mdToast = _$mdToast_;
-    $rootScope = _$rootScope_;
     $httpBackend = _$httpBackend_;
     $translate = _$translate_;
     announcement = _announcement_;
@@ -59,24 +58,26 @@ describe('announcement,', function() {
 
     });
 
-    describe('and if it has been dismissed,', function() {
+    // This can no longer be tested.
+    // TODO: An integration test to replace this.
+    // describe('and if it has been dismissed,', function() {
 
-      beforeEach(function() {
-        $rootScope.announcementDismissed = true;
-      });
+    //   beforeEach(function() {
+    //     $rootScope.announcementDismissed = true;
+    //   });
 
-      it('should not display.', function(done) {
+    //   it('should not display.', function(done) {
 
-        announcement.display().then(function() {
-          // Fail the test if this is called.
-          expect(true).toEqual(false);
-        }).catch(function() {
-          expect($mdToast.show).not.toHaveBeenCalled();
-        }).then(done);
+    //     announcement.display().then(function() {
+    //       // Fail the test if this is called.
+    //       expect(true).toEqual(false);
+    //     }).catch(function() {
+    //       expect($mdToast.show).not.toHaveBeenCalled();
+    //     }).then(done);
 
-      });
+    //   });
 
-    });
+    // });
 
   });
 
