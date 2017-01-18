@@ -1,5 +1,5 @@
 describe('pickUpNumbers,', function() {
-  let $httpBackend, $location, pickUpNumbers, selector, targetContainer, requests, pickUpNumbersForIds = {};
+  let $httpBackend, $location, pickUpNumbers, selector, targetContainer, requests;
 
   beforeEach(module('viewCustom'));
 
@@ -42,10 +42,6 @@ describe('pickUpNumbers,', function() {
         label: "request.holds.end_hold_date"
       }]
     }, ];
-
-    pickUpNumbersForIds['KGL500092310720000100008'] = "- Nr. 11-12";
-    pickUpNumbersForIds['KGL123412341234123412341'] = undefined;
-    pickUpNumbersForIds['TITLE123456'] = "- Nr. 56-57";
 
     let targetContainerText = '<ul><li>Mock -KGL500092310720000100008</li><li>Mock -KGL123412341234123412341</li><li>Mock -TITLE123456</li></ul>'
     targetContainer = angular.element(targetContainerText)[0];
