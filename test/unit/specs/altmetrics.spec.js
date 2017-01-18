@@ -5,7 +5,7 @@ describe('altmetricsController,', function() {
 
   beforeEach(inject(function(_scriptLoader_, $rootScope, _$compile_) {
     scriptLoader = _scriptLoader_;
-    spyOn(scriptLoader, 'load').and.callThrough();
+    spyOn(scriptLoader, 'load').and.returnValue(Promise.resolve());
     $compile = _$compile_;
     scope = $rootScope.$new();
     scope.doi = '10.1007/BF01386390';
