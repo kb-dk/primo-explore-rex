@@ -5,7 +5,6 @@ angular.module('viewCustom').service('pickUpNumbers', [
   '$http',
   '$location',
   function($http, $location) {
-
     let serviceBaseUrl = ($location.host() === "localhost") ?
       "https://rex.kb.dk/cgi-bin/" :
       $location.absUrl().split("/primo-explore/")[0] + "/cgi-bin/";
@@ -19,7 +18,6 @@ angular.module('viewCustom').service('pickUpNumbers', [
     // https://rex.kb.dk/cgi-bin/get_pickup_number_text?z37_rec_key=0078814230000100001
     // 'https://rex-test.kb.dk/cgi-bin/get_pickup_number_title_kgl?z370_rec_key=000000371
     function retrievePickUpNumber(requestId) {
-
       let serviceURL = serviceBaseUrl;
       let titleMatch = requestId.match(/^TITLE([0-9]*)/);
 
@@ -49,7 +47,6 @@ angular.module('viewCustom').service('pickUpNumbers', [
     // Inserts the pickup number for given request.
     function insertForRequest(request) {
       return new Promise((resolve, reject) => {
-
         // If there is no DOM element to be altered,
         // do nothing.
         if (!request.element) {
@@ -97,7 +94,6 @@ angular.module('viewCustom').service('pickUpNumbers', [
     };
 
     function insert(targetContainer, requests, selector) {
-
       runningPromise = new Promise((resolve, reject) => {
 
         let targetElements = selector(targetContainer);
@@ -149,11 +145,11 @@ angular.module('viewCustom').service('pickUpNumbers', [
         // If there is an ongoing insertion, 
         // perform the insertion when it is done. 
         return runningPromise.then(() => {
-          insert(targetContainer, requests, selector);
+          return insert(targetContainer, requests, selector);
         });
       } else {
         // Else, perform the insertion.
-        insert(targetContainer, requests, selector);
+        return insert(targetContainer, requests, selector);
       }
     }
 
