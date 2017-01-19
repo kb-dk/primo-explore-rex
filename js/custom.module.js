@@ -3,7 +3,8 @@ var globalViewName = "NUI";
 
 angular.module('viewCustom', [
   'angularLoad',
-  'ngMaterial'
+  'ngMaterial',
+  'ngCookies'
 ]).run(function($rootScope) {
   $rootScope.globalViewName = globalViewName;
 });

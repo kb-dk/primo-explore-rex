@@ -6,7 +6,8 @@ angular.module('viewCustom').factory('announcement', [
   '$translate',
   '$mdToast',
   '$rootScope',
-  ($translate, $mdToast, $rootScope) => {
+  '$cookies',
+  ($translate, $mdToast, $rootScope, $cookies) => {
 
     let toastPromise;
     let dismissed = false;
@@ -15,6 +16,7 @@ angular.module('viewCustom').factory('announcement', [
     let dismiss = () => {
       dismissed = true;
       toastPromise = null;
+      $cookies.put(announcementDismissedCookie, true);
     };
 
     let display = (hideCallback) => {
@@ -41,6 +43,19 @@ angular.module('viewCustom').factory('announcement', [
             return;
           }
 
+          let announcementDismissedCookie = $cookies.get('announcementDismissed');
+
+          if (announcementDismissedCookie) {
+            let announcementCookie = $cookies.get('announcement');
+            if (announcementCookie === translation) {
+              reject('The announcement has been dismissed.');
+              return;
+            } else {
+              $cookies.remove('announcementDismissedCookie');
+            }
+          }
+
+          $cookies.put('announcementCookie', translation);
           // If there is already a toast promise,
           // avoid creating a new one.
           toastPromise = toastPromise || $mdToast.show({
