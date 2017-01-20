@@ -1,3 +1,5 @@
+import {globalViewName} from './viewName';
+
 angular.module('viewCustom').controller('searchTipsContoller', [
   '$mdDialog',
   '$locale',

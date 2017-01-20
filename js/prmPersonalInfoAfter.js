@@ -1,3 +1,5 @@
+require('./navigation');
+
 angular.module('viewCustom').controller('prmPersonalInfoAfterController', [
   'navigation',
   function(navigation) {

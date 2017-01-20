@@ -1,3 +1,7 @@
+import {globalViewName} from './viewName';
+require('./navigation');
+// import {HelloUserConfig} from './helloUser';
+
 // Clickable logo.
 
 angular.module('viewCustom').controller('prmLogoAfterController', [

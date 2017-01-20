@@ -1,3 +1,5 @@
+require('./pickUpNumbers');
+
 angular.module('viewCustom').controller('prmRequestsOverviewAfterController', [
   '$scope',
   '$element',

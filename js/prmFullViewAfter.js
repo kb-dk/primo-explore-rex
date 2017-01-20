@@ -1,3 +1,6 @@
+require('./altmetrics');
+require('./sectionOrdering');
+
 angular.module('viewCustom').controller('prmFullViewAfterController', [
   'sectionOrdering',
   '$element',

@@ -1,3 +1,6 @@
+import {globalViewName} from './viewName';
+require('./searchTips');
+
 angular.module('viewCustom').controller('prmSearchBarAfterController', [
   '$element',
   function($element) {

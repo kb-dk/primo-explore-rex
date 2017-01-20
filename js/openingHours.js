@@ -1,3 +1,5 @@
+require('./scriptLoader');
+
 angular.module('viewCustom').controller('openingHoursController', [
   'scriptLoader',
   '$interval',

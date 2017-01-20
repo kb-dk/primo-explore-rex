@@ -1,3 +1,5 @@
+require('./announcement');
+
 angular.module('viewCustom').controller('prmTopbarAfterController', [
   '$scope',
   '$element',
