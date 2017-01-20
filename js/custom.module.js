@@ -5,6 +5,6 @@ angular.module('viewCustom', [
   'angularLoad',
   'ngMaterial',
   'ngCookies'
-]).run(function($rootScope) {
+]).run(['$rootScope', function($rootScope) {
   $rootScope.globalViewName = globalViewName;
-});
+}]);
