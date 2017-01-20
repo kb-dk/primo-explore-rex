@@ -4,6 +4,6 @@ var globalViewName = "NUI";
 angular.module('viewCustom', [
   'angularLoad',
   'ngMaterial'
-]).run(function($rootScope) {
+]).run(['$rootScope', function($rootScope) {
   $rootScope.globalViewName = globalViewName;
-});
+}]);
