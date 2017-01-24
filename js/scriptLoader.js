@@ -20,7 +20,7 @@ angular.module('viewCustom').factory('scriptLoader', [
        * @param {string} fileName- The name of the file to be removed.
        * @param {string} fileType- The type of the file to be removed.
        */
-      unload: function(fileName, fileType) {
+      unload: (fileName, fileType) => {
         // Determine element type to create nodelist from
         var targetElement = (fileType == "js") ? "script" : (fileType == "css") ? "link" : "none"
           // Determine corresponding attribute to test for
