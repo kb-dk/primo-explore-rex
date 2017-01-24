@@ -24,13 +24,16 @@ angular.module('viewCustom').controller('prmFullViewAfterController', [
     ctrl.insertAltmetricsBadge = function() {
       ctrl.createAltmetricsSectionElement();
 
-      // Waiting for the Altmetrics section to be created.
+      // Wait for the Altmetrics section to be created.
       $scope.$watch(angular.bind(ctrl, function() {
         return ctrl.parentElement.querySelector('h2[translate="brief.results.tabs.Altmetrics"]');
       }), function(newVal, oldVal) {
         if (!oldVal && newVal !== oldVal) {
-          var containerElement = newVal.parentElement.parentElement.parentElement.parentElement.children[1];
-          containerElement.append($element.children()[0]);
+          let containerElement = newVal.parentElement.parentElement.parentElement.parentElement.children[1];
+
+          // Move the badge into the Altmetrics section.
+          if (containerElement && containerElement.appendChild)
+            containerElement.appendChild($element.children()[0]);
         }
       });
     };
