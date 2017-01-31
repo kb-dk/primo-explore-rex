@@ -1,29 +1,25 @@
-import {globalViewName} from './viewName';
-require('./navigation');
-// import {HelloUserConfig} from './helloUser';
+import { viewName } from './viewName';
 
 // Clickable logo.
-
-angular.module('viewCustom').controller('prmLogoAfterController', [
-  'navigation',
-  function(navigation) {
-    var ctrl = this;
-
-    ctrl.$onInit = function() {
-      ctrl.navigation = navigation;
-    };
-
-    ctrl.getIconLink = function() {
-      return ctrl.parentCtrl.iconLink;
-    };
-
+class PrmLogoAfterController {
+  constructor(navigation) {
+    this.navigation = navigation;
   }
-]);
 
-angular.module('viewCustom').component('prmLogoAfter', {
-  bindings: {
-    parentCtrl: '<'
-  },
-  controller: 'prmLogoAfterController',
-  templateUrl: 'custom/' + globalViewName + '/html/prmLogoAfter.html'
-});
+  getIconLink() {
+    return this.parentCtrl.iconLink;
+  };
+}
+
+PrmLogoAfterController.$inject = ['navigation'];
+
+export let PrmLogoAfterConfig = {
+  name: 'prmLogoAfter',
+  config: {
+    bindings: {
+      parentCtrl: '<'
+    },
+    controller: PrmLogoAfterController,
+    templateUrl: 'custom/' + viewName + '/html/prmLogoAfter.html'
+  }
+};

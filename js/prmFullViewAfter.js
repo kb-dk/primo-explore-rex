@@ -1,60 +1,62 @@
-require('./altmetrics');
-require('./sectionOrdering');
+class PrmFullViewAfterController {
+  constructor(sectionOrdering, $element, $scope) {
+    this.sectionOrdering = sectionOrdering;
+    this.$element = $element;
+    this.$scope = $scope;
+  }
 
-angular.module('viewCustom').controller('prmFullViewAfterController', [
-  'sectionOrdering',
-  '$element',
-  '$scope',
-  function(sectionOrdering, $element, $scope) {
-    var ctrl = this;
+  $onInit() {
+    this.parentElement = this.$element.parent()[0];
 
-    ctrl.$onInit = function() {
-      ctrl.parentElement = $element.parent()[0];
+    if (this.sectionOrdering.orderSections(this.parentCtrl.services)) console.log('REX: Sections reordered.');
 
-      if (sectionOrdering(ctrl.parentCtrl.services)) console.log('REX: Sections reordered.');
-
-      // Retrieve the DOI if it is present.
-      try {
-        ctrl.doi = ctrl.parentCtrl.item.pnx.addata.doi[0];
-      } catch (e) {
-        console.log(e.message);
-      };
+    // Retrieve the DOI if it is present.
+    try {
+      this.doi = this.parentCtrl.item.pnx.addata.doi[0];
+    } catch (e) {
+      console.log(e.message);
     };
+  };
 
-    ctrl.insertAltmetricsBadge = function() {
-      ctrl.createAltmetricsSectionElement();
+  insertAltmetricsBadge() {
+    this.createAltmetricsSectionElement();
 
-      // Wait for the Altmetrics section to be created.
-      $scope.$watch(angular.bind(ctrl, function() {
-        return ctrl.parentElement.querySelector('h2[translate="brief.results.tabs.Altmetrics"]');
-      }), function(newVal, oldVal) {
+    // Wait for the Altmetrics section to be created.
+    this.$scope.$watch(() => this.parentElement.querySelector('h2[translate="brief.results.tabs.Altmetrics"]'),
+      (newVal, oldVal) => {
         if (!oldVal && newVal !== oldVal) {
           let containerElement = newVal.parentElement.parentElement.parentElement.parentElement.children[1];
 
           // Move the badge into the Altmetrics section.
           if (containerElement && containerElement.appendChild)
-            containerElement.appendChild($element.children()[0]);
+            containerElement.appendChild(this.$element.children()[0]);
         }
-      });
-    };
+      }
+    );
 
-    // Create Altmetrics section.
-    ctrl.createAltmetricsSectionElement = () => {
-      var altmetrics_section = {
-        scrollId: "altmetrics",
-        serviceName: "altmetrics",
-        title: "brief.results.tabs.Altmetrics"
-      };
-      ctrl.parentCtrl.services.splice(ctrl.parentCtrl.services.length - 1, 0, altmetrics_section);
-    };
+  };
 
+  // Create Altmetrics section.
+  createAltmetricsSectionElement() {
+    let altmetricsSection = {
+      scrollId: "altmetrics",
+      serviceName: "altmetrics",
+      title: "brief.results.tabs.Altmetrics"
+    };
+    this.parentCtrl.services.splice(this.parentCtrl.services.length - 1, 0, altmetricsSection);
+  };
+
+};
+
+PrmFullViewAfterController.$inject = ['sectionOrdering', '$element', '$scope'];
+
+export let PrmFullViewAfterConfig = {
+  name: 'prmFullViewAfter',
+  config: {
+    bindings: {
+      parentCtrl: '<',
+    },
+    controller: PrmFullViewAfterController,
+    template: '<rex-altmetrics doi="$ctrl.doi" on-load="$ctrl.insertAltmetricsBadge()"></rex-altmetrics>',
   }
-]);
-
-angular.module('viewCustom').component('prmFullViewAfter', {
-  bindings: {
-    parentCtrl: '<',
-  },
-  controller: 'prmFullViewAfterController',
-  template: '<rex-altmetrics doi="$ctrl.doi" on-load="$ctrl.insertAltmetricsBadge()"></rex-altmetrics>',
-});
+};

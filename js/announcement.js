@@ -1,88 +1,90 @@
+import {
+  viewName
+} from './viewName';
+
 /**
  * Annoncement service.
  * Displays a md-toast on top of the view, containing an announcement retrieved from the code tables.
  */
-angular.module('viewCustom').factory('announcement', [
-  '$translate',
-  '$mdToast',
-  '$rootScope',
-  ($translate, $mdToast, $rootScope) => {
+export class AnnouncementService {
+  constructor($translate, $mdToast, $rootScope) {
+    this.$translate = $translate;
+    this.$mdToast = $mdToast;
+    this.$rootScope = $rootScope;
 
-    let toastPromise;
-    let dismissed = false;
-
-    // The announcement has been dismissed.
-    let dismiss = () => {
-      dismissed = true;
-      toastPromise = null;
-    };
-
-    let display = (hideCallback) => {
-      return new Promise((resolve, reject) => {
-
-        if (dismissed === true) {
-          reject('The announcement has been dismissed.');
-          return;
-        };
-
-        $translate('nui.message.announcement').then((translation) => {
-          // If there is no announcement to be displayed.
-          if ((!translation) || ['announcement', '&nbsp;', ''].includes(translation)) {
-            // translation is initialized to 'announcement' in the absence of a matching entry.
-
-            // If there is already a toast, and no 
-            // announcement, hide the toast.
-            // This happens when the language is changed.
-            if (toastPromise && !dismissed) {
-              console.log('I happen!');
-              $mdToast.hide();
-            }
-            reject('No announcement found.');
-            return;
-          }
-
-          // If there is already a toast promise,
-          // avoid creating a new one.
-          toastPromise = toastPromise || $mdToast.show({
-            // Timeout duration in msecs. false implies no timeout.
-            hideDelay: false,
-            position: 'top',
-            controller: () => {
-              return {
-                close: () => {
-                  $mdToast.hide();
-                }
-              }
-            },
-            controllerAs: '$ctrl',
-            templateUrl: 'custom/' + $rootScope.globalViewName + '/html/announcement.html',
-          });
-
-          toastPromise.then(hideCallback).catch(hideCallback).then(dismiss);
-
-          resolve();
-
-        });
-
-      });
-    };
+    this._dismissed = false;
 
     // Forget the dismissal if the language is changed.
-    $rootScope.$on('$translateChangeSuccess', () => {
-      dismissed = false;
+    this.$rootScope.$on('$translateChangeSuccess', () => {
+      this._dismissed = false;
     });
+  };
 
-    return {
-      /** 
-       *  Displays the announcement if it has not been dismissed.
-       *  @param {function} [hideCallback] - A function to be called 
-       *    when the announcement is hidden.
-       *  @return {Promise} A Promise to be fulfilled 
-       *    if the announcement is displayed, and to be 
-       *    rejected when the announcement cannot be displayed.
-       */
-      display: display,
-    }
+  // The announcement has been dismissed.
+  _dismiss() {
+    this._dismissed = true;
+    this._toastPromise = null;
+  };
 
-  }
-]);
+  /** 
+   *  Displays the announcement if it has not been dismissed.
+   *  @param {function} [hideCallback] - A function to be called 
+   *    when the announcement is hidden.
+   *  @return {Promise} A Promise to be fulfilled 
+   *    if the announcement is displayed, and to be 
+   *    rejected when the announcement cannot be displayed.
+   */
+  display(hideCallback) {
+    let ctrl = this;
+
+    return new Promise((resolve, reject) => {
+
+      if (ctrl._dismissed === true) {
+        reject('The announcement has been dismissed.');
+        return;
+      };
+
+      ctrl.$translate('nui.message.announcement').then((translation) => {
+        // If there is no announcement to be displayed.
+        if ((!translation) || ['announcement', '&nbsp;', ''].includes(translation)) {
+          // translation is assigned 'announcement' in the absence of a matching entry.
+
+          // If there is already a toast, and no 
+          // announcement, hide the toast.
+          // This happens when the language is changed.
+          if (ctrl._toastPromise && !ctrl._dismissed) {
+            ctrl.$mdToast.hide();
+          }
+          reject('No announcement found.');
+          return;
+        }
+
+        // If there is already a toast promise,
+        // avoid creating a new one.
+        ctrl._toastPromise = ctrl._toastPromise || ctrl.$mdToast.show({
+          // Timeout duration in msecs. false implies no timeout.
+          hideDelay: false,
+          position: 'top',
+          controller: () => {
+            return {
+              close: () => {
+                ctrl.$mdToast.hide();
+              }
+            }
+          },
+          controllerAs: '$ctrl',
+          templateUrl: 'custom/' + viewName + '/html/announcement.html',
+        });
+
+        ctrl._toastPromise.then(hideCallback).catch(hideCallback).then(() => ctrl._dismiss());
+
+        resolve();
+
+      });
+
+    });
+  };
+
+};
+
+AnnouncementService.$inject = ['$translate', '$mdToast', '$rootScope'];

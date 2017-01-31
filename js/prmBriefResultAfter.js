@@ -20,6 +20,7 @@ angular.module('viewCustom').controller('BriefResultAfterController', [function(
 
   vm.zoteroParamsString = vm.calcZoteroParams();
   vm.updateZoteroPlugin();
+  console.log(vm.zoteroParamsString);
 
 
 
@@ -30,6 +31,9 @@ angular.module('viewCustom').controller('BriefResultAfterController', [function(
     let openUrlIndex = findIndex(vm.item.delivery.link, (link) => link.displayLabel === 'openurl');
     if (openUrlIndex > -1) {
       let openUrl = vm.item.delivery.link[openUrlIndex]['linkURL'];
+      console.log('Compare the following two objects:')
+      console.log(vm.item.pnx)
+      console.log(openUrl)
       return encodeZoteroValue(openUrl);
     }
   }

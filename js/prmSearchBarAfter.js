@@ -1,20 +1,22 @@
-import {globalViewName} from './viewName';
-require('./searchTips');
+import { viewName } from './viewName';
 
-angular.module('viewCustom').controller('prmSearchBarAfterController', [
-  '$element',
-  function($element) {
-    var ctrl = this;
+class PrmSearchBarAfterController {
+  constructor($element) {
+    this.$element = $element;
+  };
 
-    ctrl.$postLink = function() {
-      var container = angular.element($element.parent().children()[0].children[0]);
-      container.append($element.children()[0]);
-    };
+  $postLink() {
+    let container = angular.element(this.$element.parent().children()[0].children[0]);
+    container.append(this.$element.children()[0]);
+  };
+}
 
+PrmSearchBarAfterController.$inject = ['$element'];
+
+export let PrmSearchBarAfterConfig = {
+  name: 'prmSearchBarAfter',
+  config: {
+    templateUrl: 'custom/' + viewName + '/html/prmSearchBarAfter.html',
+    controller: PrmSearchBarAfterController,
   }
-]);
-
-angular.module('viewCustom').component('prmSearchBarAfter', {
-  templateUrl: 'custom/' + globalViewName + '/html/prmSearchBarAfter.html',
-  controller: 'prmSearchBarAfterController',
-});
+}

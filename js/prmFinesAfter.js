@@ -1,5 +1,8 @@
-import {globalViewName} from './viewName';
+import { viewName } from './viewName';
 
-angular.module('viewCustom').component('prmFinesAfter', {
-  templateUrl: 'custom/' + globalViewName + '/html/prmFinesAfter.html',
-});
+export let PrmFinesAfterConfig = {
+  name: 'prmFinesAfter',
+  config: {
+    templateUrl: 'custom/' + viewName + '/html/prmFinesAfter.html',
+  }
+};

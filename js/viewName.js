@@ -1,2 +1,2 @@
 // Define the view name here.
-export let globalViewName = "NUI";
+export let viewName = "NUI";
