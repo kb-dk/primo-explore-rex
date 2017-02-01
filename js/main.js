@@ -1,5 +1,3 @@
-require('./angularLoadMonkeyPatched');
-
 import { viewName } from './viewName';
 
 import { NavigationService } from './navigation';
@@ -23,32 +21,32 @@ import { PrmRequestsOverviewAfterConfig } from './prmRequestsOverviewAfter';
 import { PrmRequestServicesAfterConfig } from './prmRequestServicesAfter';
 // import { PrmBriefResultAfterConfig } from './prmBriefResultAfter';
 
-let app = angular.module('viewCustom', [
+angular.module('viewCustom', [
   'angularLoadMonkeyPatched',
   'ngMaterial'
 ]).run(['$rootScope', function($rootScope) {
   $rootScope.viewName = viewName;
 }]);
 
-app.service('navigation', NavigationService);
-app.service('announcement', AnnouncementService);
-app.service('scriptLoader', ScriptLoaderService);
-app.service('sectionOrdering', SectionOrderingService);
-app.service('pickUpNumbers', PickUpNumbersService);
+angular.module('viewCustom').service('navigation', NavigationService)
+  .service('announcement', AnnouncementService)
+  .service('scriptLoader', ScriptLoaderService)
+  .service('sectionOrdering', SectionOrderingService)
+  .service('pickUpNumbers', PickUpNumbersService)
+  .component(OpeningHoursConfig.name, OpeningHoursConfig.config)
+  .component(SearchTipsConfig.name, SearchTipsConfig.config)
+  .component(AltmetricsConfig.name, AltmetricsConfig.config)
+  .component(PrmFinesAfterConfig.name, PrmFinesAfterConfig.config)
+  .component(PrmLogoAfterConfig.name, PrmLogoAfterConfig.config)
+  .component(PrmTopbarAfterConfig.name, PrmTopbarAfterConfig.config)
+  .component(PrmSearchBarAfterConfig.name, PrmSearchBarAfterConfig.config)
+  .component(PrmFullViewAfterConfig.name, PrmFullViewAfterConfig.config)
+  .component(PrmPersonalInfoAfterConfig.name, PrmPersonalInfoAfterConfig.config)
+  .component(PrmRequestsAfterConfig.name, PrmRequestsAfterConfig.config)
+  .component(PrmRequestsOverviewAfterConfig.name, PrmRequestsOverviewAfterConfig.config)
+  .component(PrmRequestServicesAfterConfig.name, PrmRequestServicesAfterConfig.config)
+// .component(PrmBriefResultAfterConfig.name, PrmBriefResultAfterConfig.config)
 
-app.component(OpeningHoursConfig.name, OpeningHoursConfig.config);
-app.component(SearchTipsConfig.name, SearchTipsConfig.config);
-app.component(AltmetricsConfig.name, AltmetricsConfig.config);
-
-app.component(PrmFinesAfterConfig.name, PrmFinesAfterConfig.config);
-app.component(PrmLogoAfterConfig.name, PrmLogoAfterConfig.config);
-app.component(PrmTopbarAfterConfig.name, PrmTopbarAfterConfig.config);
-app.component(PrmSearchBarAfterConfig.name, PrmSearchBarAfterConfig.config);
-app.component(PrmFullViewAfterConfig.name, PrmFullViewAfterConfig.config);
-app.component(PrmPersonalInfoAfterConfig.name, PrmPersonalInfoAfterConfig.config);
-app.component(PrmRequestsAfterConfig.name, PrmRequestsAfterConfig.config);
-app.component(PrmRequestsOverviewAfterConfig.name, PrmRequestsOverviewAfterConfig.config);
-app.component(PrmRequestServicesAfterConfig.name, PrmRequestServicesAfterConfig.config);
-// app.component(PrmBriefResultAfterConfig.name, PrmBriefResultAfterConfig.config);
-
+// Pre-ES2015 code.
+require('./angularLoadMonkeyPatched');
 require('./prmBriefResultAfter');
