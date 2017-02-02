@@ -1,5 +1,3 @@
-require('./angularLoadMonkeyPatched');
-
 /**
  * A service to load and unload JS scripts.
  */
