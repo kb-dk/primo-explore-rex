@@ -1,3 +1,7 @@
+// This is a temporary fix for zotero from Exlibris.
+// It would not be needed if primo exposes PNX records in raw XML.
+// See: https://forums.zotero.org/discussion/comment/268604/#Comment_268604
+
 import mapValues from 'lodash/mapValues';
 import omitBy from 'lodash/omitBy';
 import findIndex from 'lodash/findIndex';

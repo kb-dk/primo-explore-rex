@@ -1,33 +1,35 @@
-require('./pickUpNumbers');
+class PrmRequestsAfterController {
 
-angular.module('viewCustom').controller('prmRequestsAfterController', [
-  '$scope',
-  '$element',
-  'pickUpNumbers',
-  function($scope, $element, pickUpNumbers) {
-    var ctrl = this;
+  constructor($scope, $element, pickUpNumbers) {
+    this.$scope = $scope;
+    this.$element = $element;
+    this.pickUpNumbers = pickUpNumbers;
 
-    ctrl.selector = function(element) {
-      return element.querySelectorAll('p[ng-if="::requestDisplay.secondLineRight"]');
-    }
-
-    ctrl.$onInit = function() {
-      ctrl.parentElement = $element.parent()[0];
-    }
-
-    $scope.$watch(angular.bind(ctrl, function() {
-      return ctrl.parentElement.querySelector('p[ng-if="::requestDisplay.secondLineRight"]');
-    }), function(newVal, oldVal) {
-      if (newVal && newVal !== oldVal) {
-        pickUpNumbers.insertPickUpNumbers(ctrl.parentElement, ctrl.parentCtrl.requestsService.requestsDisplay, ctrl.selector);
+    this.parentElement = this.$element.parent()[0];
+    this.$scope.$watch(() => this.parentElement.querySelector('p[ng-if="::requestDisplay.secondLineRight"]'),
+      (newVal, oldVal) => {
+        if (newVal && newVal !== oldVal) {
+          this.pickUpNumbers.insertPickUpNumbers(this.parentElement, this.parentCtrl.requestsService.requestsDisplay, this.selector);
+        }
       }
-    });
-  }
-]);
+    );
 
-angular.module('viewCustom').component('prmRequestsAfter', {
-  bindings: {
-    parentCtrl: '<'
-  },
-  controller: 'prmRequestsAfterController',
-});
+  }
+
+  selector(element) {
+    return element.querySelectorAll('p[ng-if="::requestDisplay.secondLineRight"]');
+  }
+
+}
+
+PrmRequestsAfterController.$inject = ['$scope', '$element', 'pickUpNumbers'];
+
+export let PrmRequestsAfterConfig = {
+  name: 'prmRequestsAfter',
+  config: {
+    bindings: {
+      parentCtrl: '<'
+    },
+    controller: PrmRequestsAfterController,
+  }
+}

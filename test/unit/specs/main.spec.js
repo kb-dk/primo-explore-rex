@@ -8,8 +8,8 @@
 //     }));
    
 //     it('should set the global view name.', function() {
-//         expect($rootScope.globalViewName).toBeDefined();
-//         expect($rootScope.globalViewName).toEqual(globalViewName);
+//         expect($rootScope.viewName).toBeDefined();
+//         expect($rootScope.viewName).toEqual(viewName);
 //     });
 
 // });

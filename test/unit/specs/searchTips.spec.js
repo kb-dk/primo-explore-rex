@@ -9,11 +9,13 @@ describe('searchTipsContoller,', function() {
     spyOn($mdDialog, 'show').and.callThrough();
   }));
 
-  beforeEach(inject(function($controller) {
+  beforeEach(inject(function($componentController) {
     $locale = {};
-    searchTipsController = $controller('searchTipsContoller', {
+
+    searchTipsController = $componentController('rexSearchTips', {
       $locale: $locale,
     });
+
   }));
 
   describe('when the selected language is English,', function() {
