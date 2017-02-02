@@ -50,13 +50,17 @@ class OpeningHoursController {
   };
 
   $onDestroy() {
-    this.$interval.cancel(this._widgetPromise);
-
+    this.$window.loadAdditionalJavascript = null;
     this.$window.OpeningHours = null;
-    this._openingHours = null;
-
+    delete this.$window.openingHours;
+    delete this._openingHours;
+        
+    this.$window.document.getElementById("openingHoursModalDiv").outerHTML = "";
+    
+    this.scriptLoader.unload('callback=OpeningHours.loadOpeningHours', 'js');
+    this.scriptLoader.unload('callback=OpeningHours.initializeGMaps', 'js');
     this.scriptLoader.unload('openingHours_min.js', 'js');
-    this.scriptLoader.unload('openingHoursStyles_min.js', 'css');
+    this.scriptLoader.unload('openingHoursStyles_min.css', 'css');
 
     console.log('Opening hours widget destroyed!.');
   };
