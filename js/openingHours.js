@@ -25,6 +25,8 @@ class OpeningHoursController {
       map: 'Kort',
       allWeek: 'Hele ugen',
       allLibraries: 'Alle biblioteker',
+      'The Black Diamond - Reading Rooms': 'Diamantens læsesale',
+      'CUL South Campus': 'KUB Syd',
       ampm: false
     };
 
@@ -40,8 +42,9 @@ class OpeningHoursController {
       allWeek: 'All Week',
       allLibraries: 'All Libraries',
       byAppointment: 'By appointment',
-      'Diamantens læsesale': 'The Black Diamond - reading rooms',
+      'Diamantens læsesale': 'The Black Diamond - Reading Rooms',
       'Den Sorte Diamant': 'The Black Diamond',
+      'KUB Nord': 'CUL North Campus',
       ampm: false
     };
 
@@ -81,7 +84,7 @@ class OpeningHoursController {
       this._openingHours.config = {
         // Please notice that the view library: 'all', timespan: 'week' is to wide to put in one column!
         library: 'all', // 'all' or the library name as it is defined in LibCal (eg. 'HUM', 'KUB Nord' etc.) This can also be a comma separated list of libraries (eg. 'Den Sorte Diamant, HUM, KUB Nord'), in which case it will only show the listed libraries (and the first one in the list initially, if timespan is 'week') 
-        // libraryWhitelist: ['Den Sorte Diamant', 'TEOL', 'SAMF'], // Optional whitelist of all libraries that are to be shown (this option will be overriden by library, if library includes more than one library)
+        // libraryWhitelist: ['Den Sorte Diamant', 'Diamantens læsesale', 'TEOL', 'SAMF'], // Optional whitelist of all libraries that are to be shown (this option will be overriden by library, if library includes more than one library)
         timespan: 'day', // 'week' or 'day'
         colorScheme: 'standard03', // 'standard01', 'standard02', 'standard03' - used for headers if no other color is set
         allLibraryColor: '#6a6864', // overrides the standardColor if defined
