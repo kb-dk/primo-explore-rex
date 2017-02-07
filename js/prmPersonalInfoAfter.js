@@ -5,8 +5,8 @@ class PrmPersonalInfoAfterController {
   }
 
   $onInit() {
-    // Replacing the functionality of the 'Edit' button.
-    // It now navigates the user to the corresponding editing page for the user database.
+    // Overwrite the functionality of the 'Edit' button.
+    // It now navigates to the corresponding editing page for the user database.
     this.parentCtrl.editDetails = () => {
       this.navigation.navigateTo('https://user.kb.dk/user/edit')
     };
