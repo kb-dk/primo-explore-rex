@@ -1,5 +1,5 @@
 /**
- * The opening hours widget component controller. 
+ * The opening hours widget component controller.
  */
 class OpeningHoursController {
 
@@ -26,7 +26,7 @@ class OpeningHoursController {
       allWeek: 'Hele ugen',
       allLibraries: 'Alle biblioteker',
       'The Black Diamond - Reading Rooms': 'Diamantens læsesale',
-      'CUL South Campus': 'KUB Søndre Campus',
+      'KUB South Campus': 'KUB Søndre Campus',
       ampm: false
     };
 
@@ -44,7 +44,6 @@ class OpeningHoursController {
       byAppointment: 'By appointment',
       'Diamantens læsesale': 'The Black Diamond - Reading Rooms',
       'Den Sorte Diamant': 'The Black Diamond',
-      'KUB Nord': 'CUL North Campus',
       ampm: false
     };
 
@@ -66,7 +65,7 @@ class OpeningHoursController {
   };
 
   /**
-   * Method to load the opening hours widget. 
+   * Method to load the opening hours widget.
    */
   loadOpeningHoursWidget() {
     return new Promise((resolve, reject) => {
@@ -81,7 +80,7 @@ class OpeningHoursController {
 
         this._openingHours.config = {
           // Please notice that the view library: 'all', timespan: 'week' is to wide to put in one column!
-          library: 'all', // 'all' or the library name as it is defined in LibCal (eg. 'HUM', 'KUB Nord' etc.) This can also be a comma separated list of libraries (eg. 'Den Sorte Diamant, HUM, KUB Nord'), in which case it will only show the listed libraries (and the first one in the list initially, if timespan is 'week') 
+          library: 'all', // 'all' or the library name as it is defined in LibCal (eg. 'HUM', 'KUB Nord' etc.) This can also be a comma separated list of libraries (eg. 'Den Sorte Diamant, HUM, KUB Nord'), in which case it will only show the listed libraries (and the first one in the list initially, if timespan is 'week')
           // libraryWhitelist: ['Den Sorte Diamant', 'Diamantens læsesale', 'TEOL', 'SAMF'], // Optional whitelist of all libraries that are to be shown (this option will be overriden by library, if library includes more than one library)
           timespan: 'day', // 'week' or 'day'
           colorScheme: 'standard03', // 'standard01', 'standard02', 'standard03' - used for headers if no other color is set
@@ -96,7 +95,7 @@ class OpeningHoursController {
             this.unloadOpeningHoursWidget();
             return reject('Opening hours data could not be loaded!');
           });
-      
+
       }).catch(() => {
         this.unloadOpeningHoursWidget();
         return reject('Opening hours widget could not be loaded!');
@@ -106,7 +105,7 @@ class OpeningHoursController {
   }
 
   /**
-   * Method to unload the opening hours widget. 
+   * Method to unload the opening hours widget.
    */
    unloadOpeningHoursWidget() {
     this.$window.loadAdditionalJavascript = undefined;
@@ -120,7 +119,7 @@ class OpeningHoursController {
     this.scriptLoader.unload('callback=OpeningHours.loadOpeningHours', 'js');
     this.scriptLoader.unload('callback=OpeningHours.initializeGMaps', 'js');
     this.scriptLoader.unload('openingHours_min.js', 'js');
-    this.scriptLoader.unload('openingHoursStyles_min.css', 'css');    
+    this.scriptLoader.unload('openingHoursStyles_min.css', 'css');
    }
 
 }
