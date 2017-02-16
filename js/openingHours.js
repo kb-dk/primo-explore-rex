@@ -44,6 +44,7 @@ class OpeningHoursController {
       byAppointment: 'By appointment',
       'Diamantens læsesale': 'The Black Diamond - Reading Rooms',
       'Den Sorte Diamant': 'The Black Diamond',
+      'KUB Nord': 'KUB North',
       ampm: false
     };
 
