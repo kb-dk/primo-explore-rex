@@ -5,9 +5,10 @@
 import mapValues from 'lodash/mapValues';
 import omitBy from 'lodash/omitBy';
 import findIndex from 'lodash/findIndex';
+import X2JS from 'x2js';
 
 angular.module('viewCustom').component('prmBriefResultAfter', {
-  template: '<span ng-if="::$ctrl.zoteroParamsString"class="Z3988" title="{{::$ctrl.zoteroParamsString}}"</span> ',
+  template: '<span ng-if="::$ctrl.zoteroParamsString" class="Z3988" title="{{::$ctrl.zoteroParamsString}}" pnx="{{::$ctrl.pnxInXml}}"></span> ',
   bindings: {
     parentCtrl: '<'
   },
@@ -23,6 +24,17 @@ angular.module('viewCustom').controller('BriefResultAfterController', [function(
   vm.updateZoteroPlugin = updateZoteroPlugin;
 
   vm.zoteroParamsString = vm.calcZoteroParams();
+
+  vm.pnx = vm.item && vm.item.pnx;
+
+  if (vm.pnx) {
+    let top = '<?xml version="1.0" encoding="UTF-8"?><record xmlns="http://www.exlibrisgroup.com/xsd/primo/primo_nm_bib" xmlns:sear="http://www.exlibrisgroup.com/xsd/jaguar/search">';
+    let bottom = '</record>';
+
+    let x2js = new X2JS();
+    vm.pnxInXml = top + x2js.js2xml(vm.pnx) + bottom;
+  }
+
   vm.updateZoteroPlugin();
 
 
