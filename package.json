@@ -2,7 +2,7 @@
   "name": "primo-explore-rex",
   "version": "1.0.0",
   "description": "A Primo Customization Package for The Royal Library.",
-  "author": "The Royal Library of Denmark",
+  "author": "Danish Royal Library",
   "scripts": {
     "test": "node_modules/karma/bin/karma start ./test/unit/karma.conf.js"
   },
