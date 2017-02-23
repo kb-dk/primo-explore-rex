@@ -33,7 +33,7 @@ export class NavigationService {
     let split = this.$location.absUrl().split('/primo-explore/');
 
     if (split.length === 1) {
-      console.log(split[0] + ' : Could not detect the view name!');
+      console.log('Could not process the URL : ' + split[0]);
       return false;
     }
 
