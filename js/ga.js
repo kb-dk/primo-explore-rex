@@ -1,12 +1,10 @@
-var app = angular.module('viewCustom', []);
-
-app.run(['googleAnalytics', function(googleAnalytics){
+angular.module('viewCustom').run(['googleAnalytics', function(googleAnalytics){
   var trackingId =  'UA-77177865-1';
   googleAnalytics.initialize(trackingId);
   googleAnalytics.trackPageviews();
 }]);
 
-app.factory('googleAnalytics', ['$rootScope', '$location', '$window', function($rootScope, $location, $window) {
+angular.module('viewCustom').factory('googleAnalytics', ['$rootScope', '$location', '$window', function($rootScope, $location, $window) {
 
   var svc = {};
 

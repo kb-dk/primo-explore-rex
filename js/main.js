@@ -50,3 +50,4 @@ angular.module('viewCustom').service('navigation', NavigationService)
 // Pre-ES2015 code.
 require('./angularLoadMonkeyPatched');
 require('./prmBriefResultAfter');
+require('./ga');
