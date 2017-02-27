@@ -5,6 +5,7 @@ import { AnnouncementService } from './announcement';
 import { ScriptLoaderService } from './scriptLoader';
 import { SectionOrderingService } from './sectionOrdering';
 import { PickUpNumbersService } from './pickUpNumbers';
+import { GoogleAnalyticsService } from './ga';
 
 import { OpeningHoursConfig } from './openingHours';
 import { SearchTipsConfig } from './searchTips';
@@ -24,8 +25,18 @@ import { PrmRequestServicesAfterConfig } from './prmRequestServicesAfter';
 angular.module('viewCustom', [
   'angularLoadMonkeyPatched',
   'ngMaterial'
-]).run(['$rootScope', function($rootScope) {
+])
+.run(['$rootScope', ($rootScope) => {
   $rootScope.viewName = viewName;
+}])
+.run(['googleAnalytics', (googleAnalytics) => {
+  let trackingId =  'UA-77177865-1';
+  googleAnalytics.initialize(trackingId)
+  .then(() => googleAnalytics.trackPageViews())
+  .catch((e) => {
+    console.log('Google anayltics could not be initialized.');
+    console.log(e);
+  });
 }]);
 
 angular.module('viewCustom').service('navigation', NavigationService)
@@ -33,6 +44,7 @@ angular.module('viewCustom').service('navigation', NavigationService)
   .service('scriptLoader', ScriptLoaderService)
   .service('sectionOrdering', SectionOrderingService)
   .service('pickUpNumbers', PickUpNumbersService)
+  .service('googleAnalytics', GoogleAnalyticsService)
   .component(OpeningHoursConfig.name, OpeningHoursConfig.config)
   .component(SearchTipsConfig.name, SearchTipsConfig.config)
   .component(AltmetricsConfig.name, AltmetricsConfig.config)
@@ -50,4 +62,3 @@ angular.module('viewCustom').service('navigation', NavigationService)
 // Pre-ES2015 code.
 require('./angularLoadMonkeyPatched');
 require('./prmBriefResultAfter');
-require('./ga');
