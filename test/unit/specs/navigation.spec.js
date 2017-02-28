@@ -4,11 +4,11 @@ describe('navigation service,', () => {
   beforeEach(module('viewCustom'));
 
   // Mocking $window service.
-  beforeEach(function() {
+  beforeEach(() => {
 
     dummyPath = 'https://rex.kb.dk/primo-explore/a/dummy/path/within/the/app?vid=NUI&lang=da_DK';
 
-    module(function($provide) {
+    module(($provide) => {
       
       $provide.service('$window', function() {
         return {
