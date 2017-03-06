@@ -1,5 +1,5 @@
 describe('searchTipsContoller,', function() {
-  var $mdDialog, $locale, searchTipsContoller;
+  var $mdDialog, locale, searchTipsContoller;
 
   beforeEach(module('viewCustom'));
 
@@ -10,10 +10,10 @@ describe('searchTipsContoller,', function() {
   }));
 
   beforeEach(inject(function($componentController) {
-    $locale = {};
+    locale = {};
 
     searchTipsController = $componentController('rexSearchTips', {
-      $locale: $locale,
+      locale: locale,
     });
 
   }));
@@ -21,7 +21,7 @@ describe('searchTipsContoller,', function() {
   describe('when the selected language is English,', function() {
     
     beforeEach(function() {
-      $locale.localeID = 'en_US';  
+      locale.current = () => 'en_US';  
     });
 
     it('should display the English search tips.', function() {
@@ -35,7 +35,7 @@ describe('searchTipsContoller,', function() {
   describe('when the selected language is Danish,', function() {
     
     beforeEach(function() {
-      $locale.localeID = 'da_DK';  
+      locale.current = () => 'da_DK';  
     });
 
     it('should display the Danish search tips.', function() {

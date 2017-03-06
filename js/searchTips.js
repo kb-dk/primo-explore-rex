@@ -1,9 +1,9 @@
 import { viewName } from './viewName';
 
 class SearchTipsController {
-  constructor($mdDialog, $locale) {
+  constructor($mdDialog, locale) {
     this.$mdDialog = $mdDialog;
-    this.$locale = $locale;
+    this.locale = locale;
   };
 
   /**
@@ -19,7 +19,7 @@ class SearchTipsController {
         }
       },
       controllerAs: '$ctrl',
-      templateUrl: 'custom/' + viewName + '/html/searchTips_' + this.$locale.localeID + '.html',
+      templateUrl: 'custom/' + viewName + '/html/searchTips_' + this.locale.current() + '.html',
       parent: angular.element(document.body),
       targetEvent: event,
       clickOutsideToClose: true,
@@ -29,7 +29,7 @@ class SearchTipsController {
 
 }
 
-SearchTipsController.$inject = ['$mdDialog', '$locale'];
+SearchTipsController.$inject = ['$mdDialog', 'locale'];
 
 export let SearchTipsConfig = {
   name: 'rexSearchTips',

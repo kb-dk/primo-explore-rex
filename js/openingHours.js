@@ -3,11 +3,11 @@
  */
 class OpeningHoursController {
 
-  constructor(scriptLoader, $interval, $rootScope, $locale, $window) {
+  constructor(scriptLoader, $interval, $rootScope, $window, locale) {
     this.scriptLoader = scriptLoader;
     this.$interval = $interval;
     this.$rootScope = $rootScope;
-    this.$locale = $locale;
+    this.locale = locale;
     this.$window = $window;
   }
 
@@ -73,7 +73,7 @@ class OpeningHoursController {
 
       this.scriptLoader.load('https://static.kb.dk/libcal/openingHours_min.js').then(() => {
 
-        let i18n = (this.$locale.localeID === "da_DK") ? this._danish_i18n : this._english_i18n;
+        let i18n = (this.locale.current() === "da_DK") ? this._danish_i18n : this._english_i18n;
 
         this._openingHours = OpeningHours;
 
@@ -125,7 +125,7 @@ class OpeningHoursController {
 
 }
 
-OpeningHoursController.$inject = ['scriptLoader', '$interval', '$rootScope', '$locale', '$window'];
+OpeningHoursController.$inject = ['scriptLoader', '$interval', '$rootScope', '$window', 'locale'];
 
 export let OpeningHoursConfig = {
   name: 'rexOpeningHours',
