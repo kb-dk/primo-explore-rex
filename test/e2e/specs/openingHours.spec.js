@@ -10,7 +10,7 @@ describe('Opening hours widget', function() {
 
   });
 
-  fit('should be displayed, should show library info, and should be destroyed properly.)', function() {
+  it('should be displayed, should show library info, and should be destroyed properly.)', function() {
 
     let EC = protractor.ExpectedConditions;
     let openingHoursView = $('.openingHoursView[style="display: block;"]');
@@ -28,8 +28,8 @@ describe('Opening hours widget', function() {
     expect(openingHoursView.isDisplayed()).toBeTruthy();
     expect(openingHoursScript.isPresent()).toBeTruthy();
     expect(openingHoursStylesheet.isPresent()).toBeTruthy();
-    expect(libraryNameLink.isPresent()).toBeTruthy();
-    // browser.wait(EC.elementToBeClickable(libraryNameLink), 2000);
+
+    browser.wait(EC.elementToBeClickable(libraryNameLink), 3000);
 
     element(by.id('favorites-button')).click();
 
@@ -44,22 +44,22 @@ describe('Opening hours widget', function() {
     expect(openingHoursView.isDisplayed()).toBeTruthy();
     expect(openingHoursScript.isPresent()).toBeTruthy();
     expect(openingHoursStylesheet.isPresent()).toBeTruthy();
-    expect(libraryNameLink.isPresent()).toBeTruthy();
-    // browser.wait(EC.elementToBeClickable(libraryNameLink), 3000);
+
+    browser.wait(EC.elementToBeClickable(libraryNameLink), 3000);
 
     libraryNameLink.click();
 
-    // browser.wait(EC.not(EC.elementToBeClickable(libraryNameLink)), 5000);
-    browser.wait(EC.elementToBeClickable(infoLink), 4000);
+    browser.wait(EC.not(EC.elementToBeClickable(libraryNameLink)), 3000);
+    browser.wait(EC.elementToBeClickable(infoLink), 3000);
     
     infoLink.click();
 
     expect(openingHoursModalInfoBox.isDisplayed()).toBeTruthy();
-    browser.wait(EC.elementToBeClickable(openingHoursModalDismissButton), 5000);
+    browser.wait(EC.elementToBeClickable(openingHoursModalDismissButton), 3000);
 
     openingHoursModalDismissButton.click();
-    // expect(openingHoursModalInfoBox.isDisplayed()).toBeFalsy();
-    browser.wait(EC.invisibilityOf(openingHoursModalInfoBox), 6000);
+
+    browser.wait(EC.invisibilityOf(openingHoursModalInfoBox), 3000);
   });
 
 });
