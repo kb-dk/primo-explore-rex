@@ -1,7 +1,7 @@
 prm-facet-group {
   
 	// Date filters.
-  input[ng-model^="ctrl.facetGroup.additionalData.selected"] {
+  input[ng-model^="$ctrl.facetGroup.additionalData.selected"] {
     background-color: white;
     border-bottom-color: grey;
     max-width: 57px;
