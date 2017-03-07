@@ -10,4 +10,12 @@ exports.config = {
   {
     browserName: 'chrome',
   }],
+  onPrepare: () => {
+    let width = 1600;
+    let height = 900;
+
+    browser.driver.manage().window().setSize(width, height);
+
+  }
 }
+
