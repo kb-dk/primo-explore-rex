@@ -6,8 +6,16 @@ class PrmSearchBarAfterController {
   };
 
   $postLink() {
-    let container = angular.element(this.$element.parent().children()[0].children[0]);
+
+    let parentElement = this.$element.parent();
+
+    // Move the search tips.
+    let container = angular.element(parentElement.children()[0].children[0]);
     container.append(this.$element.children()[0]);
+
+    // Focus on the search bar.
+    parentElement[0].querySelector('#searchBar').focus();
+    
   };
 }
 
