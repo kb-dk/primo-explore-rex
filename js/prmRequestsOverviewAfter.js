@@ -4,6 +4,9 @@ class PrmRequestsOverviewAfterController {
     this.$scope = $scope;
     this.$element = $element;
     this.pickUpNumbers = pickUpNumbers;
+  }
+
+  $onInit() {
     
     this.parentElement = this.$element.parent()[0];
     

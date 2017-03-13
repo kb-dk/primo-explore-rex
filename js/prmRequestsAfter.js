@@ -4,6 +4,9 @@ class PrmRequestsAfterController {
     this.$scope = $scope;
     this.$element = $element;
     this.pickUpNumbers = pickUpNumbers;
+  }
+
+  $onInit() {
 
     this.parentElement = this.$element.parent()[0];
     this.$scope.$watch(() => this.parentElement.querySelector('p[ng-if="::requestDisplay.secondLineRight"]'),
