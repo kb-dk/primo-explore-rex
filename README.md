@@ -1,5 +1,5 @@
-# PRIMO EXPLORE REX
-The Primo Customization Package for the discovery platform of the Royal Library.
+# primo-explore-rex
+A Primo customization package by the Danish Royal Library.
 
 The following instructions are intended for Unix-like operating systems. 
 
