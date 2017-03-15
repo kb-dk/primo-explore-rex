@@ -6,14 +6,18 @@ The Primo Customization Package for the discovery platform of the Royal Library.
 - Navigate into the repository.
 - Run `npm install` to install development dependencies.
 
-## Building the package
-     cd <repository-dir>
-     gulp run --view NUI --browserify
-
 ## Starting CSS preprocessing
      cd <repository-dir>/css
      sass --watch ./sass:.
 
+## Building the package
+     cd <repository-dir>
+     gulp run --view NUI --browserify
+
 ## Running unit tests
     cd <repository-dir>
     npm test
+
+## License
+
+This software is released under the [MIT License](http://www.opensource.org/licenses/MIT).

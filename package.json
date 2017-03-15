@@ -3,6 +3,19 @@
   "version": "1.0.0",
   "description": "A Primo Customization Package for Danish Royal Library.",
   "author": "Danish Royal Library",
+  "contributors": [
+    "Karen Strandgaard <kck@kb.dk>",
+    "Knut Anton Bøckman <knab@kb.dk>",
+    "Murat Seyhan <muse@kb.dk> (https://github.com/muratseyhan)"
+  ],
+  "repository" :  { "type" : "git",
+    "url" : "https://github.com/Det-Kongelige-Bibliotek/primo-explore-rex.git"
+  },
+  "licence": "MIT",
+  "bugs": {
+    "url": "https://github.com/Det-Kongelige-Bibliotek/primo-explore-rex/issues",
+    "email": "muse@kb.dk"
+  },  
   "scripts": {
     "test": "node_modules/karma/bin/karma start ./test/unit/karma.conf.js"
   },
