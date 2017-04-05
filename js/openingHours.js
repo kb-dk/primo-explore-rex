@@ -27,6 +27,7 @@ class OpeningHoursController {
       allLibraries: 'Alle biblioteker',
       'The Black Diamond - Reading Rooms': 'Diamantens læsesale',
       'KUB South Campus': 'KUB Søndre Campus',
+      'RUb staffed hours': 'RUb Personlig betjening',
       ampm: false
     };
 
