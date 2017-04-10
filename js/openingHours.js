@@ -91,7 +91,7 @@ class OpeningHoursController {
           i18n: i18n
         };
 
-        this.scriptLoader.load('https://api3.libcal.com/api_hours_grid.php?iid=1069&format=json&weeks=1&callback=OpeningHours.loadOpeningHours')
+        this.scriptLoader.load('https://api3-eu.libcal.com/api_hours_grid.php?iid=1069&format=json&weeks=1&callback=OpeningHours.loadOpeningHours')
           .then(resolve)
           .catch(() => {
             this.unloadOpeningHoursWidget();
