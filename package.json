@@ -17,7 +17,7 @@
     "email": "muse@kb.dk"
   },  
   "scripts": {
-    "test": "node_modules/karma/bin/karma start ./test/unit/karma.conf.js"
+    "test": "node_modules/karma/bin/karma start ./test/unit/karma.conf.js --single-run"
   },
   "devDependencies": {
     "jasmine-core": "^2.5.2",
