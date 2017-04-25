@@ -1,4 +1,7 @@
 # primo-explore-rex
+
+[![CircleCI](https://circleci.com/gh/Det-Kongelige-Bibliotek/primo-explore-rex.svg?style=svg&circle-token=9d6d8e12ee425278b1efc8a5aa3e1d10db487f5e)](https://circleci.com/gh/Det-Kongelige-Bibliotek/primo-explore-rex)
+
 A Primo customization package by Royal Danish Library.
 
 The following instructions are intended for Unix-like operating systems. 
