@@ -1,0 +1,25 @@
+general:
+  build_dir: $HOME
+  
+machine:
+  node:
+    version: 7.6.0
+
+dependencies:
+  pre:
+    - npm install -g npm@4.1.2
+  override:
+    - git clone https://github.com/ExLibrisGroup/primo-explore-devenv.git
+    - cd primo-explore-devenv && git checkout -b latest_working 7abe8afe065351fda6ed56bde0072575cb2f12c4
+    - cd primo-explore-devenv && npm install
+    - cd primo-explore-devenv && npm install gulp --link
+    - mv primo-explore-rex primo-explore-devenv/primo-explore/custom/NUI  
+    - cd primo-explore-devenv/primo-explore/custom/NUI && npm install
+
+compile:
+  override:
+    - cd primo-explore-devenv && gulp custom-js --view NUI --browserify
+
+test:
+  override:
+    - cd primo-explore-devenv/primo-explore/custom/NUI && npm test
