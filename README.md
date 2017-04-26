@@ -31,13 +31,9 @@ In the root directory, run the following command to perform the unit tests.
 ## Running E2E tests
 Running the E2E tests require Chrome (or Chromium) to be available on the machine. In the root directory, do the following to run the E2E tests.
 
-1- Run the following command to install setup depencencies for WebDriver. 
+1- Run the following command to install depencencies for WebDriver. 
     
     ./node_modules/protractor/bin/webdriver-manager update
-
-2- Run the following command to start WebDriver 
-
-    ./node_modules/protractor/bin/webdriver-manager start
 
 2- Run the following command to run E2E tests.
 
