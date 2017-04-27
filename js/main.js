@@ -7,10 +7,12 @@ import { SectionOrderingService } from './sectionOrdering';
 import { PickUpNumbersService } from './pickUpNumbers';
 import { GoogleAnalyticsService } from './ga';
 import { LocaleService } from './locale';
+import { FeedParserService } from './feedParser';
 
 import { OpeningHoursConfig } from './openingHours';
 import { SearchTipsConfig } from './searchTips';
 import { AltmetricsConfig } from './altmetrics';
+import { NewsFeedConfig } from './newsFeed';
 
 import { PrmFinesAfterConfig } from './prmFinesAfter';
 import { PrmLogoAfterConfig } from './prmLogoAfter';
@@ -47,9 +49,11 @@ angular.module('viewCustom').service('navigation', NavigationService)
   .service('pickUpNumbers', PickUpNumbersService)
   .service('googleAnalytics', GoogleAnalyticsService)
   .service('locale', LocaleService)
+  .service('feedParser', FeedParserService)
   .component(OpeningHoursConfig.name, OpeningHoursConfig.config)
   .component(SearchTipsConfig.name, SearchTipsConfig.config)
   .component(AltmetricsConfig.name, AltmetricsConfig.config)
+  .component(NewsFeedConfig.name, NewsFeedConfig.config)
   .component(PrmFinesAfterConfig.name, PrmFinesAfterConfig.config)
   .component(PrmLogoAfterConfig.name, PrmLogoAfterConfig.config)
   .component(PrmTopbarAfterConfig.name, PrmTopbarAfterConfig.config)

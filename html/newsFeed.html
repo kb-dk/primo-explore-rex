@@ -1,0 +1,15 @@
+<md-card class="default-card">
+
+  <md-card-title >
+    <md-card-title-text>
+      <span class=md-headline style="background-color: #6A6864;color: #FFFFFF;padding: 5px">Nyheder</span>
+    </md-card-title-text>
+  </md-card-title>
+  
+  <md-card-content>
+    <div ng-repeat="entry in $ctrl.feed.entry"> 
+      <p> {{ entry.summary[0]._ }} </p>
+    </div>
+  </md-card-content>
+
+</md-card>

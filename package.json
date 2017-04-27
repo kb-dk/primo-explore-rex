@@ -34,6 +34,7 @@
   "dependencies": {
     "browserify": "^13.3.0",
     "lodash": "^4.17.4",
-    "x2js": "^3.1.0"
+    "x2js": "^3.1.0",
+    "xml2js": "^0.4.17"
   }
 }
