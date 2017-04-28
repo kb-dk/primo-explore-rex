@@ -7,8 +7,9 @@
   </md-card-title>
   
   <md-card-content>
-    <div ng-repeat="entry in $ctrl.feed.entry"> 
-      <p> {{ entry.summary[0]._ }} </p>
+    <div ng-repeat="entry in $ctrl.feed"> 
+      <h3><a ng-href="{{entry.link}}" target="_blank"> {{ entry.title }} - {{ entry.time | date: 'medium' }} </a></h3>
+      <p style="margin: -0.5em 0.5em 0.5em;"><a style="color:#3a3a3a;" ng-href="{{entry.link}}" target="_blank"> {{ entry.summary }} </a></p>
     </div>
   </md-card-content>
 

@@ -23,19 +23,35 @@ export class FeedParserService {
    */
   parse(feedUrl) {
 
-    this.parser = new xml2js.Parser();
-
     return new Promise((resolve, reject) => {
+      
+      if (this.feed) {
+        resolve(this.feed);
+        return;
+      }
 
       this.$http.get(feedUrl).then((response) => {
-        this.parser.parseString(response.data, (err, result) => {
+        let parser = new xml2js.Parser();        
+
+        parser.parseString(response.data, (err, result) => {
           if (err) {
             reject(err);
-          }
-          else {
-            resolve(result.feed);
-          }
+            return;
+          } 
+            
+          this.feed = result.feed.entry.map(entry => {
+            return {
+              title: entry.title && entry.title[0],
+              link: entry.link && entry.link[0].$.href,
+              time: entry.updated && entry.updated[0],
+              summary: entry.summary && entry.summary[0]._
+            };
+          });
+
+          resolve(this.feed);
+        
         });
+      
       });
 
     });
