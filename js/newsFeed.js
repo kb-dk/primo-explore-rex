@@ -6,7 +6,7 @@ class NewsFeedController {
   }
 
   $onInit() {
-    this.feedParser.parse('http://kub.kb.dk/rss/blog.php?g=579871')
+    this.feedParser.parse('https://kub.kb.dk/rss/blog.php?g=579871')
     .then((feed) => {
       this.feed = feed;
     });
