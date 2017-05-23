@@ -5,6 +5,7 @@ import { AnnouncementService } from './announcement';
 import { ScriptLoaderService } from './scriptLoader';
 import { SectionOrderingService } from './sectionOrdering';
 import { PickUpNumbersService } from './pickUpNumbers';
+import { LinkedPersonsService } from './linkedPersons';
 import { GoogleAnalyticsService } from './ga';
 import { LocaleService } from './locale';
 
@@ -45,6 +46,7 @@ angular.module('viewCustom').service('navigation', NavigationService)
   .service('scriptLoader', ScriptLoaderService)
   .service('sectionOrdering', SectionOrderingService)
   .service('pickUpNumbers', PickUpNumbersService)
+  .service('linkedPersons', LinkedPersonsService)
   .service('googleAnalytics', GoogleAnalyticsService)
   .service('locale', LocaleService)
   .component(OpeningHoursConfig.name, OpeningHoursConfig.config)

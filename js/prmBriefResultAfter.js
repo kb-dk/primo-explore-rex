@@ -1,5 +1,5 @@
 // This is a temporary fix for zotero from Exlibris.
-// It would not be needed if primo exposes PNX records in raw XML.
+// It would not be needed if primo exposed PNX records in raw XML.
 // See: https://forums.zotero.org/discussion/comment/268604/#Comment_268604
 
 import mapValues from 'lodash/mapValues';
@@ -16,8 +16,21 @@ angular.module('viewCustom').component('prmBriefResultAfter', {
 
 });
 
-angular.module('viewCustom').controller('BriefResultAfterController', [function() {
+angular.module('viewCustom').controller('BriefResultAfterController', ['linkedPersons', function(linkedPersons) {
   let vm = this;
+
+  // TODO: WARNING: This functionality should be preserved 
+  // when we remove the rest of the controller.    
+  vm.$onInit = () => {
+    let uris = vm.pnx.addata.lad06;
+    console.log(uris);
+
+    if (uris) {
+      linkedPersons.fetch(uris);
+    }
+  }    
+  // END
+
   vm.item = vm.parentCtrl.item;
 
   vm.calcZoteroParams = calcZoteroParams;
