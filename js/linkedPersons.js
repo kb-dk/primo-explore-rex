@@ -11,7 +11,8 @@ export class LinkedPersonsService {
     this.$http = $http;
 
     // The URL base for the source service.
-    this.sourceServiceUrlBase = 'http://0.0.0.0:9292/persons/?uri='
+    // this.sourceServiceUrlBase = 'http://0.0.0.0:9292/persons/?uri='
+    this.sourceServiceUrlBase = 'http://ec2-54-229-3-116.eu-west-1.compute.amazonaws.com:9292/persons/?uri='
     this.persons = {};
   }
 
