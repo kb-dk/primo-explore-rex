@@ -25,9 +25,9 @@ angular.module('viewCustom').controller('BriefResultAfterController', ['linkedPe
     let uris = vm.pnx.addata.lad06;
     console.log(uris);
 
-    if (uris) {
-      linkedPersons.fetch(uris);
-    }
+    uris.forEach((uri) => 
+      linkedPersons.get(uri).then((value) => console.log(value))
+    );
   }    
   // END
 

@@ -6,7 +6,7 @@
  * @see https://github.com/Det-Kongelige-Bibliotek/linked_persons 
  */
 export class LinkedPersonsService {
-  
+
   constructor($http) {
     this.$http = $http;
 
@@ -15,46 +15,47 @@ export class LinkedPersonsService {
     this.persons = {};
   }
 
-
   /**
-   * Fetches the given array of URIs.
-   * @param {Array<String>} uris - An array of URIs identifying 
-   * authors whose data is to be fetched.
+   * Gets the data for the given URI from the source service,
+   * uses the cached data if it was retrieved before.
+   *.
+   * @param {String} uri - URI identifying the author whose 
+   * data is to be fetched.
    * 
-   * @return {Array<Object>} An array of objects elements of which
-   * are the retrieved data for corresponding input URIs.
+   * @return {Promise<Object>} A promise that resolves with
+   * an object containing data for corresponding input URI.
    *
    */
-  get(uris) {
-    return uris.map(this.getSingle);
-  }
-
-  getSingle(uri) {
-    return this.persons[uri] || getAndSave(uri);
+  get(uri) {
+    if (this.persons[uri])
+      return Promise.resolve(this.persons[uri]);
+    else
+      return this.getAndSave(uri);
   }
 
   getAndSave(uri) {
-    return this.persons[uri] = fetchAndParse(uri);
-  }
-
-  fetchAndParse(uri) {
-    return fetch(uri).then(parse);
+    return this.fetch(uri).then((value) => this.save(uri, value));
   }
 
   fetch(uri) {
-    return this.$http.get(this.targetUrl(uri));
+
+    let request = {
+      method: 'GET',
+      url: this.targetUrl(uri),
+      headers: {
+        'Accept': 'application/ld+json'
+      },
+    }
+
+    return this.$http(request).then((response) => response.data);
   }
 
   targetUrl(uri) {
-    console.log(this)
     return this.sourceServiceUrlBase + encodeURIComponent(uri);
   }
 
-  parse(response) {
-    return new Promise((resolve,reject) => {
-      console.log(response);
-      resolve(response);  
-    });
+  save(uri, value) {
+    return this.persons[uri] = value;
   }
 
 }
