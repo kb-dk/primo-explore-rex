@@ -1,3 +1,5 @@
+import jsonld from 'jsonld';
+
 /**
  * Service retrieving structured data on the authors
  * from the Linked Persons Web service, which is refered as
@@ -13,6 +15,8 @@ export class LinkedPersonsService {
     // The URL base for the source service.
     // this.sourceServiceUrlBase = 'http://0.0.0.0:9292/persons/?uri='
     this.sourceServiceUrlBase = 'http://ec2-54-229-3-116.eu-west-1.compute.amazonaws.com:9292/persons/?uri='
+    
+    this.jsonld = jsonld;
     this.persons = {};
   }
 
@@ -35,8 +39,12 @@ export class LinkedPersonsService {
   }
 
   getAndSave(uri) {
-    return this.fetch(uri).then((value) => this.save(uri, value));
+    return this.fetchAndFlatten(uri).then((value) => this.save(uri, value));
   }
+
+  fetchAndFlatten(uri) {
+    return this.fetch(uri).then((data) => this.flatten(data));
+  };
 
   fetch(uri) {
 
@@ -53,6 +61,14 @@ export class LinkedPersonsService {
 
   targetUrl(uri) {
     return this.sourceServiceUrlBase + encodeURIComponent(uri);
+  }
+
+  flatten(data) {
+    return new Promise((resolve, reject) => {
+      jsonld.flatten(data, (err, flattened) => {
+        resolve(flattened);
+      });
+    }); 
   }
 
   save(uri, value) {
