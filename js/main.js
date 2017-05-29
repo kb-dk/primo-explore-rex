@@ -5,13 +5,14 @@ import { AnnouncementService } from './announcement';
 import { ScriptLoaderService } from './scriptLoader';
 import { SectionOrderingService } from './sectionOrdering';
 import { PickUpNumbersService } from './pickUpNumbers';
-import { LinkedPersonsService } from './linkedPersons';
+import { LinkedPersonsService } from './linkedPersons.service';
 import { GoogleAnalyticsService } from './ga';
 import { LocaleService } from './locale';
 
 import { OpeningHoursConfig } from './openingHours';
 import { SearchTipsConfig } from './searchTips';
 import { AltmetricsConfig } from './altmetrics';
+import { LinkedPersonsConfig } from './linkedPersons.component';
 
 import { PrmFinesAfterConfig } from './prmFinesAfter';
 import { PrmLogoAfterConfig } from './prmLogoAfter';
@@ -46,12 +47,13 @@ angular.module('viewCustom').service('navigation', NavigationService)
   .service('scriptLoader', ScriptLoaderService)
   .service('sectionOrdering', SectionOrderingService)
   .service('pickUpNumbers', PickUpNumbersService)
-  .service('linkedPersons', LinkedPersonsService)
+  .service('linkedPersonsService', LinkedPersonsService)
   .service('googleAnalytics', GoogleAnalyticsService)
   .service('locale', LocaleService)
   .component(OpeningHoursConfig.name, OpeningHoursConfig.config)
   .component(SearchTipsConfig.name, SearchTipsConfig.config)
   .component(AltmetricsConfig.name, AltmetricsConfig.config)
+  .component(LinkedPersonsConfig.name, LinkedPersonsConfig.config)
   .component(PrmFinesAfterConfig.name, PrmFinesAfterConfig.config)
   .component(PrmLogoAfterConfig.name, PrmLogoAfterConfig.config)
   .component(PrmTopbarAfterConfig.name, PrmTopbarAfterConfig.config)
