@@ -42,13 +42,19 @@ class LinkedPersonsController {
       controllerAs: '$ctrl',
       locals: {
         persons: this.persons,
+        $mdDialog: this.$mdDialog,
       },
       // templateUrl: 'custom/' + viewName + '/html/searchTips_' + this.locale.current() + '.html',
       templateUrl: 'custom/' + viewName + '/html/linkedPersonsDialog.html',
       parent: angular.element(document.body),
       targetEvent: event,
       clickOutsideToClose: true,
-      fullscreen: false // Only for -xs, -sm breakpoints.
+      fullscreen: false, // Only for -xs, -sm breakpoints.
+      // 'multiple' and 'skipHide' options
+      // enable the dialog to open on full view,
+      // which is apparently a dialog as well.
+      multiple: true, // as of Angular Material v1.1.2
+      skipHide: true, // Angular Material v1.1.0-rc.5
     });
   };
 
