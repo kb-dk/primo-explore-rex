@@ -66,7 +66,8 @@ export let LinkedPersonsConfig = {
   name: 'rexLinkedPersons',
   config: {
     bindings: {
-      uris: '<'
+      uris: '<',
+      onLoad: '&',
     },
     controller: LinkedPersonsController,
     templateUrl: 'custom/' + viewName + '/html/linkedPersons.component.html'

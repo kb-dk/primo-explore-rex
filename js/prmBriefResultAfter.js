@@ -8,7 +8,7 @@ import findIndex from 'lodash/findIndex';
 import X2JS from 'x2js';
 
 angular.module('viewCustom').component('prmBriefResultAfter', {
-  template: '<rex-linked-persons uris="$ctrl.uris"></rex-linked-persons><span ng-if="::$ctrl.zoteroParamsString" class="Z3988" title="{{::$ctrl.zoteroParamsString}}" pnx="{{::$ctrl.pnxInXml}}"></span> ',
+  template: '<span ng-if="::$ctrl.zoteroParamsString" class="Z3988" title="{{::$ctrl.zoteroParamsString}}" pnx="{{::$ctrl.pnxInXml}}"></span> ',
   bindings: {
     parentCtrl: '<'
   },
@@ -16,15 +16,8 @@ angular.module('viewCustom').component('prmBriefResultAfter', {
 
 });
 
-angular.module('viewCustom').controller('BriefResultAfterController', ['linkedPersonsService', function(linkedPersonsService) {
+angular.module('viewCustom').controller('BriefResultAfterController', [function() {
   let vm = this;
-
-  // TODO: WARNING: This functionality should be preserved 
-  // when we remove the rest of the controller.    
-  vm.$onInit = () => {
-    vm.uris = vm.pnx.addata.lad06;
-  }    
-  // END
 
   vm.item = vm.parentCtrl.item;
 

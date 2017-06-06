@@ -8,43 +8,81 @@ class PrmFullViewAfterController {
   $onInit() {
     this.parentElement = this.$element.parent()[0];
 
-    if (this.sectionOrdering.orderSections(this.parentCtrl.services)) console.log('REX: Sections reordered.');
-
     // Retrieve the DOI if it is present.
     try {
       this.doi = this.parentCtrl.item.pnx.addata.doi[0];
     } catch (e) {
-      console.log(e.message);
+      console.log('DOI not found.');
+      // console.log(e.message);
     };
-  };
 
-  insertAltmetricsBadge() {
-    this.createAltmetricsSectionElement();
+    // Retrieve the VIAF URIs if present.
+    try {
+      this.viaf_uris = this.parentCtrl.item.pnx.addata.lad06[0];
+    } catch (e) {
+      console.log('No VIAF URI found.');
+      // console.log(e.message);
+    };
 
-    // Wait for the Altmetrics section to be created.
-    this.$scope.$watch(() => this.parentElement.querySelector('h2[translate="brief.results.tabs.Altmetrics"]'),
-      (newVal, oldVal) => {
-        if (!oldVal && newVal !== oldVal) {
-          let containerElement = newVal.parentElement.parentElement.parentElement.parentElement.children[1];
-
-          // Move the badge into the Altmetrics section.
-          if (containerElement && containerElement.appendChild)
-            containerElement.appendChild(this.$element.children()[0]);
-        }
-      }
-    );
+    if (this.sectionOrdering.orderSections(this.parentCtrl.services)) {
+      console.log('REX: Sections reordered.');
+    }
 
   };
 
-  // Create Altmetrics section.
-  createAltmetricsSectionElement() {
-    let altmetricsSection = {
+  insertAltmetricsSection() {
+    let altmetricsSectionData = {
       scrollId: "altmetrics",
       serviceName: "altmetrics",
       title: "brief.results.tabs.Altmetrics"
     };
-    this.parentCtrl.services.splice(this.parentCtrl.services.length - 1, 0, altmetricsSection);
+    let altmetricsSectionElement = this.$element.find('rex-altmetrics')[0];
+
+    this.insertSection(altmetricsSectionData, altmetricsSectionElement);
+
+    console.log(this.parentCtrl.services);
   };
+
+  insertAuthorsSection() {
+    console.log('RUN!');
+    let authorsSectionData = {
+      scrollId: "authors",
+      serviceName: "authors",
+      title: "brief.results.tabs.Authors"
+    };
+    let authorsSectionElement = this.$element.find('rex-linked-persons')[0];
+
+    this.insertSection(authorsSectionData, authorsSectionElement);
+
+    console.log(authorsSectionElement);
+    console.log(this.parentCtrl.services);
+  };
+
+  insertSection(sectionData, sectionElement) {
+    this.insertSectionData(sectionData);
+
+    let targetSelector = 'h2[translate="' + sectionData.title + '"]';
+
+    // Wait for the target element to be created.
+    this.$scope.$watch(() => this.parentElement.querySelector(targetSelector),
+      (newVal, oldVal) => {
+        if (!oldVal && newVal !== oldVal) {
+          let targetElement = newVal.parentElement.parentElement.parentElement.parentElement.children[1];
+
+          // Move the section into the target element.
+          if (targetElement && targetElement.appendChild) {
+            targetElement.appendChild(sectionElement);
+            // targetElement.appendChild(this.$element.children()[0]);
+          }
+        }
+      }
+    );
+
+  }
+
+  insertSectionData(sectionData) {
+    this.parentCtrl.services.splice(this.parentCtrl.services.length - 1, 0, sectionData);
+  }
 
 };
 
@@ -57,6 +95,9 @@ export let PrmFullViewAfterConfig = {
       parentCtrl: '<',
     },
     controller: PrmFullViewAfterController,
-    template: '<rex-altmetrics doi="$ctrl.doi" on-load="$ctrl.insertAltmetricsBadge()"></rex-altmetrics>',
+    template: `
+      <rex-altmetrics doi="$ctrl.doi" on-load="$ctrl.insertAltmetricsSection()"></rex-altmetrics>
+      <rex-linked-persons uris="$ctrl.viaf_uris" on-load="$ctrl.insertAuthorsSection()"></rex-linked-persons>
+    `,
   }
 };
