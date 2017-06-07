@@ -18,7 +18,8 @@ class PrmFullViewAfterController {
 
     // Retrieve the VIAF URIs if present.
     try {
-      this.viaf_uris = this.parentCtrl.item.pnx.addata.lad06[0];
+      // This does not seem to fail when no VIAF URI is present.
+      this.viaf_uris = this.parentCtrl.item.pnx.addata.lad06;
     } catch (e) {
       console.log('No VIAF URI found.');
       // console.log(e.message);
@@ -39,12 +40,9 @@ class PrmFullViewAfterController {
     let altmetricsSectionElement = this.$element.find('rex-altmetrics')[0];
 
     this.insertSection(altmetricsSectionData, altmetricsSectionElement);
-
-    console.log(this.parentCtrl.services);
   };
 
   insertAuthorsSection() {
-    console.log('RUN!');
     let authorsSectionData = {
       scrollId: "authors",
       serviceName: "authors",
@@ -54,8 +52,6 @@ class PrmFullViewAfterController {
 
     this.insertSection(authorsSectionData, authorsSectionElement);
 
-    console.log(authorsSectionElement);
-    console.log(this.parentCtrl.services);
   };
 
   insertSection(sectionData, sectionElement) {
@@ -96,8 +92,8 @@ export let PrmFullViewAfterConfig = {
     },
     controller: PrmFullViewAfterController,
     template: `
-      <rex-altmetrics doi="$ctrl.doi" on-load="$ctrl.insertAltmetricsSection()"></rex-altmetrics>
-      <rex-linked-persons uris="$ctrl.viaf_uris" on-load="$ctrl.insertAuthorsSection()"></rex-linked-persons>
+      <rex-altmetrics ng-if="$ctrl.doi" doi="$ctrl.doi" on-load="$ctrl.insertAltmetricsSection()"></rex-altmetrics>
+      <rex-linked-persons ng-if="$ctrl.viaf_uris" uris="$ctrl.viaf_uris" on-load="$ctrl.insertAuthorsSection()"></rex-linked-persons>
     `,
   }
 };

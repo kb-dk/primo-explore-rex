@@ -12,22 +12,24 @@ class LinkedPersonsController {
     this.persons = [];
 
     if (this.uris) {
-      this.loadDataForAllPersons();
-    }
-
-    console.log(this.persons);
+      this.loadDataForAllPersons().then(this.onLoad);
+    }    
   }
 
   /**
    * Loads data about the persons from the  
    * Linked Persons service.
+   *
+   * @return {Promise} A promise that resolves if all persons are 
+   * loaded, and rejects if any of them fails to be loaded.
    */
   loadDataForAllPersons() {
-    this.uris.forEach((uri) => this.loadPersonData(uri));
+    return Promise.all(this.uris.map((uri) => this.loadPersonData(uri)));
   }
 
   loadPersonData(uri) {
-    this.linkedPersonsService.get(uri).then((data) => {
+    console.log(uri);
+    return this.linkedPersonsService.get(uri).then((data) => {
       this.persons.push(data);
     });
   };
@@ -70,7 +72,7 @@ export let LinkedPersonsConfig = {
       onLoad: '&',
     },
     controller: LinkedPersonsController,
-    templateUrl: 'custom/' + viewName + '/html/linkedPersons.component.html'
+    templateUrl: 'custom/' + viewName + '/html/linkedPersons.component.html',
   }
 }
 
