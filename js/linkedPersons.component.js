@@ -12,7 +12,9 @@ class LinkedPersonsController {
     this.persons = [];
 
     if (this.uris) {
-      this.loadDataForAllPersons().then(this.onLoad);
+      this.loadDataForAllPersons().then(this.onLoad).catch(() => {
+        console.log('Could not fetch data about the author.');
+      });
     }    
   }
 

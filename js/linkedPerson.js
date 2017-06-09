@@ -1,3 +1,22 @@
+let targetProperties = {
+  name: 'http://schema.org/name',
+  description: 'http://schema.org/description',
+  altLabel: 'http://www.w3.org/2004/02/skos/core#altLabel',
+  sameAs: 'http://schema.org/sameAs',
+  pseudonym: 'http://www.wikidata.org/prop/direct/P742',
+  image: 'http://www.wikidata.org/prop/direct/P18',
+  usedLanguage: 'http://www.wikidata.org/prop/direct/P1412',
+  placeOfBirth: 'http://www.wikidata.org/prop/direct/P19',
+  placeOfDeath: 'http://www.wikidata.org/prop/direct/P20',
+  gender: 'http://www.wikidata.org/prop/direct/P21',
+  countryOfcitizenship: 'http://www.wikidata.org/prop/direct/P27',
+  nativeLanguage: 'http://www.wikidata.org/prop/direct/P103',
+  occupation: 'http://www.wikidata.org/prop/direct/P106',
+  dateOfBirth: 'http://www.wikidata.org/prop/direct/P569',
+  dateOfDeath: 'http://www.wikidata.org/prop/direct/P570',
+}
+
+
 /**
  * Model representing a person whose data is fetched 
  * from the Linked Persons Web service.
@@ -13,23 +32,7 @@ export class LinkedPerson {
     this.uri = uri;
     this.data = data;
 
-    this.targetProperties = {
-      name: 'http://schema.org/name',
-      description: 'http://schema.org/description',
-      altLabel: 'http://www.w3.org/2004/02/skos/core#altLabel',
-      sameAs: 'http://schema.org/sameAs',
-      pseudonym: 'http://www.wikidata.org/prop/direct/P742',
-      image: 'http://www.wikidata.org/prop/direct/P18',
-      usedLanguage: 'http://www.wikidata.org/prop/direct/P1412',
-      placeOfBirth: 'http://www.wikidata.org/prop/direct/P19',
-      placeOfDeath: 'http://www.wikidata.org/prop/direct/P20',
-      gender: 'http://www.wikidata.org/prop/direct/P21',
-      countryOfcitizenship: 'http://www.wikidata.org/prop/direct/P27',
-      nativeLanguage: 'http://www.wikidata.org/prop/direct/P103',
-      occupation: 'http://www.wikidata.org/prop/direct/P106',
-      dateOfBirth: 'http://www.wikidata.org/prop/direct/P569',
-      dateOfDeath: 'http://www.wikidata.org/prop/direct/P570',
-    }
+    this.targetProperties = targetProperties;
 
     this.mainResource = this.findInData(this.uri);
   }
