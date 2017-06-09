@@ -1,3 +1,7 @@
+import {
+  viewName
+} from './viewName';
+
 class PrmFullViewAfterController {
   constructor(sectionOrdering, $element, $scope) {
     this.sectionOrdering = sectionOrdering;
@@ -51,29 +55,40 @@ class PrmFullViewAfterController {
     let authorsSectionElement = this.$element.find('rex-linked-persons')[0];
 
     this.insertSection(authorsSectionData, authorsSectionElement);
-
   };
 
   insertSection(sectionData, sectionElement) {
+    // The title of the new section is used to idenitfy the section
+    // element.
+    let sectionTitleSelector = 'h2[translate="' + sectionData.title + '"]';
+
+    // We set up the watcher before inserting the section data,
+    // to ensure that the watcher catches the change.
+    this.waitForTargetThenMoveSection(sectionTitleSelector, sectionElement);
     this.insertSectionData(sectionData);
+  }
 
-    let targetSelector = 'h2[translate="' + sectionData.title + '"]';
-
-    // Wait for the target element to be created.
-    this.$scope.$watch(() => this.parentElement.querySelector(targetSelector),
+  // Wait for the target element to be created.
+  waitForTargetThenMoveSection(sectionTitleSelector, sectionElement) {
+    let unbindWatcher = this.$scope.$watch(() =>
+      this.parentElement.querySelector(sectionTitleSelector),
       (newVal, oldVal) => {
-        if (!oldVal && newVal !== oldVal) {
-          let targetElement = newVal.parentElement.parentElement.parentElement.parentElement.children[1];
-
-          // Move the section into the target element.
-          if (targetElement && targetElement.appendChild) {
-            targetElement.appendChild(sectionElement);
-            // targetElement.appendChild(this.$element.children()[0]);
-          }
+        if (newVal) {
+          this.moveSectionElement(newVal, sectionElement);
+          unbindWatcher();
         }
       }
     );
+  }
 
+  moveSectionElement(identifierElement, sectionElement) {
+    let targetElement = identifierElement.parentElement.parentElement.parentElement.parentElement.children[1];
+
+    // Move the section into the target element.
+    if (targetElement && targetElement.appendChild) {
+      targetElement.appendChild(sectionElement);
+      // targetElement.appendChild(this.$element.children()[0]);
+    }
   }
 
   insertSectionData(sectionData) {
@@ -91,9 +106,6 @@ export let PrmFullViewAfterConfig = {
       parentCtrl: '<',
     },
     controller: PrmFullViewAfterController,
-    template: `
-      <rex-altmetrics ng-if="$ctrl.doi" doi="$ctrl.doi" on-load="$ctrl.insertAltmetricsSection()"></rex-altmetrics>
-      <rex-linked-persons ng-if="$ctrl.viaf_uris" uris="$ctrl.viaf_uris" on-load="$ctrl.insertAuthorsSection()"></rex-linked-persons>
-    `,
+    templateUrl: 'custom/' + viewName + '/html/prmFullViewAfter.component.html',
   }
 };

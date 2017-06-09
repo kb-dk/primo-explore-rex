@@ -28,35 +28,8 @@ class LinkedPersonsController {
   }
 
   loadPersonData(uri) {
-    console.log(uri);
     return this.linkedPersonsService.get(uri).then((data) => {
       this.persons.push(data);
-    });
-  };
-
-  /**
-   * Pops up a dialog displaying the retrieved information  
-   * about the persons.
-   */
-  showLinkedPersonsDialog(event) {
-    this.$mdDialog.show({
-      controller: DialogController,
-      controllerAs: '$ctrl',
-      locals: {
-        persons: this.persons,
-        $mdDialog: this.$mdDialog,
-      },
-      // templateUrl: 'custom/' + viewName + '/html/searchTips_' + this.locale.current() + '.html',
-      templateUrl: 'custom/' + viewName + '/html/linkedPersonsDialog.html',
-      parent: angular.element(document.body),
-      targetEvent: event,
-      clickOutsideToClose: true,
-      fullscreen: false, // Only for -xs, -sm breakpoints.
-      // 'multiple' and 'skipHide' options
-      // enable the dialog to open on full view,
-      // which is apparently a dialog as well.
-      multiple: true, // as of Angular Material v1.1.2
-      skipHide: true, // Angular Material v1.1.0-rc.5
     });
   };
 
@@ -73,20 +46,5 @@ export let LinkedPersonsConfig = {
     },
     controller: LinkedPersonsController,
     templateUrl: 'custom/' + viewName + '/html/linkedPersons.component.html',
-  }
-}
-
-class DialogController {
-  constructor(persons, $mdDialog) {
-    this.persons = persons;
-    this.$mdDialog = $mdDialog;
-  }
-
-  hide() {
-    this.$mdDialog.hide();
-  }
-
-  cancel() {
-    this.$mdDialog.cancel();
   }
 }

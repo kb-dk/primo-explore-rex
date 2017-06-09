@@ -1,4 +1,17 @@
-<md-button class='md-icon-button' aria-label="{{'nui.search.linked_persons' | translate}}" ng-click='$ctrl.showLinkedPersonsDialog($event)'>
-  <md-tooltip md-direction='bottom'>{{'nui.search.linked_persons' | translate}}</md-tooltip>
-  <md-icon md-svg-icon='primo-ui:help-circle-outline'></md-icon>
-</md-button>
+<p>This is an author.</p>
+<div ng-repeat="person in $ctrl.persons"> 
+  <img ng-if="person.image" ng-src="{{person.image[0]}}">
+  <div ng-if="person.name">Name: {{ person.name.join(', ') }} </div> 
+  <div ng-if="person.description">Description: {{ person.description.join(', ') }} </div> 
+  <div ng-if="person.altLabel">As known as: {{ person.altLabel.join(', ') }} </div> 
+  <div ng-if="person.dateOfBirth">Date of birth: {{ person.dateOfBirth[0] }} </div> 
+  <div ng-if="person.dateOfDeath">Date of death: {{ person.dateOfDeath[0] }} </div> 
+  <div ng-if="person.placeOfBirth">Place of birth: {{ person.placeOfBirth.join(', ') }} </div> 
+  <div ng-if="person.placeOfDeath">Place of death: {{ person.placeOfDeath.join(', ') }} </div> 
+  <div ng-if="person.gender">Gender: {{ person.gender.join(', ') }} </div> 
+  <div ng-if="person.pseudonym">Pseudonym: {{ person.pseudonym.join(', ') }} </div> 
+  <div ng-if="person.countryOfCitizenship">Country of citizenship: {{ person.countryOfCitizenship.join(',') }} </div> 
+  <div ng-if="person.occupation">Occupation: {{ person.occupation.join(', ') }} </div> 
+  <div ng-if="person.usedLanguage">Used Language: {{ person.usedLanguage.join(', ') }} </div> 
+  <div ng-if="person.nativeLanguage">Native Language: {{ person.nativeLanguage.join(', ') }} </div> 
+</div>
