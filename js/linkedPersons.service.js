@@ -16,7 +16,7 @@ export class LinkedPersonsService {
 
     // The URL base for the Web service.
     // this.webServiceUrlBase = 'http://0.0.0.0:9292/persons/'
-    this.webServiceUrlBase = 'http://ec2-54-229-3-116.eu-west-1.compute.amazonaws.com:9292/persons/'
+    this.webServiceUrlBase = 'https://ec2-54-229-3-116.eu-west-1.compute.amazonaws.com/persons/'
 
     this.jsonld = jsonld;
     this.persons = {};
