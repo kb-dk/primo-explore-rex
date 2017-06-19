@@ -26,6 +26,7 @@ class OpeningHoursController {
       allWeek: 'Hele ugen',
       allLibraries: 'Alle biblioteker',
       'The Black Diamond - Reading Rooms': 'Diamantens læsesale',
+      'Black Diamond - Reading Room West': 'Diamanten - Læsesal Vest',
       'KUB South Campus': 'KUB Søndre Campus',
       'RUb staffed hours': 'RUb personlig betjening',
       ampm: false
