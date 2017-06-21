@@ -22,6 +22,12 @@ export class LinkedPersonsService {
     this.persons = {};
   }
 
+
+  getMultiple(uris) {
+
+  }
+
+
   /**
    * Gets the data for the given URI from the web service,
    * using the cached data if it was retrieved before, and then
@@ -53,6 +59,7 @@ export class LinkedPersonsService {
   }
 
   getLocaleId() {
+    dump(this.locale.current());
     return this.locale.current() == 'da_DK' ? 'da' : 'en';
   }
 
@@ -82,8 +89,18 @@ export class LinkedPersonsService {
         'Accept': 'application/ld+json'
       },
     }
+      
+    return new Promise((resolve, reject) => {
+      this.$http(request).then((response) => {
+        if (response.data) {
+          resolve(response.data);
+        } else {
+          reject('Received a blank response.');
+        };
+      }).catch(reject);
+    });
 
-    return this.$http(request).then((response) => response.data);
+    // return this.$http(request).then((response) => response.data);
   }
 
   targetUrl(relative_uri) {

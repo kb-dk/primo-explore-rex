@@ -35,6 +35,10 @@ export class LinkedPerson {
     this.targetProperties = targetProperties;
 
     this.mainResource = this.findInData(this.uri);
+    console.log(this.uri);
+    console.log(this.mainResource);
+    console.log(this.data);
+    console.log(data);
   }
 
   findInData(uri) {
@@ -57,7 +61,7 @@ export class LinkedPerson {
     propertyNames.forEach((propertyName) => {
       localeData[propertyName] = this.getPropertyInLocale(propertyName, localeId);
     });
-
+    
     localeData = this.convertDates(localeData);
     return this.cleanData(localeData);
   }
@@ -70,10 +74,11 @@ export class LinkedPerson {
   }
 
   convertDates(data) {
-    let dateProperties = ['dateOfBirth', 'dateOfDeath'];
+    let datePropertyNames = ['dateOfBirth', 'dateOfDeath'];
+    let dateProperties = datePropertyNames.filter((propertyName) => data[propertyName]);
     
     dateProperties.forEach((property) => {
-      let propertyValue = data[property][0];
+      let propertyValue = property[0];
       if(propertyValue)
         data[property][0] = new Date(propertyValue).getFullYear(); 
     });
