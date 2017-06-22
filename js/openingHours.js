@@ -29,6 +29,8 @@ class OpeningHoursController {
       'Black Diamond - Reading Room West': 'Diamanten - Læsesal Vest',
       'KUB South Campus': 'KUB Søndre Campus',
       'RUb staffed hours': 'RUb personlig betjening',
+      'Danish National Art Library, Nyhavn': 'Danmarks Kunstbibliotek, Nyhavn',
+      'DKB Study Room (by appointment only)': 'DKB Studiesal Søborg (bestil tid)',
       ampm: false
     };
 
