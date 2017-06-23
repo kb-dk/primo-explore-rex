@@ -4,7 +4,7 @@ describe('Opening hours widget', function() {
   let openingHoursView = $('.openingHoursView[style="display: block;"]');
   let openingHoursScript = $('script[src="https://static.kb.dk/libcal/openingHours_min.js"]');
   let openingHoursStylesheet = $('link[href="https://static.kb.dk/libcal/openingHoursStyles_min.css"]');
-  let libraryNameLink = openingHoursView.element(by.xpath('.//a[.="Den Sorte Diamant"]'));
+  let libraryNameLink = openingHoursView.element(by.xpath('.//a[.="KUB Nord"]'));
   let infoLink = openingHoursView.element(by.xpath('.//a[.="Info"]'));
 
   let openingHoursModalDiv = $('div#openingHoursModalDiv');
