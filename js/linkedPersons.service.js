@@ -1,5 +1,7 @@
 import jsonld from 'jsonld';
-import { LinkedPerson } from './linkedPerson';
+import {
+  LinkedPerson
+} from './linkedPerson';
 
 /**
  * Service that retrieves structured data about persons
@@ -22,9 +24,20 @@ export class LinkedPersonsService {
     this.persons = {};
   }
 
-
+  /**
+   * Gets data for the given URIs from the web service,
+   * using the cached data if it was retrieved before, and then
+   * compiles the data in accoring to the current locale.
+   *.
+   * @param {Array<String>} uris - URIs identifying the authors whose 
+   * data is to be fetched.
+   * 
+   * @return {Promise<Array>} A promise that resolves with
+   * an array of objects containing data for corresponding authors.
+   *
+   */
   getMultiple(uris) {
-
+    return Promise.all(uris.map(uri => this.get(uri)));
   }
 
 
@@ -37,7 +50,7 @@ export class LinkedPersonsService {
    * data is to be fetched.
    * 
    * @return {Promise<Object>} A promise that resolves with
-   * an object containing data for corresponding input URI.
+   * an object containing data for corresponding authors.
    *
    */
   get(uri) {
@@ -59,7 +72,6 @@ export class LinkedPersonsService {
   }
 
   getLocaleId() {
-    dump(this.locale.current());
     return this.locale.current() == 'da_DK' ? 'da' : 'en';
   }
 
@@ -89,7 +101,7 @@ export class LinkedPersonsService {
         'Accept': 'application/ld+json'
       },
     }
-      
+
     return new Promise((resolve, reject) => {
       this.$http(request).then((response) => {
         if (response.data) {

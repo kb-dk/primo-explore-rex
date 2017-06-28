@@ -35,10 +35,6 @@ export class LinkedPerson {
     this.targetProperties = targetProperties;
 
     this.mainResource = this.findInData(this.uri);
-    console.log(this.uri);
-    console.log(this.mainResource);
-    console.log(this.data);
-    console.log(data);
   }
 
   findInData(uri) {

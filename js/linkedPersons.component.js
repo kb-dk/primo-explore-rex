@@ -12,7 +12,7 @@ class LinkedPersonsController {
     this.persons = [];
 
     if (this.uris) {
-      this.loadDataForAllPersons().then(this.onLoad).catch(() => {
+      this.loadPersons().then(this.onLoad).catch(() => {
         console.log('Could not fetch data about the author.');
       });
     }    
@@ -25,15 +25,11 @@ class LinkedPersonsController {
    * @return {Promise} A promise that resolves if all persons are 
    * loaded, and rejects if any of them fails to be loaded.
    */
-  loadDataForAllPersons() {
-    return Promise.all(this.uris.map((uri) => this.loadPersonData(uri)));
-  }
-
-  loadPersonData(uri) {
-    return this.linkedPersonsService.get(uri).then((data) => {
-      this.persons.push(data);
+  loadPersons() {
+    return this.linkedPersonsService.getMultiple(this.uris).then(persons => {
+      this.persons = persons;
     });
-  };
+  }
 
 }
 
