@@ -7,7 +7,7 @@ export class PickUpNumbersService {
     this.$location = $location;
 
     this._serviceBaseUrl = (this.$location.host() === "localhost") ?
-      "https://rex-test.kb.dk/cgi-bin/" :
+      "https://rex.kb.dk/cgi-bin/" :
       this.$location.absUrl().split("/primo-explore/")[0] + "/cgi-bin/";
 
     this._pickUpNumbersForIds = {};
@@ -15,22 +15,84 @@ export class PickUpNumbersService {
     this._runningPromise;
   }
 
-  // Retrieves the pick up numbers from the associated service. 
-  // Request URL may look like the following.
-  // https://rex.kb.dk/cgi-bin/get_pickup_number_text?z37_rec_key=0078814230000100001
-  // 'https://rex-test.kb.dk/cgi-bin/get_pickup_number_title_kgl?z370_rec_key=000000371
-  _retrievePickUpNumber(requestId) {
-    let serviceURL = this._serviceBaseUrl;
-    let titleMatch = requestId.match(/^TITLE([0-9]*)/);
+  /**
+    * Binds a watcher to the given controller.
+    * The watcher watches for the elements
+    * containing the request IDs, and when the 
+    * elements become available, inserts the pickup 
+    * numbers if they exist.  
+    */
+  waitForIdsAndInsertPickUpNumbers(ctrl) {
+    ctrl.$scope.$watch(() => ctrl.selector(ctrl.parentElement).length, 
+      (newVal, oldVal) => {
+        if (newVal && newVal !== oldVal) {
+          this.insertPickUpNumbers(ctrl.parentElement, ctrl.parentCtrl.requestsService.requestsDisplay, ctrl.selector);
+        }
+      }
+    );
+  }
 
-    if (titleMatch && titleMatch.length === 2) {
-      serviceURL += "get_pickup_number_title_kgl?z370_rec_key=" + titleMatch[1];
+  /** 
+   *  Method to retrieve and insert the pick-up numbers
+   *  into the given DOM element.
+   *  If the method is called when a previous run
+   *  has not finished, it chains the new insertion
+   *  into the promise of the previous call.
+   *  @param {Object} targetContainer - A DOM element 
+   *    containing the elements the pick-up
+   *    numbers are to be inserted.
+   *  @param {Array} requests - An array of request items, 
+   *    pick-up numbers of which are to be retrieved.
+   *  @param {function} selector - A selector function to return 
+   *    the target DOM elements when called with a
+   *    ancestor DOM element.
+   *  @return {Promise} A Promise to be resolved 
+   *    when the pick-up numbers are inserted. 
+   */
+  insertPickUpNumbers(targetContainer, requests, selector) {
+    if (this._runningPromise) {
+      // If there is an ongoing insertion, 
+      // perform the new insertion when the former is done. 
+      return this._runningPromise.then(() => {
+        return this._insert(targetContainer, requests, selector);
+      });
     } else {
-      serviceURL += "get_pickup_number_text?z37_rec_key=" + requestId.slice(-19);
+      // Else, perform the insertion.
+      return this._insert(targetContainer, requests, selector);
     }
+  }
 
-    return this.$http.get(serviceURL);
-  };
+  _insert(targetContainer, requests, selector) {
+    let ctrl = this;
+
+    ctrl._runningPromise = new Promise((resolve, reject) => {
+
+      let targetElements = selector(targetContainer);
+      let requestObjects = ctrl._composeRequestObjects(targetElements, requests);
+
+      ctrl._ongoingInsertions = requestObjects.length;
+
+      requestObjects.forEach((request) => {
+
+        ctrl._insertForRequest(request).then(() => {
+          ctrl._ongoingInsertions = ctrl._ongoingInsertions - 1;
+          if (ctrl._ongoingInsertions === 0) {
+            resolve();
+            return;
+          }
+        });
+      });
+
+    });
+
+    // TODO: This looks weird, but seems to work OK.
+    this._runningPromise.then(() => {
+      this._runningPromise = null;
+    });
+
+    return this._runningPromise;
+
+  }
 
   // Returns an array of objects with request related data.
   _composeRequestObjects(targetElements, requests) {
@@ -87,77 +149,33 @@ export class PickUpNumbersService {
 
   }
 
-  // Replaces the request ID text with the given string.
-  _replaceIdText(request, text) {
-    request.element.textContent = request.element.textContent.replace("-" + request.id, text);
-  };
-
   // Removes the request ID.
   _removeIdText(request) {
     this._replaceIdText(request, "");
   };
 
-  _insert(targetContainer, requests, selector) {
-    let ctrl = this;
+  // Retrieves the pick up numbers from the associated service. 
+  // Request URL may look like the following.
+  // https://rex.kb.dk/cgi-bin/get_pickup_number_text?z37_rec_key=0078814230000100001
+  // 'https://rex-test.kb.dk/cgi-bin/get_pickup_number_title_kgl?z370_rec_key=000000371
+  _retrievePickUpNumber(requestId) {
+    let serviceURL = this._serviceBaseUrl;
+    let titleMatch = requestId.match(/^TITLE([0-9]*)/);
 
-    ctrl._runningPromise = new Promise((resolve, reject) => {
-
-      let targetElements = selector(targetContainer);
-      let requestObjects = ctrl._composeRequestObjects(targetElements, requests);
-
-      ctrl._ongoingInsertions = requestObjects.length;
-
-      requestObjects.forEach((request) => {
-
-        ctrl._insertForRequest(request).then(() => {
-          ctrl._ongoingInsertions = ctrl._ongoingInsertions - 1;
-          if (ctrl._ongoingInsertions === 0) {
-            resolve();
-            return;
-          }
-        });
-      });
-
-    });
-
-    // TODO: This looks weird, but seems to work OK.
-    this._runningPromise.then(() => {
-      this._runningPromise = null;
-    });
-
-    return this._runningPromise;
-
-  }
-
-  /** 
-   *  Method to retrieve and insert the pick-up numbers
-   *  into the given DOM element.
-   *  If the method is called when a previous run
-   *  has not finished, it chains the new insertion
-   *  into the promise of the previous call.
-   *  @param {Object} targetContainer - A DOM element 
-   *    containing the elements the pick-up
-   *    numbers are to be inserted.
-   *  @param {Array} requests - An array of request items, 
-   *    pick-up numbers of which are to be retrieved.
-   *  @param {function} selector - A selector function to return 
-   *    the target DOM elements when called with a
-   *    ancestor DOM element.
-   *  @return {Promise} A Promise to be resolved 
-   *    when the pick-up numbers are inserted. 
-   */
-  insertPickUpNumbers(targetContainer, requests, selector) {
-    if (this._runningPromise) {
-      // If there is an ongoing insertion, 
-      // perform the insertion when it is done. 
-      return this._runningPromise.then(() => {
-        return this._insert(targetContainer, requests, selector);
-      });
+    if (titleMatch && titleMatch.length === 2) {
+      serviceURL += "get_pickup_number_title_kgl?z370_rec_key=" + titleMatch[1];
     } else {
-      // Else, perform the insertion.
-      return this._insert(targetContainer, requests, selector);
+      serviceURL += "get_pickup_number_text?z37_rec_key=" + requestId.slice(-19);
     }
-  }
+
+    return this.$http.get(serviceURL);
+  };
+
+  // Replaces the request ID text with the given string.
+  _replaceIdText(request, text) {
+    request.element.textContent = request.element.textContent.replace("-" + request.id, text);
+  };
+
 }
 
 PickUpNumbersService.$inject = ['$http', '$location'];

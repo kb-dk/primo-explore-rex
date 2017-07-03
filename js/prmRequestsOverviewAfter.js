@@ -7,21 +7,12 @@ class PrmRequestsOverviewAfterController {
   }
 
   $onInit() {
-    
     this.parentElement = this.$element.parent()[0];
-    
-    this.$scope.$watch(() => this.parentElement.querySelector('p[ng-if="::request.secondLineRight"]'), 
-      (newVal, oldVal) => {
-        if (newVal && newVal !== oldVal) {
-          this.pickUpNumbers.insertPickUpNumbers(this.parentElement, this.parentCtrl.requestsService.requestsDisplay, this.selector);
-        }
-      }
-    );
-
+    this.pickUpNumbers.waitForIdsAndInsertPickUpNumbers(this);    
   }
 
   selector(element) {
-    return element.getElementsByTagName('span');
+    return element.querySelectorAll('p[ng-if="::request.secondLineRight"] span');
   }
 
 }
