@@ -17,7 +17,6 @@ class PrmFullViewAfterController {
       this.doi = this.parentCtrl.item.pnx.addata.doi[0];
     } catch (e) {
       console.log('DOI not found.');
-      // console.log(e.message);
     };
 
     // Retrieve the VIAF URIs if present.
@@ -26,12 +25,13 @@ class PrmFullViewAfterController {
       this.viaf_uris = this.parentCtrl.item.pnx.addata.lad06;
     } catch (e) {
       console.log('No VIAF URI found.');
-      // console.log(e.message);
     };
 
-    if (this.sectionOrdering.orderSections(this.parentCtrl.services)) {
-      console.log('REX: Sections reordered.');
-    }
+    try {
+      this.sectionOrdering.orderSections(this.parentCtrl.services);
+    } catch (e) {
+      console.log(e.message);
+    };
 
   };
 
