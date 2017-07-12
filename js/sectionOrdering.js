@@ -6,8 +6,6 @@ export class SectionOrderingService {
    *  Reorder the sections in the full view.
    *  @param {Array} sections - An array of section objects.  
    *  @throws {Error} If the fullview sections cannot be found.  
-   *  @return {boolean} A boolean value specifying if the ordering 
-   *  has taken place.
    */
   orderSections(sections) {
     if (!sections || !sections.length || !(sections.length > 0))
