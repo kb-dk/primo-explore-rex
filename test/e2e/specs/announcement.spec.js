@@ -7,7 +7,7 @@ describe('Announcement', function() {
   let announcementDismissButton = $('md-toast.rex-announcement button[ng-click="$ctrl.close()"]');
 
   beforeEach(function() {
-    browser.get('https://rex-test.kb.dk');
+    browser.get('https://rex.kb.dk');
   });
 
   it('should be displayed when the language changes and should be dismissable. (Assuming that the BackOffice provides an announcement in English.)', function() {

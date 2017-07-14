@@ -13,7 +13,7 @@ describe('Opening hours widget', function() {
 
 
   beforeEach(function() {
-    browser.get('https://rex-test.kb.dk');
+    browser.get('https://rex.kb.dk');
   });
 
   it('should be displayed, should show library info, and should be destroyed properly.)', function() {

@@ -13,7 +13,7 @@ describe('A search for an article', function() {
   let sectionButtons = $$('button[ng-repeat="service in $ctrl.services track by $index"] span');
 
   beforeEach(function() {
-    browser.get('https://rex-test.kb.dk');
+    browser.get('https://rex.kb.dk');
   });
 
   it('should depict our customizations on the facets and the full view.', function() {
