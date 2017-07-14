@@ -8,7 +8,7 @@ dependencies:
     - npm install -g npm@4.1.2
   override:
     - git clone https://github.com/ExLibrisGroup/primo-explore-devenv.git ../devenv
-    - cd ../devenv && git checkout -b latest_working fe4b0ad6b4f2b6701e0a2141a3ec0cb6dfbf91a9
+    # - cd ../devenv && git checkout -b latest_working e3b252c2e04e1f06b7e9c50ad94aef3616021318
     - cd ../devenv && npm install
     - cd ../devenv && npm install gulp --link
     - cd .. && cp -r primo-explore-rex devenv/primo-explore/custom/NUI  
