@@ -1,5 +1,5 @@
-describe('pickUpNumbers,', function() {
-  let $httpBackend, $location, pickUpNumbers, selector, targetContainer, requests;
+describe('picKUpNumbersService,', function() {
+  let $httpBackend, $location, pickUpNumbersService, selector, targetContainer, requests;
 
   beforeEach(module('viewCustom'));
 
@@ -21,8 +21,8 @@ describe('pickUpNumbers,', function() {
 
   }));
 
-  beforeEach(inject(function(_pickUpNumbers_) {
-    pickUpNumbers = _pickUpNumbers_;
+  beforeEach(inject(function(_pickUpNumbersService_) {
+    pickUpNumbersService = _pickUpNumbersService_;
   }));
 
   beforeEach(function() {
@@ -57,7 +57,7 @@ describe('pickUpNumbers,', function() {
     // debugger;
     let expectedInnerElement = '<li>Mock - Nr. 11-12</li><li>Mock </li><li>Mock - Nr. 56-57</li>';
 
-    pickUpNumbers.insertPickUpNumbers(targetContainer, requests, selector).then(() => {
+    pickUpNumbersService.insertPickUpNumbers(targetContainer, requests, selector).then(() => {
       expect(targetContainer.innerHTML).toEqual(expectedInnerElement);
     }).catch(() => {
       // Should not execute this block.

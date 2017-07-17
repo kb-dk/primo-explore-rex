@@ -1,12 +1,12 @@
 describe('linkedPersonsService,', () => {
 
-  let $httpBackend, locale, linkedPersonsService, uris, responseBodies, requestUrls;
+  let $httpBackend, localeService, linkedPersonsService, uris, responseBodies, requestUrls;
 
   beforeEach(module('viewCustom'));
 
-  beforeEach(inject((_locale_) => {
-    locale = _locale_;
-    locale.current = () => 'da_DK';
+  beforeEach(inject((_localeService_) => {
+    localeService = _localeService_;
+    localeService.current = () => 'da_DK';
   }));
 
   beforeEach(inject((_$httpBackend_) => {
@@ -110,7 +110,7 @@ describe('linkedPersonsService,', () => {
   });
 
   it('should be able to retrieve and transform data in English.', (done) => {
-    locale.current = () => 'en_US';
+    localeService.current = () => 'en_US';
     linkedPersonsService.getMultiple(uris).then((persons) => {
         expect(persons).toBeTruthy();        
         expect(persons[0].name[0]).toEqual('English Name');        

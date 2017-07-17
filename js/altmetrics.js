@@ -3,8 +3,8 @@
  */
 class AltmetricsController {
 
-  constructor(scriptLoader, $window, $http) {
-    this.scriptLoader = scriptLoader;
+  constructor(scriptLoaderService, $window, $http) {
+    this.scriptLoaderService = scriptLoaderService;
     this.$window = $window;
     this.$http = $http;
   }
@@ -41,7 +41,7 @@ class AltmetricsController {
   };
 
   loadBadgeScript() {
-    return this.scriptLoader.load('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
+    return this.scriptLoaderService.load('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
   };
 
   $onDestroy() {
@@ -50,15 +50,15 @@ class AltmetricsController {
     }
 
     // TODO: Remove any other JS or CSS files that are loaded. The URLs below may change!
-    this.scriptLoader.unload('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js', 'js');
-    this.scriptLoader.unload('https://d1bxh8uas1mnw7.cloudfront.net/assets/altmetric_badges-8f271adb184c21cc5169a7f67f7fe5ab.js', 'js');
-    this.scriptLoader.unload('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed-2c47105b6381604898bbf8ae8a680350.css', 'css');
+    this.scriptLoaderService.unload('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js', 'js');
+    this.scriptLoaderService.unload('https://d1bxh8uas1mnw7.cloudfront.net/assets/altmetric_badges-8f271adb184c21cc5169a7f67f7fe5ab.js', 'js');
+    this.scriptLoaderService.unload('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed-2c47105b6381604898bbf8ae8a680350.css', 'css');
 
     console.log('REX: Altmetrics badge is destroyed!.');
   };
 };
 
-AltmetricsController.$inject = ['scriptLoader', '$window', '$http'];
+AltmetricsController.$inject = ['scriptLoaderService', '$window', '$http'];
 
 export let AltmetricsConfig = {
   name: 'rexAltmetrics',

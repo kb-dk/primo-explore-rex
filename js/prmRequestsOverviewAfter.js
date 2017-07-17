@@ -1,14 +1,14 @@
 class PrmRequestsOverviewAfterController {
   
-  constructor($scope, $element, pickUpNumbers) {
+  constructor($scope, $element, pickUpNumbersService) {
     this.$scope = $scope;
     this.$element = $element;
-    this.pickUpNumbers = pickUpNumbers;
+    this.pickUpNumbersService = pickUpNumbersService;
   }
 
   $onInit() {
     this.parentElement = this.$element.parent()[0];
-    this.pickUpNumbers.waitForIdsAndInsertPickUpNumbers(this);    
+    this.pickUpNumbersService.waitForIdsAndInsertPickUpNumbers(this);    
   }
 
   selector(element) {
@@ -17,7 +17,7 @@ class PrmRequestsOverviewAfterController {
 
 }
 
-PrmRequestsOverviewAfterController.$inject = ['$scope', '$element', 'pickUpNumbers'];
+PrmRequestsOverviewAfterController.$inject = ['$scope', '$element', 'pickUpNumbersService'];
 
 export let PrmRequestsOverviewAfterConfig = {
   name: 'prmRequestsOverviewAfter',

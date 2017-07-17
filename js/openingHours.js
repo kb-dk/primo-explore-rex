@@ -3,11 +3,11 @@
  */
 class OpeningHoursController {
 
-  constructor(scriptLoader, $interval, $rootScope, $window, locale) {
-    this.scriptLoader = scriptLoader;
+  constructor(scriptLoaderService, $interval, $rootScope, $window, localeService) {
+    this.scriptLoaderService = scriptLoaderService;
     this.$interval = $interval;
     this.$rootScope = $rootScope;
-    this.locale = locale;
+    this.localeService = localeService;
     this.$window = $window;
   }
 
@@ -75,9 +75,9 @@ class OpeningHoursController {
   loadOpeningHoursWidget() {
     return new Promise((resolve, reject) => {
 
-      this.scriptLoader.load('https://static.kb.dk/libcal/openingHours_min.js').then(() => {
+      this.scriptLoaderService.load('https://static.kb.dk/libcal/openingHours_min.js').then(() => {
 
-        let i18n = (this.locale.current() === "da_DK") ? this._danish_i18n : this._english_i18n;
+        let i18n = (this.localeService.current() === "da_DK") ? this._danish_i18n : this._english_i18n;
 
         this._openingHours = OpeningHours;
 
@@ -94,7 +94,7 @@ class OpeningHoursController {
           i18n: i18n
         };
 
-        this.scriptLoader.load('https://api3-eu.libcal.com/api_hours_grid.php?iid=1069&format=json&weeks=1&callback=OpeningHours.loadOpeningHours')
+        this.scriptLoaderService.load('https://api3-eu.libcal.com/api_hours_grid.php?iid=1069&format=json&weeks=1&callback=OpeningHours.loadOpeningHours')
           .then(resolve)
           .catch(() => {
             this.unloadOpeningHoursWidget();
@@ -121,15 +121,15 @@ class OpeningHoursController {
     let openingHoursModalDiv = this.$window.document.getElementById("openingHoursModalDiv");
     if (openingHoursModalDiv) openingHoursModalDiv.outerHTML = "";
 
-    this.scriptLoader.unload('callback=OpeningHours.loadOpeningHours', 'js');
-    this.scriptLoader.unload('callback=OpeningHours.initializeGMaps', 'js');
-    this.scriptLoader.unload('openingHours_min.js', 'js');
-    this.scriptLoader.unload('openingHoursStyles_min.css', 'css');
+    this.scriptLoaderService.unload('callback=OpeningHours.loadOpeningHours', 'js');
+    this.scriptLoaderService.unload('callback=OpeningHours.initializeGMaps', 'js');
+    this.scriptLoaderService.unload('openingHours_min.js', 'js');
+    this.scriptLoaderService.unload('openingHoursStyles_min.css', 'css');
    }
 
 }
 
-OpeningHoursController.$inject = ['scriptLoader', '$interval', '$rootScope', '$window', 'locale'];
+OpeningHoursController.$inject = ['scriptLoaderService', '$interval', '$rootScope', '$window', 'localeService'];
 
 export let OpeningHoursConfig = {
   name: 'rexOpeningHours',

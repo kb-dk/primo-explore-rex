@@ -32,24 +32,24 @@ angular.module('viewCustom', [
 .run(['$rootScope', ($rootScope) => {
   $rootScope.viewName = viewName;
 }])
-.run(['googleAnalytics', (googleAnalytics) => {
+.run(['googleAnalyticsService', (googleAnalyticsService) => {
   let trackingId =  'UA-77177865-1';
-  googleAnalytics.initialize(trackingId)
-  .then(() => googleAnalytics.trackPageViews())
+  googleAnalyticsService.initialize(trackingId)
+  .then(() => googleAnalyticsService.trackPageViews())
   .catch((e) => {
     console.log('Google anayltics could not be initialized.');
     console.log(e);
   });
 }]);
 
-angular.module('viewCustom').service('navigation', NavigationService)
-  .service('announcement', AnnouncementService)
-  .service('scriptLoader', ScriptLoaderService)
-  .service('sectionOrdering', SectionOrderingService)
-  .service('pickUpNumbers', PickUpNumbersService)
+angular.module('viewCustom').service('navigationService', NavigationService)
+  .service('announcementService', AnnouncementService)
+  .service('scriptLoaderService', ScriptLoaderService)
+  .service('sectionOrderingService', SectionOrderingService)
+  .service('pickUpNumbersService', PickUpNumbersService)
   .service('linkedPersonsService', LinkedPersonsService)
-  .service('googleAnalytics', GoogleAnalyticsService)
-  .service('locale', LocaleService)
+  .service('googleAnalyticsService', GoogleAnalyticsService)
+  .service('localeService', LocaleService)
   .component(OpeningHoursConfig.name, OpeningHoursConfig.config)
   .component(SearchTipsConfig.name, SearchTipsConfig.config)
   .component(AltmetricsConfig.name, AltmetricsConfig.config)

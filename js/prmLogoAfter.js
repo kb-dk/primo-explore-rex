@@ -2,8 +2,8 @@ import { viewName } from './viewName';
 
 // Clickable logo.
 class PrmLogoAfterController {
-  constructor(navigation) {
-    this.navigation = navigation;
+  constructor(navigationService) {
+    this.navigationService = navigationService;
   }
 
   getIconLink() {
@@ -11,7 +11,7 @@ class PrmLogoAfterController {
   };
 }
 
-PrmLogoAfterController.$inject = ['navigation'];
+PrmLogoAfterController.$inject = ['navigationService'];
 
 export let PrmLogoAfterConfig = {
   name: 'prmLogoAfter',

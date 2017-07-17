@@ -3,8 +3,8 @@ import {
 } from './viewName';
 
 class PrmFullViewAfterController {
-  constructor(sectionOrdering, $element, $scope) {
-    this.sectionOrdering = sectionOrdering;
+  constructor(sectionOrderingService, $element, $scope) {
+    this.sectionOrderingService = sectionOrderingService;
     this.$element = $element;
     this.$scope = $scope;
   }
@@ -28,7 +28,7 @@ class PrmFullViewAfterController {
     };
 
     try {
-      this.sectionOrdering.orderSections(this.parentCtrl.services);
+      this.sectionOrderingService.orderSections(this.parentCtrl.services);
     } catch (e) {
       console.log(e.message);
     };
@@ -97,7 +97,7 @@ class PrmFullViewAfterController {
 
 };
 
-PrmFullViewAfterController.$inject = ['sectionOrdering', '$element', '$scope'];
+PrmFullViewAfterController.$inject = ['sectionOrderingService', '$element', '$scope'];
 
 export let PrmFullViewAfterConfig = {
   name: 'prmFullViewAfter',

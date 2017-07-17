@@ -1,5 +1,5 @@
-describe('navigation service,', () => {
-  let $location, $window, navigation, dummyPath;
+describe('nagivationService,', () => {
+  let $location, $window, navigationService, dummyPath;
 
   beforeEach(module('viewCustom'));
 
@@ -37,14 +37,14 @@ describe('navigation service,', () => {
 
   }));
 
-  beforeEach(inject((_navigation_) => {
-    navigation = _navigation_;
+  beforeEach(inject((_navigationService_) => {
+    nagivationService = _navigationService_;
   }));
 
   describe('navigateToHomePage method,', () => {
 
     it('should navigate to the home page.', () => {
-      navigation.navigateToHomePage();
+      nagivationService.navigateToHomePage();
       // dump($window);
       expect($window.location.href).toEqual('https://rex.kb.dk/primo-explore/search?vid=NUI&lang=da_DK');
     });
@@ -54,12 +54,12 @@ describe('navigation service,', () => {
   describe('naviagateTo method', () => {
 
     it('should navigate to the given URL if there is one.', () => {
-      navigation.navigateTo('https://example.com');
+      nagivationService.navigateTo('https://example.com');
       expect($window.open).toHaveBeenCalledWith('https://example.com', '_blank');
     });
 
     it('should navigate to the home page if no URL is given.', () => {
-      navigation.navigateTo();
+      nagivationService.navigateTo();
       expect($window.location.href).toEqual('https://rex.kb.dk/primo-explore/search?vid=NUI&lang=da_DK');
     });
 

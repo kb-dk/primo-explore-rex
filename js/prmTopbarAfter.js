@@ -1,6 +1,6 @@
 class PrmTopbarAfterController {
-  constructor(announcement, $scope, $element, $translate) {
-    this.announcement = announcement;
+  constructor(announcementService, $scope, $element, $translate) {
+    this.announcementService = announcementService;
     this.$scope = $scope;
     this.$element = $element;
     this.$translate = $translate;
@@ -8,7 +8,7 @@ class PrmTopbarAfterController {
 
   $onInit() {
     // Announcement displayed.
-    this.announcement.display(() => this.hideCallback())
+    this.announcementService.display(() => this.hideCallback())
       .then(() => this.displayCallback())
       .catch((e) => {
         if (e) console.log(e);
@@ -40,7 +40,7 @@ class PrmTopbarAfterController {
 
 }
 
-PrmTopbarAfterController.$inject = ['announcement', '$scope', '$element', '$translate'];
+PrmTopbarAfterController.$inject = ['announcementService', '$scope', '$element', '$translate'];
 
 export let PrmTopbarAfterConfig = {
   name: 'prmTopbarAfter',

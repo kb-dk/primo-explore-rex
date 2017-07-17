@@ -12,9 +12,9 @@ import {
  */
 export class LinkedPersonsService {
 
-  constructor($http, locale) {
+  constructor($http, localeService) {
     this.$http = $http;
-    this.locale = locale;
+    this.localeService = localeService;
 
     // The URL base for the Web service.
     // this.webServiceUrlBase = 'http://0.0.0.0:9292/persons/'
@@ -72,7 +72,7 @@ export class LinkedPersonsService {
   }
 
   getLocaleId() {
-    return this.locale.current() == 'da_DK' ? 'da' : 'en';
+    return this.localeService.current() == 'da_DK' ? 'da' : 'en';
   }
 
   getData(uri) {
@@ -133,4 +133,4 @@ export class LinkedPersonsService {
 
 }
 
-LinkedPersonsService.$inject = ['$http', 'locale'];
+LinkedPersonsService.$inject = ['$http', 'localeService'];

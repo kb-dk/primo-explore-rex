@@ -1,11 +1,11 @@
 describe('altmetricsController,', function() {
-  let scriptLoader, $componentController, mock, doi;
+  let scriptLoaderService, $componentController, mock, doi;
 
   beforeEach(module('viewCustom'));
 
-  beforeEach(inject(function(_scriptLoader_, _$httpBackend_, _$window_) {
-    scriptLoader = _scriptLoader_;
-    spyOn(scriptLoader, 'load').and.returnValue(Promise.resolve());
+  beforeEach(inject(function(_scriptLoaderService_, _$httpBackend_, _$window_) {
+    scriptLoaderService = _scriptLoaderService_;
+    spyOn(scriptLoaderService, 'load').and.returnValue(Promise.resolve());
 
     $httpBackend = _$httpBackend_;
     $httpBackend.when('GET', 'https://api.altmetric.com/v1/doi/10.1007/BF01386390')
@@ -40,7 +40,7 @@ describe('altmetricsController,', function() {
 
     altmetricsController.$onInit().then(() => {
       expect(altmetricsController.doi).toEqual(doi);
-      expect(scriptLoader.load).toHaveBeenCalledWith('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
+      expect(scriptLoaderService.load).toHaveBeenCalledWith('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
       expect(mock.successCallback).toHaveBeenCalled();
       done();
     });
@@ -57,7 +57,7 @@ describe('altmetricsController,', function() {
 
     altmetricsController.$onInit().then(() => {
       expect(altmetricsController.doi).not.toBeDefined();
-      expect(scriptLoader.load).not.toHaveBeenCalled();
+      expect(scriptLoaderService.load).not.toHaveBeenCalled();
       expect(mock.successCallback).not.toHaveBeenCalled();
       done();
     });

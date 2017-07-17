@@ -1,7 +1,7 @@
 /**
  * Unit test for the announcement service.
  */
-describe('announcement,', function() {
+describe('announcementService,', function() {
   var $mdToast, $translate;
 
   beforeEach(module('viewCustom'));
@@ -29,11 +29,11 @@ describe('announcement,', function() {
     });
   });
 
-  beforeEach(inject(function(_$mdToast_, _$httpBackend_, _$translate_, _announcement_) {
+  beforeEach(inject(function(_$mdToast_, _$httpBackend_, _$translate_, _announcementService_) {
     $mdToast = _$mdToast_;
     $httpBackend = _$httpBackend_;
     $translate = _$translate_;
-    announcement = _announcement_;
+    announcementService = _announcementService_;
 
     spyOn($mdToast, 'show').and.callThrough();
   }));
@@ -44,7 +44,7 @@ describe('announcement,', function() {
 
       it('should display.', function(done) {
 
-        announcement.display().then(function() {
+        announcementService.display().then(function() {
           expect($mdToast.show).toHaveBeenCalled();
         }).catch(function() {
           // Fail the test if this is called.
@@ -89,7 +89,7 @@ describe('announcement,', function() {
 
     it('should not display.', function(done) {
 
-      announcement.display().then(function() {
+      announcementService.display().then(function() {
         // Fail the test if this is called.
         expect(true).toEqual(false);
       }).catch(function() {

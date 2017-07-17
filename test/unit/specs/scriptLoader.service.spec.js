@@ -1,5 +1,5 @@
-describe('scriptLoader service,', () => {
-  let angularLoadMonkeyPatched, scriptLoader;
+describe('scriptLoaderService,', () => {
+  let angularLoadMonkeyPatched, scriptLoaderService;
 
   beforeEach(module('viewCustom'));
 
@@ -10,12 +10,12 @@ describe('scriptLoader service,', () => {
 
   }))
 
-  beforeEach(inject((_scriptLoader_) => {
-    scriptLoader = _scriptLoader_;
+  beforeEach(inject((_scriptLoaderService_) => {
+    scriptLoaderService = _scriptLoaderService_;
   }))
 
   it('load method should call angularLoadMonkeyPatched with the provided parameter.', (done) => {
-    scriptLoader.load('http://example.com')
+    scriptLoaderService.load('http://example.com')
       .then(() => {
         expect(angularLoadMonkeyPatched.loadScript).toHaveBeenCalledWith('http://example.com');
       })
@@ -38,13 +38,13 @@ describe('scriptLoader service,', () => {
 
       it('identified with a partial name.', () => {
         expect(document.querySelector('script[src="http://example.com/dummy.js"]')).toBeTruthy();
-        scriptLoader.unload('dummy', 'js');
+        scriptLoaderService.unload('dummy', 'js');
         expect(document.querySelector('script[src="http://example.com/dummy.js"]')).toBeFalsy();
       });
 
       it('identified with an absolute URL.', () => {
         expect(document.querySelector('script[src="http://example.com/dummy.js"]')).toBeTruthy();
-        scriptLoader.unload('http://example.com/dummy.js', 'js');
+        scriptLoaderService.unload('http://example.com/dummy.js', 'js');
         expect(document.querySelector('script[src="http://example.com/dummy.js"]')).toBeFalsy();
       });
 
@@ -60,14 +60,14 @@ describe('scriptLoader service,', () => {
 
       it('identified with a partial name.', () => {
         expect(document.querySelector('link[href="http://example.com/dummy.css"]')).toBeTruthy();
-        scriptLoader.unload('dummy', 'css');
+        scriptLoaderService.unload('dummy', 'css');
         expect(document.querySelector('link[href="http://example.com/dummy.css"]')).toBeFalsy();
       });
 
       it('identified with an absolute URL.', () => {
                 
         expect(document.querySelector('link[href="http://example.com/dummy.css"]')).toBeTruthy();
-        scriptLoader.unload('http://example.com/dummy.css', 'css');
+        scriptLoaderService.unload('http://example.com/dummy.css', 'css');
         expect(document.querySelector('link[href="http://example.com/dummy.css"]')).toBeFalsy();
       });
 
