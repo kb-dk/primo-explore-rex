@@ -1,13 +1,13 @@
 import { viewName } from './viewName';
 
-import { NavigationService } from './navigation';
-import { AnnouncementService } from './announcement';
-import { ScriptLoaderService } from './scriptLoader';
-import { SectionOrderingService } from './sectionOrdering';
-import { PickUpNumbersService } from './pickUpNumbers';
+import { NavigationService } from './navigation.service';
+import { AnnouncementService } from './announcement.service';
+import { ScriptLoaderService } from './scriptLoader.service';
+import { SectionOrderingService } from './sectionOrdering.service';
+import { PickUpNumbersService } from './pickUpNumbers.service';
 import { LinkedPersonsService } from './linkedPersons.service';
-import { GoogleAnalyticsService } from './ga';
-import { LocaleService } from './locale';
+import { GoogleAnalyticsService } from './googleAnalytics.service';
+import { LocaleService } from './locale.service';
 
 import { OpeningHoursConfig } from './openingHours';
 import { SearchTipsConfig } from './searchTips';
