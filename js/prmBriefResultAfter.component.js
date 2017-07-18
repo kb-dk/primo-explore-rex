@@ -1,4 +1,4 @@
-// This is a temporary fix for zotero from Exlibris.
+// This is a temporary fix from Exlibris for zotero.
 // It would not be needed if primo exposed PNX records in raw XML.
 // See: https://forums.zotero.org/discussion/comment/268604/#Comment_268604
 

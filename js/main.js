@@ -23,7 +23,7 @@ import { PrmPersonalInfoAfterConfig } from './prmPersonalInfoAfter.component';
 import { PrmRequestsAfterConfig } from './prmRequestsAfter.component';
 import { PrmRequestsOverviewAfterConfig } from './prmRequestsOverviewAfter.component';
 import { PrmRequestServicesAfterConfig } from './prmRequestServicesAfter.component';
-// import { PrmBriefResultAfterConfig } from './prmBriefResultAfter';
+// import { PrmBriefResultAfterConfig } from './prmBriefResultAfter.component';
 
 angular.module('viewCustom', [
   'angularLoadMonkeyPatched',
@@ -68,4 +68,4 @@ angular.module('viewCustom')
 
 // Pre-ES2015 code.
 require('./angularLoadMonkeyPatched');
-require('./prmBriefResultAfter');
+require('./prmBriefResultAfter.component');
