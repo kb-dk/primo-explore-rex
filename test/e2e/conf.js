@@ -16,6 +16,10 @@ exports.config = {
 
     browser.driver.manage().window().setSize(width, height);
 
+  },
+  params: {
+    // targetUrl: 'https://rex.kb.dk',
+    targetUrl: 'http://localhost:8003/primo-explore/search?vid=NUI&lang=da_DK',
   }
 }
 
