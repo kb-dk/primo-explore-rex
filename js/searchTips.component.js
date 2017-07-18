@@ -35,6 +35,6 @@ export let SearchTipsConfig = {
   name: 'rexSearchTips',
   config: {
     controller: SearchTipsController,
-    templateUrl: 'custom/' + viewName + '/html/searchTips.html'
+    templateUrl: 'custom/' + viewName + '/html/searchTips.component.html'
   }
 }

@@ -20,6 +20,6 @@ export let PrmLogoAfterConfig = {
       parentCtrl: '<'
     },
     controller: PrmLogoAfterController,
-    templateUrl: 'custom/' + viewName + '/html/prmLogoAfter.html'
+    templateUrl: 'custom/' + viewName + '/html/prmLogoAfter.component.html'
   }
 };

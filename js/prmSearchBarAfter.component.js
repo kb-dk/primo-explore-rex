@@ -32,7 +32,7 @@ PrmSearchBarAfterController.$inject = ['$element'];
 export let PrmSearchBarAfterConfig = {
   name: 'prmSearchBarAfter',
   config: {
-    templateUrl: 'custom/' + viewName + '/html/prmSearchBarAfter.html',
+    templateUrl: 'custom/' + viewName + '/html/prmSearchBarAfter.component.html',
     controller: PrmSearchBarAfterController,
   }
 }
