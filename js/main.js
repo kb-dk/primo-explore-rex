@@ -9,20 +9,20 @@ import { LinkedPersonsService } from './linkedPersons.service';
 import { GoogleAnalyticsService } from './googleAnalytics.service';
 import { LocaleService } from './locale.service';
 
-import { OpeningHoursConfig } from './openingHours';
-import { SearchTipsConfig } from './searchTips';
-import { AltmetricsConfig } from './altmetrics';
+import { OpeningHoursConfig } from './openingHours.component';
+import { SearchTipsConfig } from './searchTips.component';
+import { AltmetricsConfig } from './altmetrics.component';
 import { LinkedPersonsConfig } from './linkedPersons.component';
 
-import { PrmFinesAfterConfig } from './prmFinesAfter';
-import { PrmLogoAfterConfig } from './prmLogoAfter';
-import { PrmTopbarAfterConfig } from './prmTopbarAfter';
-import { PrmSearchBarAfterConfig } from './prmSearchBarAfter';
-import { PrmFullViewAfterConfig } from './prmFullViewAfter';
-import { PrmPersonalInfoAfterConfig } from './prmPersonalInfoAfter';
-import { PrmRequestsAfterConfig } from './prmRequestsAfter';
-import { PrmRequestsOverviewAfterConfig } from './prmRequestsOverviewAfter';
-import { PrmRequestServicesAfterConfig } from './prmRequestServicesAfter';
+import { PrmFinesAfterConfig } from './prmFinesAfter.component';
+import { PrmLogoAfterConfig } from './prmLogoAfter.component';
+import { PrmTopbarAfterConfig } from './prmTopbarAfter.component';
+import { PrmSearchBarAfterConfig } from './prmSearchBarAfter.component';
+import { PrmFullViewAfterConfig } from './prmFullViewAfter.component';
+import { PrmPersonalInfoAfterConfig } from './prmPersonalInfoAfter.component';
+import { PrmRequestsAfterConfig } from './prmRequestsAfter.component';
+import { PrmRequestsOverviewAfterConfig } from './prmRequestsOverviewAfter.component';
+import { PrmRequestServicesAfterConfig } from './prmRequestServicesAfter.component';
 // import { PrmBriefResultAfterConfig } from './prmBriefResultAfter';
 
 angular.module('viewCustom', [
@@ -42,7 +42,8 @@ angular.module('viewCustom', [
   });
 }]);
 
-angular.module('viewCustom').service('navigationService', NavigationService)
+angular.module('viewCustom')
+  .service('navigationService', NavigationService)
   .service('announcementService', AnnouncementService)
   .service('scriptLoaderService', ScriptLoaderService)
   .service('sectionOrderingService', SectionOrderingService)
