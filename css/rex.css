@@ -81,13 +81,15 @@ prm-search-bar {
   .shifted-topbar {
     margin-top: 64px; } }
 
-rex-search-tip button.md-button md-icon {
-  width: 32px;
-  height: 32px;
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  color: rgba(0, 0, 0, 0.65) !important; }
+rex-search-tips {
+  min-width: 52px; }
+  rex-search-tips button.md-button md-icon {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    color: rgba(0, 0, 0, 0.65) !important; }
 
 prm-search-result-list md-list-item, prm-search-result-list .results-title {
   background-color: #F8F8F8; }
