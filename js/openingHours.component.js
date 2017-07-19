@@ -31,6 +31,7 @@ class OpeningHoursController {
       'RUb staffed hours': 'RUb personlig betjening',
       'Danish National Art Library, Nyhavn': 'Danmarks Kunstbibliotek, Nyhavn',
       'DKB Study Room (by appointment only)': 'DKB Studiesal Søborg (bestil tid)',
+      'DKB Study Room': 'DKB Studiesal Søborg',
       ampm: false
     };
 
