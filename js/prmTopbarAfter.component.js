@@ -17,7 +17,8 @@ class PrmTopbarAfterController {
     let nameElements = this.$element.parent()[0].getElementsByClassName('user-name');
 
     // Replace the 'Guest' label with 'Log in' to cue the user where to login.
-    // TODO: Test if this is still needed with the February release.
+    // TODO: Test this on each new release to see if it is still needed,
+    // and remove otherwise.
     this.$scope.$watch(nameElements.length, (newVal, oldVal) => {
       Array.prototype.forEach.call(nameElements, (element) => {
         if (this.primoExploreCtrl.userSessionManagerService.isGuest()) {
