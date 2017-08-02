@@ -60,7 +60,7 @@ class PrmFullViewAfterController {
   insertSection(sectionData, sectionElement) {
     // The title of the new section is used to idenitfy the section
     // element.
-    let sectionTitleSelector = 'h2[translate="' + sectionData.title + '"]';
+    let sectionTitleSelector = 'h4[translate="' + sectionData.title + '"]';
 
     // We set up the watcher before inserting the section data,
     // to ensure that the watcher catches the change.
