@@ -12,28 +12,58 @@ class PrmFullViewAfterController {
   $onInit() {
     this.parentElement = this.$element.parent()[0];
 
-    // Retrieve the DOI if it is present.
+    this.retrieveDoiIfPresent();
+    this.retrieveViafIdsIfPresent();
+    this.enableSectionOrdering();
+
+  }
+
+  retrieveDoiIfPresent() {
     try {
       this.doi = this.parentCtrl.item.pnx.addata.doi[0];
     } catch (e) {
       console.log('DOI not found.');
     };
+  }
 
-    // Retrieve the VIAF URIs if present.
+  retrieveViafIdsIfPresent() {
     try {
       // This does not seem to fail when no VIAF URI is present.
-      this.viaf_uris = this.parentCtrl.item.pnx.addata.lad06;
+      this.viafUris = this.parentCtrl.item.pnx.addata.lad06;
     } catch (e) {
       console.log('No VIAF URI found.');
     };
+  }
 
-    try {
-      this.sectionOrderingService.orderSections(this.parentCtrl.services);
-    } catch (e) {
-      console.log(e.message);
-    };
+  enableSectionOrdering() {
+    this.orderSectionsWhenNotOrdered();
+    // Assigning `false` to this property
+    // triggers the section ordering.
+    this.parentCtrl.services.ordered = false;
+  }
 
-  };
+  /**
+   *  Orders sections when `this.parentCtrl.services.ordered`
+   *  is changed to have a falsy value.
+   */
+  orderSectionsWhenNotOrdered() {
+    
+    this.$scope.$watch(() => this.parentCtrl.services.ordered,
+      (newVal, oldVal) => {
+
+        if (!newVal) {
+          try {
+            this.sectionOrderingService.orderSections(this.parentCtrl.services);
+            console.log('Sections are ordered.');
+          } catch (e) {
+            console.log(e.message);
+          };
+        }
+      
+      } 
+    );
+  
+  }
 
   insertAltmetricsSection() {
     let altmetricsSectionData = {
@@ -44,7 +74,7 @@ class PrmFullViewAfterController {
     let altmetricsSectionElement = this.$element.find('rex-altmetrics')[0];
 
     this.insertSection(altmetricsSectionData, altmetricsSectionElement);
-  };
+  }
 
   insertAuthorsSection() {
     let authorsSectionData = {
@@ -55,7 +85,7 @@ class PrmFullViewAfterController {
     let authorsSectionElement = this.$element.find('rex-linked-persons')[0];
 
     this.insertSection(authorsSectionData, authorsSectionElement);
-  };
+  }
 
   insertSection(sectionData, sectionElement) {
     // The title of the new section is used to idenitfy the section
@@ -95,7 +125,7 @@ class PrmFullViewAfterController {
     this.parentCtrl.services.splice(this.parentCtrl.services.length - 1, 0, sectionData);
   }
 
-};
+}
 
 PrmFullViewAfterController.$inject = ['sectionOrderingService', '$element', '$scope'];
 

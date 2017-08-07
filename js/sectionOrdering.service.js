@@ -3,9 +3,11 @@
  */
 export class SectionOrderingService {
   /**
-   *  Reorder the sections in the full view.
+   *  Reorders `sections` of the full view.
+   *  After a successful ordering, assigns `true` to `sections.ordered`.
+   *
    *  @param {Array} sections - An array of section objects.  
-   *  @throws {Error} If the fullview sections cannot be found.  
+   *  @throws {Error} If `sections` are not available.
    */
   orderSections(sections) {
     if (!sections || !sections.length || !(sections.length > 0))
@@ -14,6 +16,8 @@ export class SectionOrderingService {
     this.moveToBottomIfExists('links', sections);
     this.moveToBottomIfExists('virtualBrowse', sections);
     this.moveToBottomIfExists('details', sections);
+
+    sections.ordered = true;
   };
 
   moveToBottomIfExists(sectionId, sections) {
