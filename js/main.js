@@ -3,7 +3,6 @@ import { viewName } from './viewName';
 import { NavigationService } from './navigation.service';
 import { AnnouncementService } from './announcement.service';
 import { ScriptLoaderService } from './scriptLoader.service';
-import { SectionOrderingService } from './sectionOrdering.service';
 import { PickUpNumbersService } from './pickUpNumbers.service';
 import { LinkedPersonsService } from './linkedPersons.service';
 import { GoogleAnalyticsService } from './googleAnalytics.service';
@@ -46,7 +45,6 @@ angular.module('viewCustom')
   .service('navigationService', NavigationService)
   .service('announcementService', AnnouncementService)
   .service('scriptLoaderService', ScriptLoaderService)
-  .service('sectionOrderingService', SectionOrderingService)
   .service('pickUpNumbersService', PickUpNumbersService)
   .service('linkedPersonsService', LinkedPersonsService)
   .service('googleAnalyticsService', GoogleAnalyticsService)

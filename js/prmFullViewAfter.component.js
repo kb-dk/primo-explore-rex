@@ -3,8 +3,7 @@ import {
 } from './viewName';
 
 class PrmFullViewAfterController {
-  constructor(sectionOrderingService, $element, $scope) {
-    this.sectionOrderingService = sectionOrderingService;
+  constructor($element, $scope) {
     this.$element = $element;
     this.$scope = $scope;
   }
@@ -14,7 +13,6 @@ class PrmFullViewAfterController {
 
     this.retrieveDoiIfPresent();
     this.retrieveViafIdsIfPresent();
-    this.enableSectionOrdering();
 
   }
 
@@ -33,36 +31,6 @@ class PrmFullViewAfterController {
     } catch (e) {
       console.log('No VIAF URI found.');
     };
-  }
-
-  enableSectionOrdering() {
-    this.orderSectionsWhenNotOrdered();
-    // Assigning `false` to this property
-    // triggers the section ordering.
-    this.parentCtrl.services.ordered = false;
-  }
-
-  /**
-   *  Orders sections when `this.parentCtrl.services.ordered`
-   *  is changed to have a falsy value.
-   */
-  orderSectionsWhenNotOrdered() {
-    
-    this.$scope.$watch(() => this.parentCtrl.services.ordered,
-      (newVal, oldVal) => {
-
-        if (!newVal) {
-          try {
-            this.sectionOrderingService.orderSections(this.parentCtrl.services);
-            console.log('Sections are ordered.');
-          } catch (e) {
-            console.log(e.message);
-          };
-        }
-      
-      } 
-    );
-  
   }
 
   insertAltmetricsSection() {
@@ -127,7 +95,7 @@ class PrmFullViewAfterController {
 
 }
 
-PrmFullViewAfterController.$inject = ['sectionOrderingService', '$element', '$scope'];
+PrmFullViewAfterController.$inject = ['$element', '$scope'];
 
 export let PrmFullViewAfterConfig = {
   name: 'prmFullViewAfter',
