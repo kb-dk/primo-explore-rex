@@ -128,4 +128,7 @@ div.sidebar-section.filtered-facets-section.animate-chip-section.margin-bottom-l
     background-color: #dcdcdc;
     color: green; }
 
+#tags, button[aria-label^="Tags"] {
+  display: none; }
+
 /*# sourceMappingURL=rex.css.map */
