@@ -3,10 +3,8 @@
  */
 class OpeningHoursController {
 
-  constructor(scriptLoaderService, $interval, $rootScope, $window, localeService) {
+  constructor(scriptLoaderService, $window, localeService) {
     this.scriptLoaderService = scriptLoaderService;
-    this.$interval = $interval;
-    this.$rootScope = $rootScope;
     this.localeService = localeService;
     this.$window = $window;
   }
@@ -130,7 +128,7 @@ class OpeningHoursController {
 
 }
 
-OpeningHoursController.$inject = ['scriptLoaderService', '$interval', '$rootScope', '$window', 'localeService'];
+OpeningHoursController.$inject = ['scriptLoaderService', '$window', 'localeService'];
 
 export let OpeningHoursConfig = {
   name: 'rexOpeningHours',

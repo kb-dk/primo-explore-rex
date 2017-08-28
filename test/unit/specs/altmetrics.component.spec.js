@@ -3,15 +3,13 @@ describe('altmetricsController,', function() {
 
   beforeEach(module('viewCustom'));
 
-  beforeEach(inject(function(_scriptLoaderService_, _$httpBackend_, _$window_) {
+  beforeEach(inject(function(_scriptLoaderService_, _$httpBackend_) {
     scriptLoaderService = _scriptLoaderService_;
     spyOn(scriptLoaderService, 'load').and.returnValue(Promise.resolve());
 
     $httpBackend = _$httpBackend_;
     $httpBackend.when('GET', 'https://api.altmetric.com/v1/doi/10.1007/BF01386390')
       .respond('', {});
-
-    $window = _$window_;
 
     doi = '10.1007/BF01386390';
 
