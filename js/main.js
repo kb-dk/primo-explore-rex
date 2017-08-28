@@ -12,6 +12,7 @@ import { OpeningHoursConfig } from './openingHours.component';
 import { SearchTipsConfig } from './searchTips.component';
 import { AltmetricsConfig } from './altmetrics.component';
 import { LinkedPersonsConfig } from './linkedPersons.component';
+import { ChatBoxConfig } from './chatBox.component';
 
 import { PrmFinesAfterConfig } from './prmFinesAfter.component';
 import { PrmLogoAfterConfig } from './prmLogoAfter.component';
@@ -22,6 +23,7 @@ import { PrmPersonalInfoAfterConfig } from './prmPersonalInfoAfter.component';
 import { PrmRequestsAfterConfig } from './prmRequestsAfter.component';
 import { PrmRequestsOverviewAfterConfig } from './prmRequestsOverviewAfter.component';
 import { PrmRequestServicesAfterConfig } from './prmRequestServicesAfter.component';
+import { PrmExploreMainAfterConfig } from './prmExploreMainAfter.component';
 // import { PrmBriefResultAfterConfig } from './prmBriefResultAfter.component';
 
 angular.module('viewCustom', [
@@ -53,6 +55,7 @@ angular.module('viewCustom')
   .component(SearchTipsConfig.name, SearchTipsConfig.config)
   .component(AltmetricsConfig.name, AltmetricsConfig.config)
   .component(LinkedPersonsConfig.name, LinkedPersonsConfig.config)
+  .component(ChatBoxConfig.name, ChatBoxConfig.config)
   .component(PrmFinesAfterConfig.name, PrmFinesAfterConfig.config)
   .component(PrmLogoAfterConfig.name, PrmLogoAfterConfig.config)
   .component(PrmTopbarAfterConfig.name, PrmTopbarAfterConfig.config)
@@ -62,9 +65,9 @@ angular.module('viewCustom')
   .component(PrmRequestsAfterConfig.name, PrmRequestsAfterConfig.config)
   .component(PrmRequestsOverviewAfterConfig.name, PrmRequestsOverviewAfterConfig.config)
   .component(PrmRequestServicesAfterConfig.name, PrmRequestServicesAfterConfig.config)
+  .component(PrmExploreMainAfterConfig.name, PrmExploreMainAfterConfig.config)
 // .component(PrmBriefResultAfterConfig.name, PrmBriefResultAfterConfig.config)
 
 // Pre-ES2015 code.
 require('./angularLoadMonkeyPatched');
 require('./prmBriefResultAfter.component');
-require('./chatBoxExperiment');
