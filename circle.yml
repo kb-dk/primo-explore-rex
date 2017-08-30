@@ -26,5 +26,5 @@ test:
       if [ -n "${RUN_NIGHTLY_BUILD}" ]; then
         cd ../devenv/primo-explore/custom/NUI && \
         ./node_modules/protractor/bin/webdriver-manager update && \
-        ./node_modules/protractor/bin/protractor ./test/e2e/conf.js --params.targetUrl 'https://rex.kb.dk'
+        ./node_modules/protractor/bin/protractor ./test/e2e/conf.js --params.targetUrl 'https://rex-test.kb.dk'
       fi

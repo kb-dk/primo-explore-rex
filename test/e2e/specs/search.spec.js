@@ -59,22 +59,22 @@ describe('A search for an article', function() {
     browser.wait(EC.visibilityOf(altmetricBadge), 5000);
 
     expect(sectionTitles.count()).toBeGreaterThan(4);
-
-    sectionTitles.last().getText().then((value) => {
-      expect(value.toLowerCase()).toEqual('detaljer');
-    }).catch(() => {
-      // Should not execute this block.
-      expect(true).toBeFalsy();
-    })
-
     expect(sectionButtons.count()).toBeGreaterThan(4);
 
-    sectionButtons.last().getText().then((value) => {
-      expect(value.toLowerCase()).toEqual('detaljer');
-    }).catch(() => {
-      // Should not execute this block.
-      expect(true).toBeFalsy();
-    })
+    // Section ordering can now be handled in the back office.
+    // We may uncomment this part after the ordering is performed.
+    // sectionTitles.last().getText().then((value) => {
+    //   expect(value.toLowerCase()).toEqual('detaljer');
+    // }).catch(() => {
+    //   // Should not execute this block.
+    //   expect(true).toBeFalsy();
+    // })
+    // sectionButtons.last().getText().then((value) => {
+    //   expect(value.toLowerCase()).toEqual('detaljer');
+    // }).catch(() => {
+    //   // Should not execute this block.
+    //   expect(true).toBeFalsy();
+    // })
 
   })
 })
