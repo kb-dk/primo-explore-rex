@@ -12,7 +12,7 @@ import { OpeningHoursConfig } from './openingHours.component';
 import { SearchTipsConfig } from './searchTips.component';
 import { AltmetricsConfig } from './altmetrics.component';
 import { LinkedPersonsConfig } from './linkedPersons.component';
-import { ChatBoxConfig } from './chatBox.component';
+//import { ChatBoxConfig } from './chatBox.component';
 
 import { PrmFinesAfterConfig } from './prmFinesAfter.component';
 import { PrmLogoAfterConfig } from './prmLogoAfter.component';
@@ -55,7 +55,7 @@ angular.module('viewCustom')
   .component(SearchTipsConfig.name, SearchTipsConfig.config)
   .component(AltmetricsConfig.name, AltmetricsConfig.config)
   .component(LinkedPersonsConfig.name, LinkedPersonsConfig.config)
-  .component(ChatBoxConfig.name, ChatBoxConfig.config)
+//  .component(ChatBoxConfig.name, ChatBoxConfig.config)
   .component(PrmFinesAfterConfig.name, PrmFinesAfterConfig.config)
   .component(PrmLogoAfterConfig.name, PrmLogoAfterConfig.config)
   .component(PrmTopbarAfterConfig.name, PrmTopbarAfterConfig.config)
