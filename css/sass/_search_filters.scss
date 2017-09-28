@@ -7,21 +7,10 @@ prm-facet-group {
     max-width: 57px;
   }
 
-  // Add the facet inclusion icons.
-	.section-content .md-chips .md-chip .md-chip-content:hover::after {
-		background-image: url('../img/checkmark_on_circle.svg');
-		background-size: 16px 16px;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin-top: 5px;
-    content: "";
-    background-repeat: no-repeat;
-    margin-left: 5px;	  		
-    padding-left: 15px;
-	}
+
 
 }
+
 
 // Highlighting the active filters section.
 div.sidebar-section.filtered-facets-section.animate-chip-section.margin-bottom-large	{
