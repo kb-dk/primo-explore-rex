@@ -12,7 +12,7 @@ import { OpeningHoursConfig } from './openingHours.component';
 import { SearchTipsConfig } from './searchTips.component';
 import { AltmetricsConfig } from './altmetrics.component';
 import { LinkedPersonsConfig } from './linkedPersons.component';
-//import { ChatBoxConfig } from './chatBox.component';
+// import { ChatBoxConfig } from './chatBox.component';
 
 import { PrmFinesAfterConfig } from './prmFinesAfter.component';
 import { PrmLogoAfterConfig } from './prmLogoAfter.component';
@@ -70,4 +70,4 @@ angular.module('viewCustom')
 
 // Pre-ES2015 code.
 require('./angularLoadMonkeyPatched');
-require('./prmBriefResultAfter.component');
+// require('./prmBriefResultAfter.component');
