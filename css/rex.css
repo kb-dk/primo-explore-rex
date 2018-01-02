@@ -48,10 +48,25 @@ prm-icon md-icon.md-primoExplore-theme {
 /*END: Hovered topbar */
 prm-search-bar {
   background-color: white; }
+  prm-search-bar .search-element-inner {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.09) !important; }
   prm-search-bar .search-switch-buttons .md-button.switch-to-advanced, prm-search-bar .search-switch-buttons .md-button.switch-to-simple {
     color: #45AAB4; }
   prm-search-bar .advanced-search-backdrop {
     background-color: white; }
+
+prm-atoz-search-bar {
+  background-color: white; }
+  prm-atoz-search-bar .search-element-inner {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.09) !important; }
+  prm-atoz-search-bar .search-switch-buttons .md-button.switch-to-advanced, prm-atoz-search-bar .search-switch-buttons .md-button.switch-to-simple {
+    color: #45AAB4; }
+
+prm-alphabet-toolbar .md-button {
+  color: #000; }
+
+bar.alert-bar, .classic-input .search-scope, .prm-alert-bg {
+  background-color: #E7E7E7; }
 
 .rex-announcement {
   z-index: 16;

@@ -79,6 +79,10 @@ prm-icon {
 
 
 prm-search-bar {
+    .search-element-inner {
+      // Fixed search-bar's shadow in ie
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.09) !important;
+    }
   background-color: $search-bar-background-color;
   .search-switch-buttons  { 
     .md-button.switch-to-advanced, .md-button.switch-to-simple {
@@ -90,6 +94,27 @@ prm-search-bar {
   }
 }
 
+prm-atoz-search-bar {
+    .search-element-inner {
+      // Fixed search-bar's shadow in ie
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.09) !important;
+    }
+  background-color: $search-bar-background-color;
+  .search-switch-buttons  { 
+    .md-button.switch-to-advanced, .md-button.switch-to-simple {
+      color: #45AAB4;
+    }
+  }
+}
+
+prm-alphabet-toolbar .md-button {
+	color: #000;
+}
+
+bar.alert-bar, .classic-input .search-scope, .prm-alert-bg {
+    background-color: #E7E7E7;
+}
+	
 .rex-announcement {
   $background-color: #fffcc4;
   z-index: 16;
