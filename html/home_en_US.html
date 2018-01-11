@@ -4,7 +4,7 @@
                 <md-card class="default-card">
             <md-card-title>
                 <md-card-title-text>
-                    <span class="md-headline" style="background-color: #6A6864;color: #FFFFFF;padding: 5px"><img src="custom/{{$root.viewName}}/img/KB_logo_white.png" style="width: 120px; display: inline;" >  Welcome to REX</span>
+                    <div class="md-headline" style="background-color: #6A6864;color: #FFFFFF;padding: 5px; min-height: 1px;"><img src="custom/{{$root.viewName}}/img/KB_logo_white.png" style="width: 120px; display: inline;" >  Welcome to REX</div>
                 </md-card-title-text>
            </md-card-title>    
             <md-card-content>
@@ -13,7 +13,7 @@
                     <strong>What can I search in REX? </strong> REX lets you search physical library items and a wide range of e-resources from library databases in one convenient place. <a href="https://kub.kb.dk/c.php?g=659333&p=4653941" target="_blank">More about what is inside REX</a>.
                 </p> 
                  <br/>
-                 <img src="custom/{{$root.viewName}}/img/ruc_segl.png" width="35" height="15"/> Roskilde University user? <a href="https://user.kb.dk/user/edit" target="_blank">Update</a> your KB account with your RUC ID to get remote access.</p> -->
+                 <img src="custom/{{$root.viewName}}/img/ruc_segl.png" width="35" height="15"/> Roskilde University user? <a href="https://user.kb.dk/user/edit" target="_blank">Update</a> your KB account with your RUC ID to get remote access.</p>
              	 <br/>
                 <p><img src="custom/{{$root.viewName}}/img/zotero.png"/> Having problems with Zotero? - get more <a href="http://kub.kb.dk/c.php?g=127381&p=4254078" target="_blank">information</a>.</p>
                 
@@ -28,6 +28,28 @@
     </div>
     
     <div flex-xs flex="40" layout="column" style="min-width: 320px">
+
+        <md-card class="default-card">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Databases or e-journals?</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <p>
+                If you already know the title, find it easily on:
+                </p>
+             <p class="clear">&#9679; <a href="https://rex.kb.dk/primo-explore/dbsearch?vid=NUI&sortby=rank&lang=en_US" target=_blank title="Find available databases by title">REX' database list</a></p>
+             <p class="clear">&#9679; <a href="https://e-tidsskrifter.kb.dk/?umlaut.locale=en" target=_blank title="Find your e-journal.">E-journals page</a></p>   
+                  
+             <p><strong>Off-campus access?</strong>     
+                    <a href="https://kub.kb.dk/offcampus" title="Find out about your off-campus access to electronic books and journals." target="_blank">
+                     Learn about your remote access options to electronic resources.</a> 
+                </p>
+                <p>Electronic resources are accessible to any user from one of our <a href="http://www.kb.dk/en/kb/aabningstider/index.html" title="See openng hours" target="_blank">library locations</a>.</p>
+            </md-card-content>
+        </md-card>
+
         <md-card class="default-card">
             <md-card-title>
                 <md-card-title-text>
@@ -36,11 +58,12 @@
             </md-card-title>
             <md-card-content>
                 <img src="custom/{{$root.viewName}}/img/235Find_dit_Subject-UK.jpg" alt="LibGuides Find your subject" style="width: 65%; display: block;"/>
-            <p> - relevant to your studies at <a href="http://kub.kb.dk/c.php?g=439596" target=_blank title="Library subject guides">Copenhagen University</a></p>
-			<p> - relevant to your studies at <a href="https://rub.ruc.dk/en/search/databases/" target=_blank>Roskilde University</a></p>
+            <p>&#9679; relevant to your studies at <a href="http://kub.kb.dk/c.php?g=439596" target=_blank title="Library subject guides">Copenhagen University</a></p>
+			<p>&#9679; relevant to your studies at <a href="https://rub.ruc.dk/en/search/databases/" target=_blank>Roskilde University</a></p>
             </md-card-content>
         </md-card>
 
+        <!--
         <md-card class="default-card">
             <md-card-title>
                 <md-card-title-text>
@@ -55,6 +78,7 @@
                 </p>
             </md-card-content>
         </md-card>
+        -->
 
         <md-card class="default-card">
             <md-card-title>
@@ -78,26 +102,43 @@
 
 <md-content class="display-block-xs _md md-primoExplore-theme layout-xs-column layout-row" layout-xs="column" layout="row" style="max-width: 1245px">
     <div>
-                <md-card class="default-card" style="background-color: #1B1B1B; color: #C9C9C9; text-align: center;">
+                <md-card class="default-card" style="background-color: #1B1B1B; color: #C9C9C9; text-align: left;">
             <md-card-title>
                 <md-card-title-text>
-                          <a href="http://www.kb.dk/en/" >
-                                 <span class="md-headline" style="color: #FFFFFF;">ROYAL DANISH LIBRARY - COPENHAGEN</span>
-                                </a>
+
                             <small></small>
                 </md-card-title-text>
             </md-card-title>
-            <md-card-content>
+            <md-card-content style="min-height: 1px;">
+            <div class="column" style="float: left; width: 30%; min-width: 200px;">
+             <a href="http://www.kb.dk/en/index.html" title="Go to Library home page" target="_blank" >
+                <img src="custom/{{$root.viewName}}/img/KB-RDL_logo_white.png"  style="width: 65%;">
+             </a>
+            </div>
+            <div class="column" style=" float: left; width: 30%; min-width: 200px;">
                 <p>
-                <a href="http://www.kb.dk/en/kb/handicap/index.html" style="color: #FFFFFF;"  target="_blank">Accessability   |</a>
-                <a href="http://www.kb.dk/en/kb/webstedet/cookiepolitik.html" style="color: #FFFFFF;" target="_blank">   Cookie- and privacy policy   |</a>
-                <a href="http://www.kb.dk/en/kb/webstedet/index.html" style="color: #FFFFFF;" target="_blank">   About the website  |</a>
-                 <a href="http://www.kb.dk/en/kb/aabningstider/index.html" style="color: #FFFFFF;" target="_blank">   Opening Hours</a>
+                <a href="http://www.kb.dk/en/kb/handicap/index.html" style="color: #FFFFFF;"  target="_blank">Accessability</a>
                 </p>
+                <p>
+                <a href="http://www.kb.dk/en/kb/webstedet/cookiepolitik.html" style="color: #FFFFFF;" target="_blank">Cookie- and privacy policy</a>
+                </p>
+             <!--   <a href="http://www.kb.dk/en/kb/webstedet/index.html" style="color: #FFFFFF;" target="_blank">   About the website</a> -->
+                <P>
+                 <a href="http://www.kb.dk/en/kb/aabningstider/index.html" style="color: #FFFFFF;" target="_blank">Opening Hours</a>
+                </p>
+            </div>
+            <div class="column" style="float: left; width: 40%; min-width: 200px;">
                             <small>
-                            Søren Kierkegaards Plads 1 - DK-1219 København K - Denmark | 
-                            <abbr title="Telefon nr.">Tel: </abbr>+45 33 47 47 47 | Email <a href="mailto:kb@kb.dk" style="color: #FFFFFF;">kb@kb.dk</a> | EAN: 5798 000795297 |                     
+                            <p>
+                            Søren Kierkegaards Plads 1 - DK-1219 København K - Denmark 
+                            </p>
+                            <p>
+                            <abbr title="Telefon nr.">Tel: </abbr>+45 33 47 47 47 | Email <a href="mailto:kb@kb.dk" style="color: #FFFFFF;">kb@kb.dk</a>
+                            </p>
+                            <p>
+                            EAN: 5798 000795297 |                     
                             <span class="glyphicon glyphicon-thumbs-up"></span> <a href="https://www.facebook.com/DetKongeligeBibliotek" target="_blank" style="color: #FFFFFF;">Follow us on Facebook</a>
+                            </p>
                         </small>
             </md-card-content>
         </md-card>

@@ -2,9 +2,9 @@
 <md-content class="display-block-xs _md md-primoExplore-theme layout-xs-column layout-row" layout-xs="column" layout="row" style="max-width: 1245px">
     <div flex="60"  layout="column"  style="min-width: 320px">
                 <md-card class="default-card">
-            <md-card-title >
+            <md-card-title>
             	<md-card-title-text>
-            		<span class=md-headline style="background-color: #6A6864;color: #FFFFFF;padding: 5px"><img src="custom/{{$root.viewName}}/img/KB_logo_white.png" style="width: 120px; display: inline;" >  Velkommen til REX</span>
+            		<div class=md-headline style="background-color: #6A6864;color: #FFFFFF;padding: 5px; min-height: 1px;"><img src="custom/{{$root.viewName}}/img/KB_logo_white.png" style="width: 120px; display: inline;" >  Velkommen til REX</div>
             	</md-card-title-text>
            </md-card-title>
             <md-card-content>
@@ -30,6 +30,28 @@
 
 
     <div flex-xs flex="40" layout="column" style="min-width: 280px">
+
+        <md-card class="default-card">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Databaser og e-tidsskrifter?</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <p>
+                Kender du titlen, finder du den nemmest på:
+                </p>
+             <p class="clear">&#9679; <a href="https://rex.kb.dk/primo-explore/dbsearch?vid=NUI&sortby=rank&lang=da_DK" target=_blank title="Søg bibliotekets databaser frem på titel">REX' databaseliste</a></p>
+			 <p class="clear">&#9679; <a href="https://e-tidsskrifter.kb.dk/" target=_blank title="Find dit e-tidsskrift.">E-tidsskriftsiden</a></p>   
+			  
+			 <p><strong>Adgang hjemmefra?</strong>     
+                    <a href="http://kub.kb.dk/fjernadgang" title="Se om du har adgang til elektroniske tidsskrifter, bøger og databaser hjemmefra" target="_blank">
+             		 Læs mere om fjernadgang til elektroniske ressourcer.</a> 
+                </p>
+                <p>Alle brugere har adgang til bibliotekets elektroniske ressourcer fra <a href="http://www.kb.dk/da/kb/aabningstider/index.html" title="Se åbningstider" target="_blank">vores adresser</a>.</p>
+            </md-card-content>
+        </md-card>
+
         <md-card class="default-card">
             <md-card-title>
                 <md-card-title-text>
@@ -37,30 +59,14 @@
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
-
             
                 <img src="custom/{{$root.viewName}}/img/Find_dit_fag-DK.jpg" alt="LibGuides Find dit fag" style="width: 65%; display: block;"/>
-             <p class="clear"> - inden for dit studie på <a href="http://kubis.kb.dk/" target=_blank title="Bibliotekets faglige vejledning">Københavns Universitet</a></p>
-			 <p class="clear"> - inden for dit studie på <a href="https://rub.ruc.dk/soeg/databaser/" target=_blank>Roskilde Universitet</a></p>
+             <p class="clear">&#9679; inden for dit studie på <a href="http://kubis.kb.dk/" target=_blank title="Bibliotekets faglige vejledning">Københavns Universitet</a></p>
+			 <p class="clear">&#9679; inden for dit studie på <a href="https://rub.ruc.dk/soeg/databaser/" target=_blank>Roskilde Universitet</a></p>
             </md-card-content>
         </md-card>
 
-        <md-card class="default-card">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">Adgang hjemmefra</span>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-content>
-                <p>
-                    <a href="http://kub.kb.dk/fjernadgang" title="fjernadgang">
-                <img src="custom/{{$root.viewName}}/img/Fjernadgang.jpg" alt="Få oplysninger om fjernadgang" style="width: 65%; display: block;"/></a>
-                </p>
-                <p class="clear">
-                   Se om du har adgang til elektroniske tidsskrifter, bøger og databaser hjemmefra.
-                </p>
-            </md-card-content>
-        </md-card>
+
 
         <md-card class="default-card">
             <md-card-title>
@@ -83,27 +89,48 @@
 </md-content>
 <md-content class="display-block-xs _md md-primoExplore-theme layout-xs-column layout-row" layout-xs="column" layout="row" style="max-width: 1245px">
 	     <div flex="100" layout-xs="column">
-        <md-card class="default-card" style="background-color: #1B1B1B; color: #C9C9C9; text-align: center;">
+        <md-card class="default-card" style="background-color: #1B1B1B; color: #C9C9C9; text-align: left;">
             <md-card-title>
                 <md-card-title-text>
-                	            <a href="http://www.kb.dk" >
-            					 <span class="md-headline" style="color: #FFFFFF;">DET KGL. BIBLIOTEK - KØBENHAVN</span>
-            					</a>
+
             				<small></small>
                 </md-card-title-text>
             </md-card-title>
-            <md-card-content>
-            <p>
-<a href="http://www.kb.dk/da/kb/handicap/index.html" style="color: #FFFFFF;" target="_blank">Handikap-information  |</a>
-<a href="http://www.kb.dk/da/kb/webstedet/cookiepolitik.html" style="color: #FFFFFF;" target="_blank">  Cookie- og privatlivspolitik  |</a>
-<a href="http://www.kb.dk/da/kb/webstedet/index.html" style="color: #FFFFFF;" target="_blank">  Om webstedet  |</a>
-<a href="http://www.kb.dk/da/kb/aabningstider/index.html" style="color: #FFFFFF;" target="_blank">  Åbningstider</a>
+            <md-card-content style="min-height: 1px;">
+            <div class="column" style="float: left; width: 40%; min-width: 250px;">
+             <a href="http://www.kb.dk" title="Gå til bibliotekets hjemmeside" target="_blank">
+           		<img src="custom/{{$root.viewName}}/img/KB_logo_white.png"  style="width: 200px;">
+           	 </a>
+           	 </div>
+           	 <div class="column" style=" float: left; width: 30%; min-width: 200px;">
+           	 <p>
+<a href="http://www.kb.dk/da/kb/handicap/index.html" style="color: #FFFFFF;" target="_blank">Handikap-information  </a>
 			</p>
+			<p>
+<a href="http://www.kb.dk/da/kb/webstedet/cookiepolitik.html" style="color: #FFFFFF;" target="_blank">Cookie- og privatlivspolitik  </a>
+			</p>
+<!--			<p>
+<a href="http://www.kb.dk/da/kb/webstedet/index.html" style="color: #FFFFFF;" target="_blank">Om webstedet  </a>
+			</p> 
+-->
+			<p>
+<a href="http://www.kb.dk/da/kb/aabningstider/index.html" style="color: #FFFFFF;" target="_blank">Åbningstider</a>
+			</p>
+			</div>
+             <div class="column" style="float: left; width: 30%; min-width: 200px;">
                             <small>
-                            Søren Kierkegaards Plads 1 - 1219 København K |
-                            <abbr title="Telefon nr.">Tlf: </abbr>+45 33 47 47 47 | E-mail <a href="mailto:kb@kb.dk" style="color: #FFFFFF;">kb@kb.dk</a> | EAN: 5798 000795297 |
+                            <p>
+                            Søren Kierkegaards Plads 1 - 1219 København K 
+                            </p>
+                            <p>
+                            <abbr title="Telefon nr.">Tlf: </abbr>+45 33 47 47 47 | E-mail <a href="mailto:kb@kb.dk" style="color: #FFFFFF;">kb@kb.dk</a> 
+                            </p>
+                            <p>
+              				 EAN: 5798 000795297 |
                             <span class="glyphicon glyphicon-thumbs-up"></span> <a href="https://www.facebook.com/DetKongeligeBibliotek" target="_blank" style="color: #FFFFFF;">Følg os på Facebook</a>
+                            </p>
                         </small>
+             </div>
 
 
             </md-card-content>
