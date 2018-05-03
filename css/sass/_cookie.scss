@@ -1,0 +1,23 @@
+bibsys-cookie{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+
+  #cookie-info {
+    background-color: #ededed;
+    border-top: 4px solid #444444;
+    color: #000000;
+    bottom: 0;
+    font-family: inherit;
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    z-index: 1000;
+  }
+
+  button{
+    color: #45AAB4 !important;
+  }
+}

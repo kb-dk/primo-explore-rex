@@ -142,3 +142,19 @@
         </md-card>
     </div>
 </md-content>
+<bibsys-cookie parentctrl="$ctrl">
+    <div ng-if="!$ctrl.accepted">
+        <div id="cookie-info">
+        <p>
+            <span>REX uses</span>
+            <a href="http://www.kb.dk/da/kb/webstedet/cookiepolitik.html" class="md-primoExplore-theme" target="_blank">
+                <span>cookies</span>
+            </a>
+            <span>. By using the service we assume your permission to deploy cookies.</span>
+            <button class="button-confirm md-primoExplore-theme md-ink-ripple md-button" type="button" ng-transclude="" ng-click="$ctrl.accept()" aria-label="accept-cookie">
+                <span>Accept</span>
+            </button>
+        </p>
+        </div>
+    </div>
+</bibsys-cookie>
