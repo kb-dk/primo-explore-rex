@@ -46,6 +46,15 @@ prm-icon md-icon.md-primoExplore-theme {
   color: rgba(0, 0, 0, 0.65) !important; }
 
 /*END: Hovered topbar */
+/* START: Sign-in area August 2018 release */
+prm-user-area-expandable .md-button.user-menu-button {
+  padding: 0 10px 0 16px;
+  max-width: 350px; }
+
+prm-user-area-expandable .md-button.user-button .menu-arrow {
+  color: #3A3A3A; }
+
+/* END: Sign-in area August 2018 release */
 prm-search-bar {
   background-color: white; }
   prm-search-bar .search-element-inner {
